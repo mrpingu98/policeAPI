@@ -1,9 +1,10 @@
 import React from "react"
+import '../Styling/main.scss'
 
 const Home: React.FC = () => {
     return (
         <>
-        <div>hello</div>
+        <h1>hello</h1>
         </>
     )
 }
