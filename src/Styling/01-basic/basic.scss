@@ -1,1 +1,9 @@
-//placeholder
+$primary-font: "Source Sans Pro", Helvetica, Verdana, sans-serif;
+// 'Inter', sans-serif;
+//not sure if this font is actually being applied...
+$primary-color: #3498db;
+
+body {
+    font: $primary-color;
+    color: $primary-color;
+}
