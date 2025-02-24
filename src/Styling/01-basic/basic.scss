@@ -1,6 +1,6 @@
 $primary-font: "Source Sans Pro", Helvetica, Verdana, sans-serif;
 $primary-color: #3498db;
-// $background-color: #282c34;
+$background-color: #282c34;
 //how to pass arounf the background color
 //Kept getting an error
 
@@ -12,7 +12,13 @@ body {
 button {
   padding: 8px 30px;
   border-radius: 10px;
-  background-color: #282c34;
+  background-color: $background-color;
   color: $primary-color;
   font-size: 17px;
+  cursor: pointer;
+  border: $background-color;
+
+  &:hover {
+    background-color: lighten($background-color, 10%);
+  }
 }
