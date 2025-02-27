@@ -16,7 +16,14 @@ body {
 }
 
 .main {
-  padding: 10px;
+  padding: 1.5rem;
+  max-width: 90%; //sets max-width of screen
+  margin: 0 auto; //centers content
+}
+
+p {
+  max-width: 100%; //inherits width from parent
+  word-wrap: break-word; //wraps long pieces of text
 }
 
 .centre {
