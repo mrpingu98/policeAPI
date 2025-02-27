@@ -1,9 +1,13 @@
 import React from "react";
 import { Home } from "./Pages/Home";
-import "./Styling/main.scss";
+import { Layout } from "./Components/Layout";
 
 function App() {
-  return <Home />;
+  return (
+    <Layout>
+      <Home />
+    </Layout>
+  );
 }
 
 export default App;
