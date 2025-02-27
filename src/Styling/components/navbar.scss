@@ -1,0 +1,16 @@
+$primary-font: "Source Sans Pro", Helvetica, Verdana, sans-serif;
+$primary-color: #3498db;
+$background-color: #282c34;
+
+.navBar {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  height: 75px;
+  background-color: #282c34;
+  margin-bottom: 5%;
+  padding: 10px;
+  border-bottom: 2px solid #7c8ba8;
+  gap: 50px;
+}
