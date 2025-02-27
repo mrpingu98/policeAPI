@@ -1,17 +1,6 @@
-html,
-body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  background-color: #282c34;
-}
-
-.centre {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
+$primary-font: "Source Sans Pro", Helvetica, Verdana, sans-serif;
+$primary-color: #3498db;
+$background-color: #282c34;
 
 .navBar {
   display: flex;
