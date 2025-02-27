@@ -1,8 +1,12 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import "../Styling/layout/layout.scss";
 
-const Layout: React.FC = () => {
-  return <div></div>;
+interface LayoutProps {
+  children: ReactNode;
+}
+
+const Layout: React.FC<LayoutProps> = ({ children }) => {
+  return <main>{children}</main>;
 };
 
 export { Layout };
