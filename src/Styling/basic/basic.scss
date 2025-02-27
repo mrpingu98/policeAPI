@@ -1,13 +1,5 @@
-$primary-font: "Source Sans Pro", Helvetica, Verdana, sans-serif;
-$primary-color: #3498db;
 $background-color: #282c34;
-//how to pass arounf the background color
-//Kept getting an error
-
-body {
-  font: $primary-font;
-  color: $primary-color;
-}
+$primary-color: #3498db;
 
 button {
   padding: 8px 30px;
