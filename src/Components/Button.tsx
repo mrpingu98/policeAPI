@@ -1,4 +1,5 @@
 import React from "react";
+import "../Styling/components/button.scss";
 
 interface ButtonProps {
   text: string;
