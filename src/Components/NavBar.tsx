@@ -1,5 +1,6 @@
 import React from "react";
 import { Button } from "./Button";
+import "../Styling/components/navbar.scss";
 
 const NavBar: React.FC = () => {
   return (
