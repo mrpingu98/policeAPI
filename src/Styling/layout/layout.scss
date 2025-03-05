@@ -7,23 +7,34 @@ body {
   color: $primary-color;
 }
 
-html,
-body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  background-color: #282c34;
-}
-
-.main {
-  padding: 1.5rem;
-  max-width: 90%; //sets max-width of screen
-  margin: 0 auto; //centers content
-}
-
 p {
-  max-width: 100%; //inherits width from parent
   word-wrap: break-word; //wraps long pieces of text
+}
+
+.red {
+  background-color: red;
+}
+
+.container {
+  display: grid;
+  grid-template-rows: 1fr 1fr 5fr;
+}
+
+.bannerRow {
+  background-color: #0f1013;
+  display: grid;
+  grid-template-columns: 1fr 5fr 1fr;
+}
+
+.navbarRow {
+  background-color: #505666;
+  display: grid;
+  grid-template-columns: 1fr 5fr 1fr;
+}
+
+.contentRow {
+  display: grid;
+  grid-template-columns: 1fr 5fr 1fr;
 }
 
 .centre {
@@ -32,3 +43,10 @@ p {
   justify-content: center;
   align-items: center;
 }
+
+// .bannerGrid,
+// .contentGrid,
+// .navbarGrid {
+//   display: grid;
+//   grid-template-columns: 1fr 5fr 1fr;
+// }
