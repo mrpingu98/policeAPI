@@ -10,11 +10,21 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <>
       <div className="container">
-        <div className="bannerGrid" />
-        <div className="navbarGrid">
-          <NavBar />
+        <div className="bannerRow">
+          <div />
+          <h1>POLICE API</h1>
+          <div />
         </div>
-        <main className="contentGrid">{children}</main>
+        <div className="navbarRow">
+          <div />
+          <NavBar />
+          <div />
+        </div>
+        <main className="contentRow">
+          <div />
+          {children}
+          <div />
+        </main>
       </div>
     </>
   );

@@ -7,36 +7,34 @@ body {
   color: $primary-color;
 }
 
-html,
-body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  background-color: #282c34;
-}
-
 p {
   word-wrap: break-word; //wraps long pieces of text
 }
 
+.red {
+  background-color: red;
+}
+
 .container {
   display: grid;
-  grid-template-columns: 1fr 5fr 1fr;
   grid-template-rows: 1fr 1fr 5fr;
 }
 
-.bannerGrid {
+.bannerRow {
   background-color: #0f1013;
-  grid-column: 1 / 4;
+  display: grid;
+  grid-template-columns: 1fr 5fr 1fr;
 }
 
-.navbarGrid {
+.navbarRow {
   background-color: #505666;
-  grid-column: 1 / 4;
+  display: grid;
+  grid-template-columns: 1fr 5fr 1fr;
 }
 
-.contentGrid {
-  grid-column: 2 / 3;
+.contentRow {
+  display: grid;
+  grid-template-columns: 1fr 5fr 1fr;
 }
 
 .centre {
@@ -45,3 +43,10 @@ p {
   justify-content: center;
   align-items: center;
 }
+
+// .bannerGrid,
+// .contentGrid,
+// .navbarGrid {
+//   display: grid;
+//   grid-template-columns: 1fr 5fr 1fr;
+// }
