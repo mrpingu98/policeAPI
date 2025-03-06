@@ -1,6 +1,22 @@
 .navBar {
   display: flex;
-  flex-direction: row;
-  justify-content: start;
-  align-items: center;
+}
+
+.verticalLine {
+  border-left: 2px solid black;
+  height: 30px;
+}
+
+.navLink {
+  color: black;
+  text-decoration: none;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  font-size: xx-large;
+  width: 8%;
+
+  &:hover {
+    background-color: #1b63f2;
+  }
 }

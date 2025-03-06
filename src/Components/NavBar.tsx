@@ -1,18 +1,17 @@
 import React from "react";
-import { Button } from "./Button";
 import "../Styling/components/navbar.scss";
+import { Link } from "react-router-dom";
 
 const NavBar: React.FC = () => {
   return (
     <div className="navBar">
-      <Button
-        text={"Home"}
-        onClick={() => console.log("Home button clicked")}
-      />
-      <Button
-        text={"Police API"}
-        onClick={() => console.log("Police API button clicked")}
-      />
+      <Link to="#" className="navLink">
+        Home
+      </Link>
+      <div className="verticalLine" />
+      <Link to="#" className="navLink">
+        API
+      </Link>
     </div>
   );
 };
