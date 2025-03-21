@@ -1,5 +1,4 @@
 import React from "react";
-import policeLogo from "../ukPoliceLogo.jpg";
 
 const Home: React.FC = () => {
   return (
@@ -9,7 +8,7 @@ const Home: React.FC = () => {
         policing across England, Wales and Northern Ireland
       </p>
       <p>Head to the API page to find out about crime in your local area</p>
-      <img src={policeLogo} alt="police logo" />
+      <img src="/assets/ukPoliceLogo.jpg" alt="police logo" />
     </div>
   );
 };
