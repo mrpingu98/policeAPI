@@ -9,7 +9,7 @@ const Home: React.FC = () => {
         policing across England, Wales and Northern Ireland
       </p>
       <p>Head to the API page to find out about crime in your local area</p>
-      <img src={policeLogo} alt="daft bastard" />
+      <img src={policeLogo} alt="police logo" />
     </div>
   );
 };

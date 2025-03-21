@@ -22,7 +22,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         </div>
         <main className="contentRow">
           <div />
-          {children}
+          <div>{children}</div>
           <div />
         </main>
       </div>
