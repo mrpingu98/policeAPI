@@ -9,7 +9,7 @@ body {
 
 p {
   word-wrap: break-word; //wraps long pieces of text
-  font-size: large;
+  font-size: 20px;
 }
 
 .red {
@@ -18,8 +18,11 @@ p {
 
 .container {
   display: grid;
-  grid-template-rows: 1fr 0.5fr 5fr;
+  grid-template-rows: auto auto 1fr;
 }
+
+// root{
+//style root element with vh etc} - or could above be fine for now?
 
 .bannerRow {
   display: grid;
@@ -43,10 +46,3 @@ p {
   justify-content: center;
   align-items: center;
 }
-
-// .bannerGrid,
-// .contentGrid,
-// .navbarGrid {
-//   display: grid;
-//   grid-template-columns: 1fr 5fr 1fr;
-// }
