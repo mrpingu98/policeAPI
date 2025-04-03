@@ -8,21 +8,21 @@ body {
 }
 
 p {
-  word-wrap: break-word; //wraps long pieces of text
+  word-wrap: break-word;
   font-size: 20px;
 }
 
-.red {
-  background-color: red;
-}
-
-.container {
+.mainContainer {
   display: grid;
   grid-template-rows: auto auto 1fr;
+  height: 100vh;
+  // grid-template-rows: 1fr 1fr 8fr 1fr;
 }
-
-// root{
-//style root element with vh etc} - or could above be fine for now?
+//need to understand why the fr's didn't work...
+// :root {
+//   height: 100vh;
+//   width: 100vw;
+// }
 
 .bannerRow {
   display: grid;

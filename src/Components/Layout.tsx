@@ -9,7 +9,7 @@ interface LayoutProps {
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <>
-      <div className="container">
+      <div className="mainContainer">
         <div className="bannerRow">
           <div />
           <h1>POLICE API</h1>
