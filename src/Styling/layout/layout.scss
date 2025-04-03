@@ -1,15 +1,23 @@
-$primary-font: "Source Sans Pro", Helvetica, Verdana, sans-serif;
-$primary-color: #3498db;
-$background-color: #282c34;
+@use "../helpers/colours.scss";
+@use "../helpers/fonts.scss";
 
 body {
-  font: $primary-font;
-  color: $primary-color;
+  font-family: fonts.$primary-font;
+  color: colours.$primary-color;
+}
+
+h1 {
+  margin: 0;
+  font-size: fonts.$font-xxl;
+}
+
+h2 {
+  margin: 0;
+  font-size: fonts.$font-xl;
 }
 
 p {
-  word-wrap: break-word;
-  font-size: 20px;
+  font-size: fonts.$font-base;
 }
 
 .mainContainer {
@@ -30,7 +38,7 @@ p {
 }
 
 .navbarRow {
-  background-color: #0d4ac4;
+  background-color: colours.$primary-background-color;
   display: grid;
   grid-template-columns: 1fr 5fr 1fr;
 }
