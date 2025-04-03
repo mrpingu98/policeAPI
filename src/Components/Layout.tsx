@@ -6,25 +6,34 @@ interface LayoutProps {
   children: ReactNode;
 }
 
+//make a component for the banner?
+
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <>
-      <div className="container">
-        <div className="bannerRow">
+      <div className="mainContainer">
+        <div className="titleRow">
           <div />
-          <h1>POLICE API</h1>
+          <h1 className="secondColumn">POLICE API</h1>
           <div />
         </div>
         <div className="navbarRow">
           <div />
-          <NavBar />
+          <div>
+            <NavBar />
+          </div>
           <div />
         </div>
         <main className="contentRow">
           <div />
-          <div>{children}</div>
+          <div className="secondColumn">{children}</div>
           <div />
         </main>
+        <div className="footerRow">
+          <div />
+          <div className="footerSecondColumn">FOOTER</div>
+          <div />
+        </div>
       </div>
     </>
   );

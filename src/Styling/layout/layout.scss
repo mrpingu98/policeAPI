@@ -1,48 +1,86 @@
-$primary-font: "Source Sans Pro", Helvetica, Verdana, sans-serif;
-$primary-color: #3498db;
-$background-color: #282c34;
+@import "../helpers/fonts.scss";
 
 body {
-  font: $primary-font;
+  font-family: $primary-font;
   color: $primary-color;
+  margin: 0;
+}
+
+h1 {
+  margin: 0;
+  font-size: $font-xxl;
+}
+
+h2 {
+  margin: 0;
+  font-size: $font-xl;
 }
 
 p {
-  word-wrap: break-word; //wraps long pieces of text
-  font-size: 20px;
+  font-size: $font-base;
 }
 
-.red {
-  background-color: red;
-}
-
-.container {
+.mainContainer {
   display: grid;
-  grid-template-rows: auto auto 1fr;
+  grid-template-rows: auto auto 1fr auto;
+  height: 100vh;
+  // grid-template-rows: 1fr 1fr 8fr 1fr;
 }
 
-// root{
-//style root element with vh etc} - or could above be fine for now?
+// :root {
+//   height: 100vh;
+//   width: 100vw;
+// }
 
-.bannerRow {
+.titleRow,
+.navbarRow,
+.contentRow,
+.footerRow {
   display: grid;
-  grid-template-columns: 1fr 5fr 1fr;
+  grid-template-columns: 1fr 8fr 1fr;
 }
 
 .navbarRow {
-  background-color: #0d4ac4;
-  display: grid;
-  grid-template-columns: 1fr 5fr 1fr;
+  background-color: $primary-background-color;
+  margin-bottom: 1rem;
 }
 
-.contentRow {
-  display: grid;
-  grid-template-columns: 1fr 5fr 1fr;
+.footerRow {
+  background-color: black;
+  margin-top: 1rem;
 }
 
-.centre {
+.secondColumn {
+  padding: 0.5rem;
+}
+
+.footerSecondColumn {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 0.5rem;
+  color: white;
+}
+
+//Positionings
+
+.flexCenter {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  text-align: center;
+}
+
+@media screen and (max-width: 450px) {
+  .titleRow,
+  .navbarRow,
+  .contentRow,
+  .footerRow {
+    display: grid;
+    grid-template-columns: 0fr 1fr 0fr;
+  }
+
+  .secondColumn {
+    padding: 1rem;
+  }
 }

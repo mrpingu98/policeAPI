@@ -1,22 +1,40 @@
+@import "../helpers/fonts.scss";
+
 .navBar {
   display: flex;
-}
-
-.verticalLine {
-  border-left: 2px solid black;
-  height: 30px;
+  justify-content: flex-start;
 }
 
 .navLink {
-  color: black;
+  color: inherit;
   text-decoration: none;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  font-size: xx-large;
-  width: 8%;
+  font-size: $font-l;
+  text-align: center;
+  padding: 0 0.5rem;
+  margin: 0 0 0 0.5rem;
 
   &:hover {
-    background-color: #1b63f2;
+    background-color: lighten($primary-background-color, 10%);
+  }
+}
+
+.navLink:nth-of-type(0) {
+  margin: 0;
+}
+
+.navDropdown {
+  display: none;
+}
+
+@media screen and (max-width: 450px) {
+  .navBar {
+    display: none;
+  }
+
+  .navDropdown {
+    display: flex;
+    width: 20%;
+    margin-left: 1rem;
+    position: relative;
   }
 }

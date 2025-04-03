@@ -1,8 +1,9 @@
 import React from "react";
+import "../Styling/pages/home.scss";
 
 const Home: React.FC = () => {
   return (
-    <div className="centre">
+    <div className="flexCenter">
       <p>
         This website uses the UK Police API to gather data about crime and
         policing across England, Wales and Northern Ireland
