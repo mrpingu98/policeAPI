@@ -25,6 +25,11 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
           <div className="secondColumn">{children}</div>
           <div />
         </main>
+        <div className="footerRow">
+          <div />
+          <div>FOOTER</div>
+          <div />
+        </div>
       </div>
     </>
   );
