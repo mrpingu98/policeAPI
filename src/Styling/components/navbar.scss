@@ -17,3 +17,20 @@
 .navLink:first-of-type {
   margin: 0;
 }
+
+.navDropdown {
+  display: none;
+}
+
+@media screen and (max-width: 450px) {
+  .navLink {
+    display: none;
+  }
+
+  .navDropdown {
+    display: flex;
+    width: 20%;
+    margin-left: 0.5rem;
+    position: relative;
+  }
+}

@@ -1,0 +1,48 @@
+@use "../helpers/fonts.scss";
+@use "../helpers/colours.scss";
+
+button {
+  width: 100%;
+  padding: 0.2rem;
+  font-size: fonts.$font-base;
+  background-color: colours.$primary-background-color;
+  border: 0;
+
+  &:hover {
+    background-color: lighten(colours.$primary-background-color, 10%);
+  }
+  &:after {
+    background-color: colours.$primary-background-color;
+  }
+}
+
+.dropdownContainer {
+  width: 100%;
+}
+
+.ulContainer {
+  position: absolute;
+  padding-inline-start: 0;
+  top: 1.5rem;
+  font-size: fonts.$font-base;
+  width: 100%;
+  border: 0;
+  margin: 0;
+}
+
+.liContainer {
+  background-color: colours.$primary-background-color;
+  padding: 0.4rem 0.2rem;
+  text-align: center;
+  list-style: none;
+  top: 1rem;
+  border: solid 1px black;
+}
+
+.dropdownLink {
+  color: inherit;
+  text-decoration: none;
+  font-size: fonts.$font-base;
+  text-align: center;
+  width: 100%;
+}
