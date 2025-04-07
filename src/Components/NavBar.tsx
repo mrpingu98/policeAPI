@@ -8,7 +8,6 @@ const NavBar: React.FC = () => {
       <Link to="#" className="navLink">
         Home
       </Link>
-      <div className="verticalLine" />
       <Link to="#" className="navLink">
         API
       </Link>
