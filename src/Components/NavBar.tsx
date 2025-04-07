@@ -12,7 +12,7 @@ const NavBar: React.FC = () => {
   return (
     <div className="navBar">
       {routes.map((route, index) => (
-        <Link to={route.routeUrl} key={index}>
+        <Link to={route.routeUrl} key={index} className="navLink">
           {route.name}
         </Link>
       ))}
