@@ -1,25 +1,19 @@
 @use "../helpers/colours.scss";
 @use "../helpers/fonts.scss";
 
-.navBar {
-  display: flex;
-}
-
-.verticalLine {
-  border-left: 2px solid black;
-  height: 30px;
-}
-
 .navLink {
-  color: colours.$primary-color;
+  color: inherit;
   text-decoration: none;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
   font-size: fonts.$font-l;
-  width: 8%;
+  text-align: center;
+  padding: 0 0.5rem;
+  margin: 0 0 0 0.5rem;
 
   &:hover {
     background-color: lighten(colours.$primary-background-color, 10%);
   }
+}
+
+.navLink:first-of-type {
+  margin: 0;
 }

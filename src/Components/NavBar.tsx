@@ -1,17 +1,21 @@
 import React from "react";
 import "../Styling/components/navbar.scss";
 import { Link } from "react-router-dom";
+import { Routes } from "./Types";
 
 const NavBar: React.FC = () => {
+  const routes: Routes[] = [
+    { routeUrl: "#", name: "Home" },
+    { routeUrl: "#", name: "API" },
+    { routeUrl: "#", name: "CV" },
+  ];
   return (
-    <div className="navBar">
-      <Link to="#" className="navLink">
-        Home
-      </Link>
-      <div className="verticalLine" />
-      <Link to="#" className="navLink">
-        API
-      </Link>
+    <div>
+      {routes.map((route, index) => (
+        <Link to={route.routeUrl} key={index} className="navLink">
+          {route.name}
+        </Link>
+      ))}
     </div>
   );
 };
