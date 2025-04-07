@@ -10,9 +10,9 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <>
       <div className="mainContainer">
-        <div className="bannerRow">
+        <div className="titleRow">
           <div />
-          <h1>POLICE API</h1>
+          <h1 className="secondColumn">POLICE API</h1>
           <div />
         </div>
         <div className="navbarRow">
@@ -22,7 +22,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         </div>
         <main className="contentRow">
           <div />
-          <div>{children}</div>
+          <div className="secondColumn">{children}</div>
           <div />
         </main>
       </div>

@@ -32,20 +32,20 @@ p {
 //   width: 100vw;
 // }
 
-.bannerRow {
+.titleRow,
+.navbarRow,
+.contentRow {
   display: grid;
-  grid-template-columns: 1fr 5fr 1fr;
+  grid-template-columns: 1fr 8fr 1fr;
 }
 
 .navbarRow {
   background-color: colours.$primary-background-color;
-  display: grid;
-  grid-template-columns: 1fr 5fr 1fr;
+  margin-bottom: 1rem;
 }
 
-.contentRow {
-  display: grid;
-  grid-template-columns: 1fr 5fr 1fr;
+.secondColumn {
+  padding: 0.5rem;
 }
 
 //Positionings
