@@ -32,11 +32,11 @@ button {
 
 .liContainer {
   background-color: colours.$primary-background-color;
-  padding: 0.4rem 0.2rem;
   text-align: center;
   list-style: none;
   top: 1rem;
   border: solid 1px black;
+  display: block;
 }
 
 .dropdownLink {
@@ -44,5 +44,6 @@ button {
   text-decoration: none;
   font-size: fonts.$font-base;
   text-align: center;
-  width: 100%;
+  display: block;
+  padding: 0.4rem;
 }
