@@ -10,7 +10,7 @@ const NavBar: React.FC = () => {
     { routeUrl: "#", name: "CV" },
   ];
   return (
-    <div className="navBar">
+    <div>
       {routes.map((route, index) => (
         <Link to={route.routeUrl} key={index} className="navLink">
           {route.name}
