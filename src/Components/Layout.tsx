@@ -1,6 +1,7 @@
 import React, { ReactNode } from "react";
 import "../Styling/layout/layout.scss";
 import { NavBar } from "./NavBar";
+import { Footer } from "./Footer";
 
 interface LayoutProps {
   children: ReactNode;
@@ -25,6 +26,13 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
           <div className="secondColumn">{children}</div>
           <div />
         </main>
+        <div className="footerRow">
+          <div />
+          <div>
+            <Footer />
+          </div>
+          <div />
+        </div>
       </div>
     </>
   );

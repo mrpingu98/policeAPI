@@ -4,6 +4,7 @@
 body {
   font-family: fonts.$primary-font;
   color: colours.$primary-color;
+  margin: 0;
 }
 
 h1 {
@@ -22,7 +23,7 @@ p {
 
 .mainContainer {
   display: grid;
-  grid-template-rows: auto auto 1fr;
+  grid-template-rows: auto auto 1fr auto;
   height: 100vh;
   // grid-template-rows: 1fr 1fr 8fr 1fr;
 }
@@ -34,7 +35,8 @@ p {
 
 .titleRow,
 .navbarRow,
-.contentRow {
+.contentRow,
+.footerRow {
   display: grid;
   grid-template-columns: 1fr 8fr 1fr;
 }
@@ -42,6 +44,11 @@ p {
 .navbarRow {
   background-color: colours.$primary-background-color;
   margin-bottom: 1rem;
+}
+
+.footerRow {
+  margin-top: 1rem;
+  background-color: colours.$primary-background-color;
 }
 
 .secondColumn {
