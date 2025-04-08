@@ -2,7 +2,7 @@
 @use "../helpers/fonts.scss";
 
 .navLink {
-  color: inherit;
+  color: colours.$primary-color;
   text-decoration: none;
   font-size: fonts.$font-l;
   text-align: center;
