@@ -2,7 +2,7 @@
 @use "../helpers/fonts.scss";
 
 body {
-  font-family: fonts.$primary-font;
+  font: fonts.$primary-font;
   color: colours.$primary-color;
   margin: 0;
 }
