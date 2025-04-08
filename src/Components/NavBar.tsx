@@ -14,7 +14,7 @@ const NavBar: React.FC = () => {
     <>
       <div>
         {routes.map((route, index) => (
-          <Link to={route.routeUrl} className="navLink">
+          <Link to={route.routeUrl} key={index} className="navLink">
             {route.name}
           </Link>
         ))}
