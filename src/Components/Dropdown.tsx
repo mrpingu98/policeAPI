@@ -12,7 +12,11 @@ const Dropdown: React.FC<DropdownProps> = ({ dropdownOptions }) => {
 
   return (
     <div className="dropdownContainer">
-      <button onClick={() => setOpen(!open)}>NAV</button>
+      <button onClick={() => setOpen(!open)}>
+        <div className="dropdownIcon" />
+        <div className="dropdownIcon" />
+        <div className="dropdownIcon" />
+      </button>
       {open ? (
         <ul className="ulContainer">
           {dropdownOptions.map((route, index) => (
