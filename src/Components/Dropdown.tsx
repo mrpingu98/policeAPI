@@ -1,5 +1,6 @@
 import React from "react";
 import "../Styling/components/dropdown.scss";
+import "../Styling/components/button.scss";
 import { Routes } from "./Types";
 import { Link } from "react-router-dom";
 
@@ -12,7 +13,10 @@ const Dropdown: React.FC<DropdownProps> = ({ dropdownOptions }) => {
 
   return (
     <div className="dropdownContainer">
-      <button onClick={() => setOpen(!open)}>
+      <button
+        className={open ? "dropdownButtonOpen" : "dropdownButtonClose"}
+        onClick={() => setOpen(!open)}
+      >
         <div className="dropdownIcon" />
         <div className="dropdownIcon" />
         <div className="dropdownIcon" />
