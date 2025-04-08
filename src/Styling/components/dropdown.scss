@@ -1,0 +1,61 @@
+@use "../helpers/fonts.scss";
+@use "../helpers/colours.scss";
+
+// @mixin dropdownButton($bg-colour) {
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   width: 100%;
+//   padding: 0.2rem;
+//   font-size: fonts.$font-base;
+//   background-color: $bg-colour;
+//   border: 0;
+// }
+
+// .buttonOpen {
+//   @include dropdownButton(colours.$primary-background-color);
+//   &:hover {
+//     background-color: lighten(colours.$primary-background-color, 10%);
+//   }
+// }
+
+// .buttonClose {
+//   @include dropdownButton(colours.$primary-background-color);
+// }
+
+.dropdownIcon {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: white;
+  border-radius: 50px;
+  margin: 0.15rem;
+}
+
+.dropdownContainer {
+  width: 100%;
+}
+
+.ulContainer {
+  position: absolute;
+  padding-inline-start: 0;
+  top: 1.7rem;
+  width: auto;
+  border: 0;
+  margin: 0;
+}
+
+.liContainer {
+  background-color: colours.$primary-background-color;
+  list-style: none;
+  border: solid 1px black;
+}
+
+.dropdownLink {
+  color: colours.$primary-color;
+  text-decoration: none;
+  font-size: fonts.$font-base;
+  text-align: center;
+  display: block;
+  padding: 0.4rem;
+}

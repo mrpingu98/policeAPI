@@ -18,7 +18,9 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         </div>
         <div className="navbarRow">
           <div />
-          <NavBar />
+          <div>
+            <NavBar />
+          </div>
           <div />
         </div>
         <main className="contentRow">

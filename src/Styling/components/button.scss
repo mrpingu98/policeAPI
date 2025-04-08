@@ -1,16 +1,25 @@
-$background-color: #282c34;
-$primary-color: #3498db;
+@use "../helpers/colours.scss";
+@use "../helpers/fonts.scss";
 
-button {
-  padding: 8px 30px;
-  border-radius: 10px;
-  background-color: $background-color;
-  color: $primary-color;
-  font-size: 17px;
-  cursor: pointer;
-  border: $background-color;
+@mixin dropdownButton($bg-colour) {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 0.2rem;
+  font-size: fonts.$font-base;
+  background-color: $bg-colour;
+  border: 0;
+}
+
+.dropdownButtonOpen {
+  @include dropdownButton(colours.$primary-background-color);
 
   &:hover {
-    background-color: lighten($background-color, 10%);
+    background-color: lighten(colours.$primary-background-color, 10%);
   }
+}
+
+.dropdownButtonClose {
+  @include dropdownButton(colours.$primary-background-color);
 }
