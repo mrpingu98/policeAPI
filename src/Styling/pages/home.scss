@@ -1,8 +1,6 @@
-//placeholder
-
 @media screen and (max-width: 450px) {
   .welcomeMessageContainer {
-    background-image: url("/assets/policeCar.jpg");
+    background-image: url("/assets/police-car.jpg");
     background-position: 0% 100%;
     background-repeat: no-repeat;
     background-size: cover;
@@ -17,6 +15,6 @@
   }
 
   .welcomeMessage:nth-child(2) {
-    margin-bottom: 0;
+    margin-bottom: 0rem;
   }
 }
