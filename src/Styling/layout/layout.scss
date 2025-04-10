@@ -19,6 +19,8 @@ h2 {
 
 p {
   font-size: fonts.$font-base;
+  margin-bottom: 1rem;
+  margin-top: 0;
 }
 
 .mainContainer {
@@ -71,6 +73,10 @@ p {
   .footerRow {
     display: grid;
     grid-template-columns: 0fr 1fr 0fr;
+  }
+
+  .navbarRow {
+    margin-bottom: 0;
   }
 
   .secondColumn {
