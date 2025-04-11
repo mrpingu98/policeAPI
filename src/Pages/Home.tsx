@@ -1,6 +1,6 @@
 import React from "react";
 import "../Styling/pages/home.scss";
-
+import { RecentNewsItem } from "../Components/RecentNewsItem";
 const Home: React.FC = () => {
   return (
     <>
@@ -16,7 +16,9 @@ const Home: React.FC = () => {
         </div>
       </div>
       <h2 className="recentNewsTitle">Recent News</h2>
-      <div className="recentNewsContainer">test</div>
+      <div className="recentNewsContainer">
+        <RecentNewsItem />
+      </div>
     </>
   );
 };
