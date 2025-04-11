@@ -22,6 +22,11 @@ const Home: React.FC = () => {
           imageSource={"/assets/spontaneous-combustion.jpg"}
           alternativeImageText={"burnt outline of man in seat"}
         />
+        <RecentNewsItem
+          title={"Tortoise conducts traffic stop in world's first"}
+          imageSource={"/assets/tortoise-officer.jpg"}
+          alternativeImageText={"tortoise police officer"}
+        />
       </div>
     </>
   );
