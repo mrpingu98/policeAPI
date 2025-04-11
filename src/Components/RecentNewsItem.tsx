@@ -2,18 +2,26 @@ import React from "react";
 import "../Styling/components/recentNewsItem.scss";
 import "../Styling/layout/layout.scss";
 
-const RecentNewsItem: React.FC = () => {
+interface RecentNewsItemProps {
+  title: string;
+  imageSource: string;
+  alternativeImageText: string;
+}
+
+const RecentNewsItem: React.FC<RecentNewsItemProps> = ({
+  title,
+  imageSource,
+  alternativeImageText,
+}) => {
   return (
     <div className="newsItemContainer">
       <div className="titleContainer">
-        <p className="noMarginBottom">
-          Man spontaneously combusts - is this the end?
-        </p>
+        <p className="noMarginBottom">{title}</p>
       </div>
       <img
         className="imageContainer"
-        src="/assets/spontaneous-combustion.jpg"
-        alt="man combusting"
+        src={imageSource}
+        alt={alternativeImageText}
       />
     </div>
   );
