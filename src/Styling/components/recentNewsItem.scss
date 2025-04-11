@@ -1,7 +1,8 @@
 .newsItemContainer {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
+  align-items: center;
   border: 1px solid black;
   width: 90%;
   margin-bottom: 1.5rem;
@@ -9,6 +10,11 @@
 }
 
 .titleContainer {
-  width: 50%;
+  width: 45%;
   padding: 0.2rem;
+}
+
+.imageContainer {
+  max-height: 10rem;
+  max-width: 45%;
 }

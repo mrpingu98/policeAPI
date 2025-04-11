@@ -10,7 +10,11 @@ const RecentNewsItem: React.FC = () => {
           Man spontaneously combusts - is this the end?
         </p>
       </div>
-      <div className="pictureContainer"></div>
+      <img
+        className="imageContainer"
+        src="/assets/spontaneous-combustion.jpg"
+        alt="man combusting"
+      />
     </div>
   );
 };
