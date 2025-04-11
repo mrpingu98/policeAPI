@@ -1,0 +1,9 @@
+.newsItemContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  border: 1px solid black;
+  width: 90%;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+}
