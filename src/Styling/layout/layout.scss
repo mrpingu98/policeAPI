@@ -76,6 +76,14 @@ p {
   text-align: center;
 }
 
+.noBottomMargin {
+  margin-bottom: 0rem;
+}
+
+.noLeftMargin {
+  margin-left: 0rem;
+}
+
 @media screen and (max-width: 450px) {
   .titleRow,
   .navbarRow,
