@@ -29,7 +29,7 @@ const Home: React.FC = () => {
         />
         <RecentNewsItem
           title={
-            "5 year old charged with espionage after passing on teaching material to rival school"
+            "Five-year old charged with espionage after passing on teaching material to rival school"
           }
           imageSource={"/assets/espionage.jpg"}
           alternativeImageText={"gazing eye"}
