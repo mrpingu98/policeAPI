@@ -17,7 +17,11 @@ const Home: React.FC = () => {
       </div>
       <h2 className="recentNewsTitle">Recent News</h2>
       <div className="recentNewsContainer">
-        <RecentNewsItem />
+        <RecentNewsItem
+          title={"Man spontanesouly combusts - is this the end?"}
+          imageSource={"/assets/spontaneous-combustion.jpg"}
+          alternativeImageText={"burnt outline of man in seat"}
+        />
       </div>
     </>
   );
