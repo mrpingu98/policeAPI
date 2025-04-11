@@ -1,10 +1,16 @@
 import React from "react";
 import "../Styling/components/recentNewsItem.scss";
+import "../Styling/layout/layout.scss";
+
 const RecentNewsItem: React.FC = () => {
   return (
     <div className="newsItemContainer">
-      <div className="titleContainer">title</div>
-      <div className="pictureContainer">picture</div>
+      <div className="titleContainer">
+        <p className="noMarginBottom">
+          Man spontaneously combusts - is this the end?
+        </p>
+      </div>
+      <div className="pictureContainer"></div>
     </div>
   );
 };
