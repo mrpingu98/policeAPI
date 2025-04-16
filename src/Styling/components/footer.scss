@@ -1,9 +1,11 @@
 @use "../helpers/colours.scss";
 
-.footer {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  padding: 0.5rem;
-  color: colours.$primary-color;
+@media screen and (max-width: 450px) {
+  .footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 0.5rem;
+    color: colours.$primary-color;
+  }
 }
