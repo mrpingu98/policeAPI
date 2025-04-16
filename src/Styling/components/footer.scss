@@ -1,4 +1,5 @@
 @use "../helpers/colours.scss";
+@use "../helpers/fonts.scss";
 
 @media screen and (max-width: 450px) {
   .footerContainer {
@@ -15,6 +16,7 @@
     flex-direction: column;
     width: 85%;
     justify-content: space-between;
+    font-size: fonts.$font-s;
   }
 
   .footerContent {
