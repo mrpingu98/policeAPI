@@ -7,24 +7,24 @@
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    padding: 0.5rem;
+    padding: 1rem 2rem;
     color: colours.$primary-color;
   }
 
-  .footerContentContainer {
+  .footerInformationContainer {
     display: flex;
     flex-direction: column;
-    width: 85%;
+    width: 70%;
     justify-content: space-between;
     font-size: fonts.$font-s;
   }
 
-  .footerContent {
+  .footerInformationItem {
     margin-bottom: 0.5rem;
   }
 
   .logo {
-    width: 22%;
-    height: 5.5rem;
+    width: 20%;
+    height: 5rem;
   }
 }
