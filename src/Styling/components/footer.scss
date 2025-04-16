@@ -1,11 +1,28 @@
 @use "../helpers/colours.scss";
 
 @media screen and (max-width: 450px) {
-  .footer {
+  .footerContainer {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    align-items: center;
     padding: 0.5rem;
     color: colours.$primary-color;
+  }
+
+  .footerContentContainer {
+    display: flex;
+    flex-direction: column;
+    width: 85%;
+    justify-content: space-between;
+  }
+
+  .footerContent {
+    margin-bottom: 0.5rem;
+  }
+
+  .logo {
+    width: 22%;
+    height: 5.5rem;
   }
 }
