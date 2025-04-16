@@ -40,6 +40,7 @@ const Home: React.FC = () => {
       <h2 className="title">Related Content</h2>
       <div className="relatedContentContainer">
         <RelatedContentItem />
+        <RelatedContentItem />
       </div>
     </>
   );

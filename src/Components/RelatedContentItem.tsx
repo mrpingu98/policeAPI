@@ -1,9 +1,11 @@
 import React from "react";
+import "../Styling/components/relatedContentItem.scss";
 
 const RelatedContentItem: React.FC = () => {
   return (
-    <div>
-      <div>related content</div>
+    <div className="relatedContentItemContainer">
+      <img className="image" src="assets/espionage.jpg" />
+      <div>dbwicehche</div>
     </div>
   );
 };
