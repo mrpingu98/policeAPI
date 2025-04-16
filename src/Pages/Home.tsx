@@ -15,7 +15,7 @@ const Home: React.FC = () => {
           </p>
         </div>
       </div>
-      <h2 className="recentNewsTitle">Recent News</h2>
+      <h2 className="title">Recent News</h2>
       <div className="recentNewsContainer">
         <RecentNewsItem
           title={"Man spontanesouly combusts - is this the end?"}
