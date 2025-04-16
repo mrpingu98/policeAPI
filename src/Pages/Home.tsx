@@ -35,6 +35,8 @@ const Home: React.FC = () => {
           alternativeImageText={"gazing eye"}
         />
       </div>
+      <h2 className="title">Related Content</h2>
+      <div className="relatedContentContainer">related cntent</div>
     </>
   );
 };
