@@ -42,10 +42,12 @@ const Home: React.FC = () => {
         <RelatedContentItem
           imageSource="/assets/espionage.jpg"
           title="Internal police reports"
+          href=""
         />
         <RelatedContentItem
           imageSource="/assets/espionage.jpg"
           title="Help identify perpetrators"
+          href=""
         />
       </div>
     </>
