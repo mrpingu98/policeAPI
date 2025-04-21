@@ -4,12 +4,16 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    border: 1px solid black;
     width: 90%;
     margin-bottom: 1.5rem;
   }
 
-  .image {
+  .relatedContentItemImage {
     width: 100%;
+  }
+
+  .relatedContentItemTitle {
+    width: 100%;
+    background-color: pink;
   }
 }
