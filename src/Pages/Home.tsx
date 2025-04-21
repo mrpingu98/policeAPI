@@ -39,8 +39,14 @@ const Home: React.FC = () => {
       </div>
       <h2 className="title">Related Content</h2>
       <div className="relatedContentContainer">
-        <RelatedContentItem imageSource="/assets/espionage.jpg" />
-        <RelatedContentItem imageSource="/assets/espionage.jpg" />
+        <RelatedContentItem
+          imageSource="/assets/espionage.jpg"
+          title="Internal police reports"
+        />
+        <RelatedContentItem
+          imageSource="/assets/espionage.jpg"
+          title="Help identify perpetrators"
+        />
       </div>
     </>
   );

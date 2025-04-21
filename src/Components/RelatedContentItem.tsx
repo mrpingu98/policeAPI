@@ -3,15 +3,17 @@ import "../Styling/components/relatedContentItem.scss";
 
 interface RelatedContentItemProps {
   imageSource: string;
+  title: string;
 }
 
 const RelatedContentItem: React.FC<RelatedContentItemProps> = ({
   imageSource,
+  title,
 }) => {
   return (
     <div className="relatedContentItemContainer">
       <img className="relatedContentItemImage" src={imageSource} />
-      <div className="relatedContentItemTitle">TITLE</div>
+      <div className="relatedContentItemTitle">{title}</div>
     </div>
   );
 };
