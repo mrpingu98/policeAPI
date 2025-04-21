@@ -12,8 +12,10 @@ const RelatedContentItem: React.FC<RelatedContentItemProps> = ({
 }) => {
   return (
     <div className="relatedContentItemContainer">
-      <img className="relatedContentItemImage" src={imageSource} />
-      <div className="relatedContentItemTitle">{title}</div>
+      <a className="linkContainer" href="">
+        <img className="relatedContentItemImage" src={imageSource} />
+        <div className="relatedContentItemTitle">{title}</div>
+      </a>
     </div>
   );
 };

@@ -1,11 +1,13 @@
 @media screen and (max-width: 450px) {
   .relatedContentItemContainer {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
     width: 90%;
     margin-bottom: 1.5rem;
+  }
+
+  .linkContainer {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
   }
 
   .relatedContentItemImage {
