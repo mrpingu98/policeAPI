@@ -11,9 +11,7 @@ const RelatedContentItem: React.FC<RelatedContentItemProps> = ({
   return (
     <div className="relatedContentItemContainer">
       <img className="relatedContentItemImage" src={imageSource} />
-      <div className="relatedContentItemTitle">
-        TITLE civcg i vic;hi ;uvchk j;hvehhjlejr jvejjvjhn
-      </div>
+      <div className="relatedContentItemTitle">TITLE</div>
     </div>
   );
 };
