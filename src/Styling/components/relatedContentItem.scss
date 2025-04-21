@@ -1,3 +1,5 @@
+@use "../helpers/colours.scss";
+
 @media screen and (max-width: 450px) {
   .relatedContentItemContainer {
     width: 90%;
@@ -8,6 +10,7 @@
     text-decoration: none;
     display: flex;
     flex-direction: column;
+    color: colours.$primary-color;
   }
 
   .relatedContentItemImage {
