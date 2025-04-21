@@ -39,8 +39,8 @@ const Home: React.FC = () => {
       </div>
       <h2 className="title">Related Content</h2>
       <div className="relatedContentContainer">
-        <RelatedContentItem />
-        <RelatedContentItem />
+        <RelatedContentItem imageSource="/assets/espionage.jpg" />
+        <RelatedContentItem imageSource="/assets/espionage.jpg" />
       </div>
     </>
   );
