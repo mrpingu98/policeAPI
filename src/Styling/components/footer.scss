@@ -1,9 +1,34 @@
 @use "../helpers/colours.scss";
+@use "../helpers/fonts.scss";
 
-.footer {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  padding: 0.5rem;
-  color: colours.$primary-color;
+@media screen and (max-width: 450px) {
+  .footerContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    padding: 1rem 2rem;
+    color: colours.$primary-color;
+  }
+
+  .footerInformationContainer {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    justify-content: space-between;
+  }
+
+  .footerInformationItem {
+    margin-bottom: 0.5rem;
+    font-size: fonts.$font-s;
+  }
+
+  .footerInformationItem:last-of-type {
+    margin-bottom: 0;
+  }
+
+  .logo {
+    width: 20%;
+    height: 5rem;
+  }
 }
