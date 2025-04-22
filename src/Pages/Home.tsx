@@ -40,13 +40,13 @@ const Home: React.FC = () => {
       <h2 className="title">Related Content</h2>
       <div className="relatedContentContainer">
         <RelatedContentItem
-          imageSource="/assets/espionage.jpg"
+          imageSource="/assets/internal-police-reports.jpg"
           title="Internal police reports"
           href=""
         />
         <RelatedContentItem
-          imageSource="/assets/espionage.jpg"
-          title="Help identify perpetrators"
+          imageSource="/assets/local-community.jpg"
+          title="Local community initiatives"
           href=""
         />
       </div>
