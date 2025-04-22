@@ -16,11 +16,15 @@
     flex-direction: column;
     width: 70%;
     justify-content: space-between;
-    font-size: fonts.$font-s;
   }
 
   .footerInformationItem {
     margin-bottom: 0.5rem;
+    font-size: fonts.$font-s;
+  }
+
+  .footerInformationItem:last-of-type {
+    margin-bottom: 0;
   }
 
   .logo {
