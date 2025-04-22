@@ -28,5 +28,3 @@ const RecentNewsItem: React.FC<RecentNewsItemProps> = ({
 };
 
 export { RecentNewsItem };
-
-//test
