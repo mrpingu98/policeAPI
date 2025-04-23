@@ -1,6 +1,8 @@
 import React from "react";
 import "../Styling/pages/home.scss";
 import { RecentNewsItem } from "../Components/RecentNewsItem";
+import { RelatedContentItem } from "../Components/RelatedContentItem";
+
 const Home: React.FC = () => {
   return (
     <>
@@ -15,24 +17,39 @@ const Home: React.FC = () => {
           </p>
         </div>
       </div>
-      <h2 className="recentNewsTitle">Recent News</h2>
       <div className="recentNewsContainer">
-        <RecentNewsItem
-          title={"Man spontanesouly combusts - is this the end?"}
-          imageSource={"/assets/spontaneous-combustion.jpg"}
-          alternativeImageText={"burnt outline of man in seat"}
+        <h2 className="title">Recent News</h2>
+        <div className="recentNewsItemContainer">
+          <RecentNewsItem
+            title={"Man spontanesouly combusts - is this the end?"}
+            imageSource={"/assets/spontaneous-combustion.jpg"}
+            alternativeImageText={"burnt outline of man in seat"}
+          />
+          <RecentNewsItem
+            title={"Tortoise conducts traffic stop in world's first"}
+            imageSource={"/assets/tortoise-officer.jpg"}
+            alternativeImageText={"tortoise police officer"}
+          />
+          <RecentNewsItem
+            title={
+              "Five-year old charged with espionage after passing on teaching material to rival school"
+            }
+            imageSource={"/assets/espionage.jpg"}
+            alternativeImageText={"gazing eye"}
+          />
+        </div>
+      </div>
+      <h2 className="title">Related Content</h2>
+      <div className="relatedContentContainer">
+        <RelatedContentItem
+          imageSource="/assets/internal-police-reports.jpg"
+          title="Internal police reports"
+          href=""
         />
-        <RecentNewsItem
-          title={"Tortoise conducts traffic stop in world's first"}
-          imageSource={"/assets/tortoise-officer.jpg"}
-          alternativeImageText={"tortoise police officer"}
-        />
-        <RecentNewsItem
-          title={
-            "Five-year old charged with espionage after passing on teaching material to rival school"
-          }
-          imageSource={"/assets/espionage.jpg"}
-          alternativeImageText={"gazing eye"}
+        <RelatedContentItem
+          imageSource="/assets/local-community.jpg"
+          title="Local community initiatives"
+          href=""
         />
       </div>
     </>

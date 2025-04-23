@@ -1,0 +1,26 @@
+@use "../helpers/colours.scss";
+
+@media screen and (max-width: 450px) {
+  .relatedContentItemContainer {
+    width: 90%;
+    margin-bottom: 1.5rem;
+  }
+
+  .linkContainer {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    color: colours.$primary-color;
+  }
+
+  .relatedContentItemImage {
+    width: 100%;
+    height: 12rem;
+  }
+
+  .relatedContentItemTitle {
+    width: 100%;
+    background-color: rgb(55, 51, 51, 0.3);
+    text-align: center;
+  }
+}

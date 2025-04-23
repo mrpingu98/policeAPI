@@ -19,12 +19,17 @@
   }
 }
 
-.recentNewsTitle {
+.recentNewsContainer {
   margin-bottom: 1rem;
-  display: block;
 }
 
-.recentNewsContainer {
+.recentNewsItemContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.relatedContentContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
