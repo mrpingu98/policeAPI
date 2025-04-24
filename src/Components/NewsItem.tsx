@@ -6,16 +6,6 @@ interface NewsItemProps {
   title: string;
 }
 
-// const NewsItem: React.FC<NewsItemProps> = ({ title }) => {
-//   return (
-//     <div className="newsItemContainer">
-//       <div className="titleContainer">
-//         <p className="noMarginBottom">{title}</p>
-//       </div>
-//     </div>
-//   );
-// };
-
 const NewsItem: React.FC<NewsItemProps> = (props) => {
   return (
     <div className="newsItemContainer">
@@ -25,5 +15,15 @@ const NewsItem: React.FC<NewsItemProps> = (props) => {
     </div>
   );
 };
+
+// const NewsItem: React.FC<NewsItemProps> = ({ title }) => {
+//   return (
+//     <div className="newsItemContainer">
+//       <div className="titleContainer">
+//         <p className="noMarginBottom">{title}</p>
+//       </div>
+//     </div>
+//   );
+// };
 
 export { NewsItem };
