@@ -1,3 +1,24 @@
+.recentNewsContainer {
+  margin-bottom: 1rem;
+}
+
+.recentNewsItemContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.mainNewsItem {
+  flex-direction: column;
+  width: 90%;
+}
+
+.secondaryNewsItems {
+  flex-direction: column;
+  width: 90%;
+}
+
 @media screen and (max-width: 450px) {
   .welcomeMessageContainer {
     background-image: url("/assets/police-car.jpg");
@@ -17,20 +38,24 @@
   .welcomeMessage:last-child {
     margin-bottom: 0rem;
   }
-}
 
-.recentNewsContainer {
-  margin-bottom: 1rem;
-}
+  .recentNewsContainer {
+    margin-bottom: 1rem;
+  }
 
-.recentNewsItemContainer {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
+  .recentNewsItemContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
-.relatedContentContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  .mainNewsItem {
+    height: auto;
+  }
+
+  .relatedContentContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 }
