@@ -6,15 +6,17 @@ interface RecentNewsItemProps {
   title: string;
   imageSource: string;
   alternativeImageText: string;
+  isFullHeight?: boolean;
 }
 
 const RecentNewsItem: React.FC<RecentNewsItemProps> = ({
   title,
   imageSource,
   alternativeImageText,
+  isFullHeight = false,
 }) => {
   return (
-    <div className="newsItemContainer">
+    <div className={`newsItemContainer ${isFullHeight && "fullHeight"}`}>
       <div className="titleContainer">
         <p className="noMarginBottom">{title}</p>
       </div>

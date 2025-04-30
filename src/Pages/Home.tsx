@@ -25,6 +25,7 @@ const Home: React.FC = () => {
               title={"Man spontanesouly combusts - is this the end?"}
               imageSource={"/assets/spontaneous-combustion.jpg"}
               alternativeImageText={"burnt outline of man in seat"}
+              isFullHeight={true}
             />
           </div>
           <div className="secondaryNewsItems">
