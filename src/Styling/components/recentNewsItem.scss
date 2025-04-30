@@ -25,15 +25,19 @@
 }
 
 @media screen and (max-width: 450px) {
-  .newsItemContainer {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    border: 1px solid black;
-    width: 90%;
-    margin-bottom: 1.5rem;
-    padding: 0.5rem 0.75rem;
+  // .newsItemContainer {
+  //   display: flex;
+  //   flex-direction: row;
+  //   justify-content: space-between;
+  //   align-items: center;
+  //   border: 1px solid black;
+  //   width: 90%;
+  //   margin-bottom: 1.5rem;
+  //   padding: 0.5rem 0.75rem;
+  // }
+
+  .fullHeight {
+    height: 8rem;
   }
 
   .titleContainer {
