@@ -9,6 +9,12 @@
   justify-content: space-between;
 }
 
+.secondaryNewsItems {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
 @media screen and (max-width: 450px) {
   .welcomeMessageContainer {
     background-image: url("/assets/police-car.jpg");
@@ -36,6 +42,15 @@
   .recentNewsItemContainer {
     display: flex;
     flex-direction: column;
+    * {
+      align-items: center;
+    }
+    //allChildren
+    //iommediate then nested children
+    //need to style all children not just the continaer
+  }
+
+  .secondaryNewsItems {
     align-items: center;
   }
 

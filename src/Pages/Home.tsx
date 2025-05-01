@@ -20,25 +20,29 @@ const Home: React.FC = () => {
       <div className="recentNewsContainer">
         <h2 className="title">Recent News</h2>
         <div className="recentNewsItemContainer">
-          <RecentNewsItem
-            title={"Man spontanesouly combusts - is this the end?"}
-            imageSource={"/assets/spontaneous-combustion.jpg"}
-            alternativeImageText={"burnt outline of man in seat"}
-            isFullHeight={true}
-          />
+          <div>
+            <RecentNewsItem
+              title={"Man spontanesouly combusts - is this the end?"}
+              imageSource={"/assets/spontaneous-combustion.jpg"}
+              alternativeImageText={"burnt outline of man in seat"}
+              isFullHeight={true}
+            />
+          </div>
+          <div className="secondaryNewsItems">
+            <RecentNewsItem
+              title={"Tortoise conducts traffic stop in world's first"}
+              imageSource={"/assets/tortoise-officer.jpg"}
+              alternativeImageText={"tortoise police officer"}
+            />
+            <RecentNewsItem
+              title={
+                "Five-year old charged with espionage after passing on teaching material to rival school"
+              }
+              imageSource={"/assets/espionage.jpg"}
+              alternativeImageText={"gazing eye"}
+            />
+          </div>
         </div>
-        <RecentNewsItem
-          title={"Tortoise conducts traffic stop in world's first"}
-          imageSource={"/assets/tortoise-officer.jpg"}
-          alternativeImageText={"tortoise police officer"}
-        />
-        <RecentNewsItem
-          title={
-            "Five-year old charged with espionage after passing on teaching material to rival school"
-          }
-          imageSource={"/assets/espionage.jpg"}
-          alternativeImageText={"gazing eye"}
-        />
       </div>
       <h2 className="title">Related Content</h2>
       <div className="relatedContentContainer">
