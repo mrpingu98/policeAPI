@@ -1,23 +1,19 @@
 import React from "react";
-// import { NewsItem } from "../Components/NewsItem";
 import { Button } from "../Components/Button";
 
 const Home: React.FC = () => {
   function buttonClickedMessageOne() {
     return console.log(
-      "This is the first message that can be called and logged from the Home page"
+      "This is the first message being called from the child Button component and causing an update to the parent Home component"
     );
   }
-
   function buttonClickedMessageTwo() {
     return console.log(
-      "This is the second message that can be called and logged from the Home page"
+      "This is the second message being called from the child Button component and causing an update to the parent Home component"
     );
   }
-
   return (
     <div>
-      <p>This the home page</p>
       <Button
         text="Click me for message one"
         onClick={buttonClickedMessageOne}
@@ -32,6 +28,9 @@ const Home: React.FC = () => {
 
 export { Home };
 
-// const buttonClickeds = () => {
-//   return console.log("This has been called and logged from the Home page");
-// };
+// <div>
+//   <p>This the home page</p>
+//   <NewsItem title="News Item Title One" />
+//   <NewsItem title="News Item Title Two" />
+//   <NewsItem title="News Item Title Three" />
+// </div>;
