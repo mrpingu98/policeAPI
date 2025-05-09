@@ -19,7 +19,7 @@ const Home: React.FC = () => {
       </div>
       <div className="recentNewsContainer">
         <h2 className="title">Recent News</h2>
-        <div className="recentNewsItemContainer">
+        <div className="recentNewsItemsContainer">
           <RecentNewsItem
             title={"Man spontanesouly combusts - is this the end?"}
             imageSource={"/assets/spontaneous-combustion.jpg"}
