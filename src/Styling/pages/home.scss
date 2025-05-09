@@ -42,12 +42,7 @@
   .recentNewsItemContainer {
     display: flex;
     flex-direction: column;
-    * {
-      align-items: center;
-    }
-    //allChildren
-    //iommediate then nested children
-    //need to style all children not just the continaer
+    align-items: center;
   }
 
   .secondaryNewsItems {
