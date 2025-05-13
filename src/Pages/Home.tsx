@@ -20,12 +20,14 @@ const Home: React.FC = () => {
       <div className="recentNewsContainer">
         <h2 className="title">Recent News</h2>
         <div className="recentNewsItemsContainer">
-          <RecentNewsItem
-            title={"Man spontanesouly combusts - is this the end?"}
-            imageSource={"/assets/spontaneous-combustion.jpg"}
-            alternativeImageText={"burnt outline of man in seat"}
-            isFullHeight={true}
-          />
+          <div className="mainNewsItem">
+            <RecentNewsItem
+              title={"Man spontanesouly combusts - is this the end?"}
+              imageSource={"/assets/spontaneous-combustion.jpg"}
+              alternativeImageText={"burnt outline of man in seat"}
+              isFullHeight={true}
+            />
+          </div>
           <div className="secondaryNewsItems">
             <RecentNewsItem
               title={"Tortoise conducts traffic stop in world's first"}
