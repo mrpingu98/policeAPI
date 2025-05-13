@@ -15,16 +15,27 @@ const RecentNewsItem: React.FC<RecentNewsItemProps> = ({
   alternativeImageText,
   isFullHeight = false,
 }) => {
-  return (
-    <div className={`newsItemContainer ${isFullHeight && "fullHeight"}`}>
-      <div className="titleContainer">
-        <p className="noMarginBottom">{title}</p>
+  return isFullHeight ? (
+    <div className="mainNewsItemContainer">
+      <img
+        className="mainImageContainer"
+        src={imageSource}
+        alt={alternativeImageText}
+      />
+      <div className="mainTitleContainer">
+        <div className="noMarginBottom">{title}</div>
       </div>
+    </div>
+  ) : (
+    <div className="newsItemContainer">
       <img
         className="imageContainer"
         src={imageSource}
         alt={alternativeImageText}
       />
+      <div className="titleContainer">
+        <p className="noMarginBottom">{title}</p>
+      </div>
     </div>
   );
 };

@@ -1,3 +1,5 @@
+@use "../helpers/fonts.scss";
+
 .newsItemContainer {
   display: flex;
   flex-direction: row;
@@ -5,13 +7,32 @@
   align-items: center;
   border: 1px solid black;
   width: 70%;
-  height: 8rem;
+  height: 35%;
   margin-bottom: 1.5rem;
   padding: 0.5rem 0.75rem;
 }
 
-.fullHeight {
-  height: 18.65rem;
+.mainNewsItemContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid black;
+  width: 70%;
+  height: 30rem;
+  margin-bottom: 1.5rem;
+}
+
+.mainImageContainer {
+  height: 60%;
+  width: 100%;
+}
+
+.mainTitleContainer {
+  width: 80%;
+  height: 40%;
+  display: flex;
+  align-items: center;
+  font-size: fonts.$font-l;
 }
 
 .titleContainer {
@@ -20,7 +41,7 @@
 }
 
 .imageContainer {
-  height: 6rem;
+  height: 9rem;
   width: 45%;
 }
 
@@ -32,8 +53,31 @@
     align-items: center;
     border: 1px solid black;
     width: 90%;
+    height: 8rem;
     margin-bottom: 1.5rem;
     padding: 0.5rem 0.75rem;
+  }
+
+  .mainNewsItemContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid black;
+    width: 90%;
+    height: 8rem;
+    margin-bottom: 1.5rem;
+    padding: 0.5rem 0.75rem;
+  }
+
+  .mainTitleContainer {
+    width: 45%;
+    font-size: fonts.$font-base;
+  }
+
+  .mainImageContainer {
+    height: 6.5rem;
+    width: 45%;
   }
 
   .fullHeight {
@@ -46,7 +90,7 @@
   }
 
   .imageContainer {
-    height: 6rem;
+    height: 6.5rem;
     width: 45%;
   }
 }
