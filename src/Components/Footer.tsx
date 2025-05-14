@@ -4,7 +4,7 @@ import "../Styling/components/footer.scss";
 const Footer: React.FC = () => {
   return (
     <div className="footerContainer">
-      <div className="footerInformationContainer">
+      <div>
         <p className="footerInformationItem">Tel: 033 3333 3333</p>
         <p className="footerInformationItem">Email: helpme@police.co.uk</p>
         <p className="footerInformationItem">FAQs</p>
