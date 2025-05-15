@@ -1,22 +1,20 @@
-@media screen and (max-width: 450px) {
-  .welcomeMessageContainer {
-    background-image: url("/assets/police-car.jpg");
-    background-position: 0% 100%;
-    background-repeat: no-repeat;
-    background-size: cover;
-    padding: 1rem;
-    margin-bottom: 2rem;
-  }
+.welcomeMessageContainer {
+  background-image: url("/assets/police-car.jpg");
+  background-position: 0% 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 1rem;
+  margin-bottom: 2rem;
+}
 
-  .welcomeMessage {
-    color: #fff;
-    background-color: rgb(55, 51, 51, 0.7);
-    padding: 0.5rem;
-  }
+.welcomeMessage {
+  color: #fff;
+  background-color: rgb(55, 51, 51, 0.7);
+  padding: 0.5rem;
+}
 
-  .welcomeMessage:last-child {
-    margin-bottom: 0rem;
-  }
+.welcomeMessage:last-child {
+  margin-bottom: 0rem;
 }
 
 .recentNewsContainer {
