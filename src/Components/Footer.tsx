@@ -9,7 +9,10 @@ const Footer: React.FC = () => {
         <p className="footerInformationItem">Email: helpme@police.co.uk</p>
         <p className="footerInformationItem">FAQs</p>
       </div>
-      <img className="logo" src="/assets/police-logo.jpg" />
+      <img
+        className="logo"
+        src={process.env.PUBLIC_URL + "/assets/police-logo.jpg"}
+      />
     </div>
   );
 };
