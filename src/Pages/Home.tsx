@@ -17,14 +17,17 @@ const Home: React.FC = () => {
           </p>
         </div>
       </div>
+      <h2 className="title">Recent News</h2>
       <div className="recentNewsContainer">
-        <h2 className="title">Recent News</h2>
-        <div className="recentNewsItemContainer">
+        <div className="mainNewsItem">
           <RecentNewsItem
             title={"Man spontanesouly combusts - is this the end?"}
             imageSource={"/assets/spontaneous-combustion.jpg"}
             alternativeImageText={"burnt outline of man in seat"}
+            mainNewsItem
           />
+        </div>
+        <div className="secondaryNewsItems">
           <RecentNewsItem
             title={"Tortoise conducts traffic stop in world's first"}
             imageSource={"/assets/tortoise-officer.jpg"}

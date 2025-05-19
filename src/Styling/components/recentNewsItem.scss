@@ -1,20 +1,41 @@
+@use "../helpers/fonts.scss";
+
 .newsItemContainer {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  border: 1px solid black;
-  width: 90%;
   margin-bottom: 1.5rem;
-  padding: 0.5rem 0.75rem;
 }
 
 .titleContainer {
   width: 45%;
-  font-weight: 575;
+  font-weight: 500;
 }
 
 .imageContainer {
-  height: 6rem;
+  height: auto;
   width: 45%;
+  border-radius: 3%;
+}
+
+//DESKTOP
+@media screen and (min-width: 1100px) {
+  .mainNewsItemContainer {
+    flex-direction: column;
+    padding: 0;
+    justify-content: flex-start;
+  }
+
+  .mainImageContainer {
+    height: auto;
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+
+  .mainTitleContainer {
+    width: 80%;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
 }
