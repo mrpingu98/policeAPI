@@ -4,7 +4,6 @@
   justify-content: space-between;
   align-items: center;
   border: 1px solid black;
-  width: 90%;
   margin-bottom: 1.5rem;
   padding: 0.5rem 0.75rem;
 }
@@ -17,11 +16,4 @@
 .imageContainer {
   height: auto;
   width: 45%;
-}
-
-//desktop
-@media screen and (min-width: 1100px) {
-  .newsItemContainer {
-    width: initial;
-  }
 }
