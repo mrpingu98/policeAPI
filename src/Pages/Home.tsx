@@ -1,6 +1,6 @@
 import React from "react";
 import "../Styling/pages/home.scss";
-import { RecentNewsItem } from "../Components/RecentNewsItem";
+import { RecentNewsItem } from "../Components/RecentNewsItem/RecentNewsItem";
 import { RelatedContentItem } from "../Components/RelatedContentItem/RelatedContentItem";
 
 const Home: React.FC = () => {
