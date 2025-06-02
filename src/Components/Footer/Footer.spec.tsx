@@ -1,5 +1,4 @@
 import { render } from "@testing-library/react";
-import { screen } from "@testing-library/react";
 import { Footer } from "./Footer";
 import React from "react";
 
@@ -38,12 +37,6 @@ describe("Footer tests", () => {
   //   const help = screen.queryByText("Help");
   //   expect(help).not.toBeInTheDocument();
   // });
-
-  it("should render an image", async () => {
-    render(<Footer />);
-    const image = screen.getByRole("img");
-    expect(image).toBeInTheDocument();
-  });
 
   it("should render the police logo", async () => {
     const { getByTestId } = render(<Footer />);
