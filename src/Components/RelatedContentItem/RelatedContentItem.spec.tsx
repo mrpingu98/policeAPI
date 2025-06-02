@@ -5,7 +5,7 @@ import React from "react";
 const MockRelatedContentItem = () => {
   return (
     <RelatedContentItem
-      imageSource={"/assets/spontaneous-combustion.jpg"}
+      imageSource={"/assets/internal-police-reports.jpg"}
       title={"Test Title"}
       href={""}
     />
