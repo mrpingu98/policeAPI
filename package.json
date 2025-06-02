@@ -58,5 +58,16 @@
     "jest-environment-jsdom": "^30.0.0-beta.3",
     "ts-jest": "^29.3.4",
     "typescript-eslint": "^8.24.1"
+  },
+  "jest": {
+    "transform": {
+      ".(ts|tsx)": "ts-jest"
+    },
+    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ]
   }
 }
