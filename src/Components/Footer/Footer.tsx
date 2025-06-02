@@ -12,6 +12,7 @@ const Footer: React.FC = () => {
       <img
         className="logo"
         src={process.env.PUBLIC_URL + "/assets/police-logo.jpg"}
+        alt="Uk police logo"
       />
     </div>
   );
