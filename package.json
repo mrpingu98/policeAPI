@@ -63,11 +63,17 @@
     "transform": {
       ".(ts|tsx)": "ts-jest"
     },
-    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js"
+    "testMatch": [
+      "**/__tests__/**/*.[jt]s?(x)",
+      "**/?(*.)+(spec|test).[tj]s?(x)"
+    ],
+    "transformIgnorePatterns": [
+      "/node_modules/"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.{ts,tsx,js,jsx}",
+      "!src/**/*.d.ts"
     ]
   }
 }
+
