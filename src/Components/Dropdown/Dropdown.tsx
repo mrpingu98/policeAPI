@@ -1,7 +1,7 @@
 import React from "react";
 import "../Styling/components/dropdown.scss";
 import "../Styling/components/button.scss";
-import { Routes } from "./Types";
+import { Routes } from "../Types";
 import { Link } from "react-router-dom";
 
 interface DropdownProps {

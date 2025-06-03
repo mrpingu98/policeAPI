@@ -2,7 +2,7 @@ import React from "react";
 import "../Styling/components/navbar.scss";
 import { Link } from "react-router-dom";
 import { Routes } from "./Types";
-import { Dropdown } from "./Dropdown";
+import { Dropdown } from "./Dropdown/Dropdown";
 
 const NavBar: React.FC = () => {
   const routes: Routes[] = [
