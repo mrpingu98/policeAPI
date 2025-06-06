@@ -16,17 +16,17 @@ const RelatedContentItem: React.FC<RelatedContentItemProps> = ({
     <div className="relatedContentItemContainer">
       <a
         className="linkContainer"
-        data-testid="relatedContent-link"
+        data-testid="related-content-link"
         href={href}
       >
         <img
           className="relatedContentItemImage"
           src={imageSource}
-          data-testid="relatedContent-image"
+          data-testid="related-content-image"
         />
         <div
           className="relatedContentItemTitle"
-          data-testid="relatedContent-title"
+          data-testid="related-content-title"
         >
           {title}
         </div>

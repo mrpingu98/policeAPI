@@ -18,7 +18,7 @@ const renderRelatedContentItem = (props = {}) =>
   render(<RelatedContentItem {...defaultProps} {...props} />);
 
 describe("Related Content Item tests", () => {
-  const componentPrefix = "relatedContent-";
+  const componentPrefix = "related-content-";
 
   it("SHOULD render a title WHEN a non-empty string is passed", async () => {
     const { getByTestId } = renderRelatedContentItem();
