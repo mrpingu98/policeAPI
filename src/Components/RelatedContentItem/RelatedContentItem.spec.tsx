@@ -8,30 +8,34 @@ const defaultProps = {
   href: "",
 };
 
+//handling fields when they aren't valid
+//href/imageSource being empty
+//maybe come back to this component and think about tests before writing the component
+//href shouldn't ever be empty - and hwat happens when other two props have empty strings?
+//also images should always have an alt-text
+
 const renderRelatedContentItem = (props = {}) =>
   render(<RelatedContentItem {...defaultProps} {...props} />);
 
 describe("Related Content Item tests", () => {
-  it("should render a title", async () => {
+  const componentPrefix = "relatedContent-";
+
+  it("SHOULD render a title WHEN a non-empty string is passed", async () => {
     const { getByTestId } = renderRelatedContentItem();
-    const title = getByTestId("relatedContent-title");
+    const title = getByTestId(`${componentPrefix}title`);
     expect(title.textContent).toBe("Test Title");
   });
 
-  it("should render an image", async () => {
+  it("SHOULD render correct image WHEN a non-empty string is passed", async () => {
     const { getByTestId } = renderRelatedContentItem();
-    const image = getByTestId("relatedContent-image");
+    const image = getByTestId(`${componentPrefix}image`);
     expect(image).toBeInTheDocument();
+    expect(image).toHaveAttribute("src", "/assets/internal-police-reports.jpg");
   });
 
-  it("should render a link", async () => {
+  it("SHOULD render a link WHEN a non-empty string is passed", async () => {
     const { getByTestId } = renderRelatedContentItem();
-    const link = getByTestId("relatedContent-link");
+    const link = getByTestId(`${componentPrefix}link`);
     expect(link).toBeInTheDocument();
   });
 });
-
-//renders a title
-//render an image
-//render a link
-//click the href and page reloads?
