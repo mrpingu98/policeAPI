@@ -18,12 +18,14 @@ import React from "react";
 //Use regions to group certain tests together
 
 describe("Footer tests", () => {
+  const componentPrefix = "footer-";
+
   it("SHOULD render the Telephone number WHEN visible", async () => {
     //arrange
     const { getByTestId } = render(<Footer />);
 
     //act
-    const telephoneNumber = getByTestId("footer-telephone");
+    const telephoneNumber = getByTestId(`${componentPrefix}telephone`);
 
     //assert
     expect(telephoneNumber).toBeInTheDocument();
@@ -34,7 +36,7 @@ describe("Footer tests", () => {
     const { getByTestId } = render(<Footer />);
 
     //act
-    const email = getByTestId("footer-email");
+    const email = getByTestId(`${componentPrefix}email`);
 
     //assert
     expect(email).toBeInTheDocument();
@@ -45,7 +47,7 @@ describe("Footer tests", () => {
     const { getByTestId } = render(<Footer />);
 
     //act
-    const faqs = getByTestId("footer-faqs");
+    const faqs = getByTestId(`${componentPrefix}faqs`);
 
     //assert
     expect(faqs).toBeInTheDocument();
@@ -56,7 +58,7 @@ describe("Footer tests", () => {
     const { getByTestId } = render(<Footer />);
 
     //act
-    const policeLogo = getByTestId("footer-logo");
+    const policeLogo = getByTestId(`${componentPrefix}logo`);
 
     //assert
     expect(policeLogo).toBeInTheDocument();
