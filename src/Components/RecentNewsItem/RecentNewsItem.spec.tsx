@@ -15,14 +15,19 @@ const renderComponent = (props = {}) =>
 //we spread the default props in
 //then spread additional/overriding props in as well
 
+//need to think about tests from a 'wider' viewpoint, not just testing the component as is...
+//if an empty string is passed for the title, what would we want to happen?
+//if no alt text is given?
+//etc.
 describe("Recent News Item tests", () => {
+  const componentPrefix = "recent-news-";
   //#region props
   it("SHOULD render the title WHEN a non-empty string is passed", async () => {
     //arrange
     const { getByTestId } = renderComponent();
 
     //act
-    const title = getByTestId("recent-news-title");
+    const title = getByTestId(`${componentPrefix}title`);
 
     //assert
     expect(title.textContent).toBe("Test Title");
@@ -33,7 +38,7 @@ describe("Recent News Item tests", () => {
     const { getByTestId } = renderComponent();
 
     //act
-    const image = getByTestId("recent-news-image");
+    const image = getByTestId(`${componentPrefix}image`);
 
     //assert
     expect(image).toBeInTheDocument();
@@ -48,7 +53,7 @@ describe("Recent News Item tests", () => {
     const { getByTestId } = renderComponent();
 
     //act
-    const mainContainer = getByTestId("recent-news-main-container");
+    const mainContainer = getByTestId(`${componentPrefix}main-container`);
 
     //assert
     expect(mainContainer).toHaveClass("newsItemContainer");
@@ -59,7 +64,7 @@ describe("Recent News Item tests", () => {
     const { getByTestId } = renderComponent();
 
     //act
-    const imageContainer = getByTestId("recent-news-image");
+    const imageContainer = getByTestId(`${componentPrefix}image`);
 
     //assert
     expect(imageContainer).toHaveClass("imageContainer");
@@ -70,7 +75,7 @@ describe("Recent News Item tests", () => {
     const { getByTestId } = renderComponent();
 
     //act
-    const titleContainer = getByTestId("recent-news-title-container");
+    const titleContainer = getByTestId(`${componentPrefix}title-container`);
 
     //assert
     expect(titleContainer).not.toHaveClass("titleContainer mainTitleContainer");
@@ -84,7 +89,7 @@ describe("Recent News Item tests", () => {
     const { getByTestId } = renderComponent({ mainNewsItem: true });
 
     //act
-    const mainContainer = getByTestId("recent-news-main-container");
+    const mainContainer = getByTestId(`${componentPrefix}main-container`);
 
     //assert
     expect(mainContainer).toHaveClass(
@@ -97,7 +102,7 @@ describe("Recent News Item tests", () => {
     const { getByTestId } = renderComponent({ mainNewsItem: true });
 
     //act
-    const mainContainer = getByTestId("recent-news-image");
+    const mainContainer = getByTestId(`${componentPrefix}image`);
 
     //assert
     expect(mainContainer).toHaveClass("imageContainer mainImageContainer");
@@ -108,16 +113,11 @@ describe("Recent News Item tests", () => {
     const { getByTestId } = renderComponent({ mainNewsItem: true });
 
     //act
-    const mainContainer = getByTestId("recent-news-title-container");
+    const mainContainer = getByTestId(`${componentPrefix}title-container`);
 
     //assert
     expect(mainContainer).toHaveClass("titleContainer mainTitleContainer");
 
     //#endregion
   });
-
-  //need to think about tests from a 'wider' viewpoint, not just testing the component as is...
-  //if an empty string is passed for the title, what would we want to happen?
-  //if no alt text is given?
-  //etc.
 });
