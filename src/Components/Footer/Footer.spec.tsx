@@ -8,8 +8,17 @@ import React from "react";
 
 //so for destructuring, instead of taking the 'screen' object, and then getting the method, we render the Footer and 'extract' the method we want before
 
+//data-testid first
+//format with AAA in every test
+//testing one element - can have multiple expect tests on this element - e.g. last test on the image
+//SHOULD and WHERE in caps for descriptions
+//Make constants in descriptions for repeated code like classNames or testIds
+//testing one element can have multiple 'expects' within it
+//Add ticket for RelatedContentItem - redo that component by thinking about unit tests beforehand
+//Use regions to group certain tests together
+
 describe("Footer tests", () => {
-  it("should render the Telephone number", async () => {
+  it("SHOULD render the Telephone number WHEN visible", async () => {
     //arrange
     const { getByTestId } = render(<Footer />);
 
@@ -20,27 +29,41 @@ describe("Footer tests", () => {
     expect(telephoneNumber).toBeInTheDocument();
   });
 
-  it("should render the email", async () => {
+  it("SHOULD render the Email WHEN visible", async () => {
+    //arrange
     const { getByTestId } = render(<Footer />);
+
+    //act
     const email = getByTestId("footer-email");
+
+    //assert
     expect(email).toBeInTheDocument();
   });
 
-  it("should render the FAQs", async () => {
+  it("SHOULD render the FAQs WHEN visible", async () => {
+    //arrange
     const { getByTestId } = render(<Footer />);
+
+    //act
     const faqs = getByTestId("footer-faqs");
+
+    //assert
     expect(faqs).toBeInTheDocument();
   });
 
-  // it("should not render Help", async () => {
-  //   render(<Footer />);
-  //   const help = screen.queryByText("Help");
-  //   expect(help).not.toBeInTheDocument();
-  // });
-
-  it("should render the police logo", async () => {
+  it("SHOULD render the police logo when visible", async () => {
+    //arrange
     const { getByTestId } = render(<Footer />);
+
+    //act
     const policeLogo = getByTestId("footer-logo");
+
+    //assert
     expect(policeLogo).toBeInTheDocument();
+    expect(policeLogo).toHaveAttribute("alt", "Uk police logo");
+    expect(policeLogo).toHaveAttribute(
+      "src",
+      `${process.env.PUBLIC_URL}/assets/police-logo.jpg`
+    );
   });
 });
