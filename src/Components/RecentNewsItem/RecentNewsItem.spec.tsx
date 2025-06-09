@@ -15,10 +15,6 @@ const renderComponent = (props = {}) =>
 //we spread the default props in
 //then spread additional/overriding props in as well
 
-//need to think about tests from a 'wider' viewpoint, not just testing the component as is...
-//if an empty string is passed for the title, what would we want to happen?
-//if no alt text is given?
-//etc.
 describe("Recent News Item tests", () => {
   const componentPrefix = "recent-news-";
   //#region props

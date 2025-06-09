@@ -18,10 +18,6 @@ const MockDropdown = () => {
   );
 };
 
-//what about when you test an empty array
-//at the moment the compnent can have an empty array passed through to it...
-//not actually sure why that is - assumed that Routes[] means you have to pass an array containing type Routes in
-
 describe("Dropdown tests", () => {
   const componentPrefix = "dropdown-";
   const buttonId = "dropdown-button";

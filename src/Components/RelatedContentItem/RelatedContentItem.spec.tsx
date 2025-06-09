@@ -8,12 +8,6 @@ const defaultProps = {
   href: "",
 };
 
-//handling fields when they aren't valid
-//href/imageSource being empty
-//maybe come back to this component and think about tests before writing the component
-//href shouldn't ever be empty - and hwat happens when other two props have empty strings?
-//also images should always have an alt-text
-
 const renderRelatedContentItem = (props = {}) =>
   render(<RelatedContentItem {...defaultProps} {...props} />);
 
