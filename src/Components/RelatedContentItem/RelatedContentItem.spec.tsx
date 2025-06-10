@@ -14,22 +14,31 @@ const renderRelatedContentItem = (props = {}) =>
 describe("Related Content Item tests", () => {
   const componentPrefix = "related-content-";
 
-  it("SHOULD render a title WHEN a non-empty string is passed", async () => {
-    const { getByTestId } = renderRelatedContentItem();
-    const title = getByTestId(`${componentPrefix}title`);
-    expect(title.textContent).toBe("Test Title");
-  });
+  describe("Valid props", () => {
+    it("SHOULD render a title WHEN title is valid", async () => {
+      const { getByTestId } = renderRelatedContentItem();
+      const title = getByTestId(`${componentPrefix}title`);
+      expect(title.textContent).toBe("Test Title");
+    });
 
-  it("SHOULD render correct image WHEN a non-empty string is passed", async () => {
-    const { getByTestId } = renderRelatedContentItem();
-    const image = getByTestId(`${componentPrefix}image`);
-    expect(image).toBeInTheDocument();
-    expect(image).toHaveAttribute("src", "/assets/internal-police-reports.jpg");
-  });
+    it("SHOULD render correct image WHEN image is valid", async () => {
+      const { getByTestId } = renderRelatedContentItem();
+      const image = getByTestId(`${componentPrefix}image`);
+      expect(image).toBeInTheDocument();
+      expect(image).toHaveAttribute(
+        "src",
+        "/assets/internal-police-reports.jpg"
+      );
+    });
 
-  it("SHOULD render a link WHEN a non-empty string is passed", async () => {
-    const { getByTestId } = renderRelatedContentItem();
-    const link = getByTestId(`${componentPrefix}link`);
-    expect(link).toBeInTheDocument();
+    it("SHOULD render a link WHEN href is valid", async () => {
+      const { getByTestId } = renderRelatedContentItem();
+      const link = getByTestId(`${componentPrefix}link`);
+      expect(link).toBeInTheDocument();
+    });
   });
 });
+
+//could maybe have ternary for if no href don't render anything
+//maybe a default for the title
+//image maybe ioptional - just hide it fi no source available - or a default image
