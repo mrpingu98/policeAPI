@@ -1,12 +1,11 @@
 import { render } from "@testing-library/react";
 import { Footer } from "./Footer";
 import React from "react";
-//so for destructuring, instead of taking the 'screen' object, and then getting the method, we render the Footer and 'extract' the method we want before
 
 describe("Footer tests", () => {
   const componentPrefix = "footer-";
 
-  it("SHOULD render the Telephone number WHEN visible", async () => {
+  it("SHOULD render the Telephone number WHEN page loads", async () => {
     //arrange
     const { getByTestId } = render(<Footer />);
 
@@ -17,7 +16,7 @@ describe("Footer tests", () => {
     expect(telephoneNumber).toBeInTheDocument();
   });
 
-  it("SHOULD render the Email WHEN visible", async () => {
+  it("SHOULD render the Email WHEN page loads", async () => {
     //arrange
     const { getByTestId } = render(<Footer />);
 
@@ -28,7 +27,7 @@ describe("Footer tests", () => {
     expect(email).toBeInTheDocument();
   });
 
-  it("SHOULD render the FAQs WHEN visible", async () => {
+  it("SHOULD render the FAQs WHEN page loads", async () => {
     //arrange
     const { getByTestId } = render(<Footer />);
 
@@ -39,7 +38,7 @@ describe("Footer tests", () => {
     expect(faqs).toBeInTheDocument();
   });
 
-  it("SHOULD render the police logo when visible", async () => {
+  it("SHOULD render the police logo WHEN page loads", async () => {
     //arrange
     const { getByTestId } = render(<Footer />);
 
