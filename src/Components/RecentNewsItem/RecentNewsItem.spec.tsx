@@ -22,7 +22,7 @@ const renderComponent = (props = {}) =>
 describe("Recent News Item tests", () => {
   const componentPrefix = "recent-news-";
 
-  describe("RecentNewsItem valid props tests", () => {
+  describe("Valid props tests", () => {
     it("SHOULD render the title WHEN title is valid", async () => {
       //arrange
       const { getByTestId } = renderComponent();
