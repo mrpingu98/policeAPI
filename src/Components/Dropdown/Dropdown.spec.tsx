@@ -4,13 +4,16 @@ import { BrowserRouter } from "react-router-dom";
 import { Routes } from "../Types";
 import { Dropdown } from "./Dropdown";
 
-const routes: Routes[] = [
+const validRoutes: Routes[] = [
   { routeUrl: "#", name: "Home" },
   { routeUrl: "#", name: "API" },
   { routeUrl: "#", name: "Test" },
 ];
 
-const MockDropdown = () => {
+//const invalidRoutes = ....
+//having problems with checking the specific style with toHaveAttribute etc
+
+const MockDropdown = (routes: Routes[]) => {
   return (
     <BrowserRouter>
       <Dropdown dropdownOptions={routes} />;
@@ -21,108 +24,126 @@ const MockDropdown = () => {
 describe("Dropdown tests", () => {
   const componentPrefix = "dropdown-";
   const buttonId = "dropdown-button";
-  //#region dropdown closed
-  it("SHOULD render the dropdown container WHEN the dropdown is closed or open", async () => {
-    //arrange
-    const { getByTestId } = render(MockDropdown());
+  const buttonOpen = "dropdownButtonOpen";
+  const buttonClose = "dropdownButtonClose";
 
-    //act
-    const dropdown = getByTestId(`${componentPrefix}container`);
+  describe("Dropdown closed", () => {
+    it("SHOULD render the main container WHEN the page loads", async () => {
+      //arrange
+      const { getByTestId } = render(MockDropdown(validRoutes));
 
-    //assert
-    expect(dropdown).toBeInTheDocument();
+      //act
+      const dropdown = getByTestId(`${componentPrefix}container`);
+
+      //assert
+      expect(dropdown).toBeInTheDocument();
+    });
+
+    //toHaveStyle / attributes.style - can check specific styling is present (so the exact colour is shown)
+    it("SHOULD render button with primary colour WHEN dropdown isn't open", async () => {
+      //arrange
+      const { getByTestId } = render(MockDropdown(validRoutes));
+
+      //act
+      const button = getByTestId(buttonId);
+
+      //assert
+      expect(button).toHaveClass(buttonClose);
+    });
+
+    it("SHOULD not render the dropdown WHEN dropdown is closed", async () => {
+      //arrange
+      const { queryByTestId } = render(MockDropdown(validRoutes));
+
+      //act
+      const ul = queryByTestId(`${componentPrefix}ul-container`);
+
+      //assert
+      expect(ul).not.toBeInTheDocument();
+    });
+
+    it("SHOULD change button colour WHEN the button is clicked twice", async () => {
+      //arrange
+      const { getByTestId } = render(MockDropdown(validRoutes));
+      const button = getByTestId(buttonId);
+
+      //act 1
+      fireEvent.click(button);
+      //assert 1
+      expect(button).toHaveClass(buttonOpen);
+
+      //act 2
+      fireEvent.click(button);
+      //assert 2
+      expect(button).toHaveClass(buttonClose);
+    });
   });
 
-  it("SHOULD render the button with className dropdownButtonClosed WHEN dropdown isn't open", async () => {
-    //arrange
-    const { getByTestId } = render(MockDropdown());
+  describe("Dropdown open", () => {
+    it("SHOULD change the button colour WHEN dropdown is open", async () => {
+      //arrange
+      const { getByTestId } = render(MockDropdown(validRoutes));
+      const button = getByTestId(buttonId);
 
-    //act
-    const button = getByTestId(buttonId);
+      //act
+      fireEvent.click(button);
 
-    //assert
-    expect(button).toHaveClass("dropdownButtonClose");
+      //assert
+      expect(button).toHaveClass(buttonOpen);
+    });
+
+    it("SHOULD display the dropdown WHEN dropdown is open", async () => {
+      //arrange
+      const { getByTestId } = render(MockDropdown(validRoutes));
+      const button = getByTestId(buttonId);
+
+      //act
+      fireEvent.click(button);
+
+      //assert
+      const ul = getByTestId(`${componentPrefix}ul-container`);
+      expect(ul).toBeInTheDocument();
+    });
   });
 
-  it("SHOULD not render the ul element WHEN dropdown is closed", async () => {
-    //arrange
-    const { queryByTestId } = render(MockDropdown());
+  describe("Dropdown open with valid props", () => {
+    it("SHOULD display correct number of items on the dropdown WHEN the dropdown is open", async () => {
+      //arrange
+      const { getAllByTestId, getByTestId } = render(MockDropdown(validRoutes));
+      const button = getByTestId(buttonId);
 
-    //act
-    const ul = queryByTestId(`${componentPrefix}ul-container`);
+      //act
+      fireEvent.click(button);
 
-    //assert
-    expect(ul).not.toBeInTheDocument();
+      //assert
+      const link = getAllByTestId("dropdown-li-container");
+      expect(link).toHaveLength(3);
+    });
+
+    it("SHOULD display the correct name WHEN name is valid", async () => {
+      //arrange
+      const { getByTestId } = render(MockDropdown(validRoutes));
+      const button = getByTestId(buttonId);
+
+      //act
+      fireEvent.click(button);
+
+      //assert
+      const linkOne = getByTestId(`${componentPrefix}link-0`);
+      expect(linkOne).toHaveTextContent("Home");
+
+      const linkTwo = getByTestId(`${componentPrefix}link-1`);
+      expect(linkTwo).toHaveTextContent("API");
+
+      const linkThree = getByTestId(`${componentPrefix}link-2`);
+      expect(linkThree).toHaveTextContent("Test");
+
+      //SHOULD have correct source WHEN routeUrl is valid
+    });
   });
 
-  it("SHOULD update the button with className dropdownButtonClosed WHEN the button is clicked twice", async () => {
-    //arrange
-    const { getByTestId } = render(MockDropdown());
-    const button = getByTestId(buttonId);
+  // describe("Dropdown closed with invalid props", () => {
+  // })
 
-    //act 1
-    fireEvent.click(button);
-    //assert 1
-    expect(button).toHaveClass("dropdownButtonOpen");
-
-    //act 2
-    fireEvent.click(button);
-    //assert 2
-    expect(button).toHaveClass("dropdownButtonClose");
-  });
-  //#endregion
-
-  //#region dropdown open
-  it("SHOULD update the button className to dropdownButtonOpen WHEN dropdown is open", async () => {
-    //arrange
-    const { getByTestId } = render(MockDropdown());
-
-    //act
-    const button = getByTestId(buttonId);
-
-    //assert
-    fireEvent.click(button);
-    expect(button).toHaveClass("dropdownButtonOpen");
-  });
-
-  it("SHOULD display the ul element WHEN dropdown is open", async () => {
-    //arrange
-    const { getByTestId } = render(MockDropdown());
-
-    //act
-    const button = getByTestId(buttonId);
-
-    //assert
-    fireEvent.click(button);
-    const ul = getByTestId(`${componentPrefix}ul-container`);
-    expect(ul).toBeInTheDocument();
-  });
-
-  it("SHOULD display the correct amount of links on the dropdown WHEN the dropdown is open", async () => {
-    //arrange
-    const { getByTestId, getAllByTestId } = render(MockDropdown());
-
-    //act
-    const button = getByTestId(buttonId);
-
-    //assert
-    fireEvent.click(button);
-    const link = getAllByTestId(/dropdown-link-\d+/);
-    expect(link).toHaveLength(3);
-  });
-
-  it("SHOULD display the correct name for the Link WHEN the dropdown is open", async () => {
-    //arrange
-    const { getByTestId } = render(MockDropdown());
-
-    //act
-    const button = getByTestId(buttonId);
-
-    //assert
-    fireEvent.click(button);
-    const link = getByTestId(`${componentPrefix}link-1`);
-    expect(link).toHaveTextContent("API");
-  });
-
-  //#endregion
+  // describe("Dropdown open with invalid props", () => {});
 });
