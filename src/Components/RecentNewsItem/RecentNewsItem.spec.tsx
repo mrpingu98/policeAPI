@@ -118,7 +118,7 @@ describe("Recent News Item tests", () => {
       expect(mainContainer).toHaveClass("imageContainer mainImageContainer");
     });
 
-    it("SHOULD render mcorrect title container WHEN it has mainNewsItem", async () => {
+    it("SHOULD render title container correctly WHEN it has mainNewsItem", async () => {
       //arrange
       const { getByTestId } = renderComponent({ mainNewsItem });
 
