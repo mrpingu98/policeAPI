@@ -13,7 +13,10 @@ const RelatedContentItem: React.FC<RelatedContentItemProps> = ({
   href,
 }) => {
   return (
-    <div className="relatedContentItemContainer">
+    <div
+      className="relatedContentItemContainer"
+      data-testid="related-content-item-container"
+    >
       <a
         className="linkContainer"
         data-testid="related-content-link"
