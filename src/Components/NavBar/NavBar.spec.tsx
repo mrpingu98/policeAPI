@@ -2,6 +2,7 @@ import { render } from "@testing-library/react";
 import { NavBar } from "./NavBar";
 import { useIsMobile } from "../../Hooks/useIsMobile";
 import React from "react";
+import { BrowserRouter } from "react-router-dom";
 
 jest.mock("../../Hooks/useIsMobile", () => ({
   //this is saying we want to mock the whole module defined here
@@ -17,6 +18,14 @@ jest.mock("../../Hooks/useIsMobile", () => ({
   //so we are saying that we want to mock the function that is returned from this mocked module
 }));
 
+const MockNavBar = () => {
+  return (
+    <BrowserRouter>
+      <NavBar />
+    </BrowserRouter>
+  );
+};
+
 describe("NavBar mobile tests", () => {
   const componentPrefix = "nav-";
   const mockUseIsMobile = useIsMobile as jest.Mock;
@@ -24,17 +33,32 @@ describe("NavBar mobile tests", () => {
   //so we have to tell TS to 'view' it as a mock-type at runtime
   //jest.Mock is the general type used to define something as a mock
 
-  it("SHOULD render mobile view WHEN isMobile is true", async () => {
-    //arrange
-    mockUseIsMobile.mockReturnValue(true);
-    //So the module has been mocked, and the default function exported within it has been mocked
-    //we can now reference this mocked function, and apply various 'mock methods' on the item
-    const { getByTestId } = render(<NavBar />);
+  describe("useIsMobile is true", () => {
+    it("SHOULD render mobile view WHEN isMobile is true", async () => {
+      //arrange
+      mockUseIsMobile.mockReturnValue(true);
+      //So the module has been mocked, and the default function exported within it has been mocked
+      //we can now reference this mocked function, and apply various 'mock methods' on the item
+      const { getByTestId } = render(<NavBar />);
 
-    //act
-    const dropdown = getByTestId(`${componentPrefix}dropdown`);
+      //act
+      const dropdown = getByTestId(`${componentPrefix}dropdown`);
 
-    //assert
-    expect(dropdown).toBeInTheDocument();
+      //assert
+      expect(dropdown).toBeInTheDocument();
+    });
+  });
+  describe("useIsMobile is false", () => {
+    it("SHOULD render desktop view WHEN isMobile is false", async () => {
+      //arrange
+      mockUseIsMobile.mockReturnValue(false);
+      const { getAllByTestId } = render(MockNavBar());
+
+      //act
+      const links = getAllByTestId(`${componentPrefix}links`);
+
+      //assert
+      expect(links).toHaveLength(3);
+    });
   });
 });
