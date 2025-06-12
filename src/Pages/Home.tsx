@@ -1,26 +1,26 @@
 import React from "react";
 import "../Styling/pages/home.scss";
-import { RecentNewsItem } from "../Components/RecentNewsItem";
-import { RelatedContentItem } from "../Components/RelatedContentItem";
+import { RecentNewsItem } from "../Components/RecentNewsItem/RecentNewsItem";
+import { RelatedContentItem } from "../Components/RelatedContentItem/RelatedContentItem";
 
 const Home: React.FC = () => {
   return (
     <>
       <div className="welcomeMessageContainer">
-        <div>
-          <p className="welcomeMessage">
-            This website uses the UK Police API to gather data about crime and
-            policing across England, Wales and Northern Ireland
-          </p>
-          <br />
-          <p className="welcomeMessage">
-            Head to the API page to find out about crime in your local area
-          </p>
-        </div>
+        <p className="welcomeMessage" data-testid="home-welcome-message">
+          This website uses the UK Police API to gather data about crime and
+          policing across England, Wales and Northern Ireland
+        </p>
+        <br />
+        <p className="welcomeMessage">
+          Head to the API page to find out about crime in your local area
+        </p>
       </div>
-      <h2 className="title">Recent News</h2>
+      <h2 className="title" data-testid="home-recent-news-title">
+        Recent News
+      </h2>
       <div className="recentNewsContainer">
-        <div className="mainNewsItem">
+        <div className="mainNewsItem" data-testid="home-main-news-item">
           <RecentNewsItem
             title={"Man spontanesouly combusts - is this the end?"}
             imageSource={
@@ -30,7 +30,10 @@ const Home: React.FC = () => {
             mainNewsItem
           />
         </div>
-        <div className="secondaryNewsItems">
+        <div
+          className="secondaryNewsItems"
+          data-testid="home-secondary-news-items"
+        >
           <RecentNewsItem
             title={"Tortoise conducts traffic stop in world's first"}
             imageSource={
@@ -47,8 +50,13 @@ const Home: React.FC = () => {
           />
         </div>
       </div>
-      <h2 className="title">Related Content</h2>
-      <div className="relatedContentContainer">
+      <h2 className="title" data-testid="home-related-content-title">
+        Related Content
+      </h2>
+      <div
+        className="relatedContentContainer"
+        data-testid="home-related-content-container"
+      >
         <RelatedContentItem
           imageSource={
             process.env.PUBLIC_URL + "/assets/internal-police-reports.jpg"
