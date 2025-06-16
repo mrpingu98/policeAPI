@@ -2,7 +2,7 @@ import { render } from "@testing-library/react";
 import { NavBar } from "./NavBar";
 import { useIsMobile } from "../../Hooks/useIsMobile";
 import React from "react";
-import { BrowserRouter } from "react-router-dom";
+import { createMemoryRouter, RouterProvider } from "react-router-dom";
 
 jest.mock("../../Hooks/useIsMobile", () => ({
   //this is saying we want to mock the whole module defined here
@@ -18,12 +18,23 @@ jest.mock("../../Hooks/useIsMobile", () => ({
   //so we are saying that we want to mock the function that is returned from this mocked module
 }));
 
+// const MockNavBar = () => {
+//   return (
+//     <BrowserRouter>
+//       <NavBar />
+//     </BrowserRouter>
+//   );
+// };
+
 const MockNavBar = () => {
-  return (
-    <BrowserRouter>
-      <NavBar />
-    </BrowserRouter>
-  );
+  const router = createMemoryRouter([
+    {
+      path: "/",
+      element: <NavBar />,
+    },
+  ]);
+
+  return <RouterProvider router={router} />;
 };
 
 describe("NavBar mobile tests", () => {
