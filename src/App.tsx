@@ -1,11 +1,11 @@
 import React from "react";
-import { Home } from "./Pages/Home";
 import { Layout } from "./Components/Layout";
+import { Outlet } from "react-router-dom";
 
 function App() {
   return (
     <Layout>
-      <Home />
+      <Outlet />
     </Layout>
   );
 }

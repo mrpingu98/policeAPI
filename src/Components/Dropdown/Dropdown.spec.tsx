@@ -1,6 +1,6 @@
 import { fireEvent, render } from "@testing-library/react";
 import React from "react";
-import { BrowserRouter } from "react-router-dom";
+import { createMemoryRouter, RouterProvider } from "react-router-dom";
 import { Routes } from "../Types";
 import { Dropdown } from "./Dropdown";
 
@@ -14,11 +14,14 @@ const validRoutes: Routes[] = [
 //having problems with checking the specific style with toHaveAttribute etc
 
 const MockDropdown = (routes: Routes[]) => {
-  return (
-    <BrowserRouter>
-      <Dropdown dropdownOptions={routes} />;
-    </BrowserRouter>
-  );
+  const router = createMemoryRouter([
+    {
+      path: "/",
+      element: <Dropdown dropdownOptions={routes} />,
+    },
+  ]);
+
+  return <RouterProvider router={router} />;
 };
 
 describe("Dropdown tests", () => {
