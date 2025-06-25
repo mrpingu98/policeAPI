@@ -13,15 +13,12 @@ const Dropdown: React.FC<DropdownProps> = ({ dropdownOptions }) => {
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    console.log("useEffect ran");
-    console.log(open);
     const handleClickOutsideDropdown = (event: MouseEvent) => {
       if (
         dropdownRef.current &&
         !dropdownRef.current.contains(event.target as Node)
       ) {
         setOpen(false);
-        console.log("handleclick completed");
       }
     };
 
@@ -32,8 +29,6 @@ const Dropdown: React.FC<DropdownProps> = ({ dropdownOptions }) => {
     return () =>
       window.removeEventListener("click", handleClickOutsideDropdown);
   }, [open]);
-
-  //need to explain the above
 
   return (
     <div
