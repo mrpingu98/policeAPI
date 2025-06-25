@@ -1,12 +1,12 @@
 import { render } from "@testing-library/react";
 import { NavBar } from "./NavBar";
-import { useIsMobile } from "../../Hooks/useIsMobile";
 import React from "react";
 import { createMemoryRouter, RouterProvider } from "react-router-dom";
 
+const mockUseIsMobile = jest.fn();
 jest.mock("../../Hooks/useIsMobile", () => ({
   __esModule: true,
-  useIsMobile: jest.fn(),
+  useIsMobile: mockUseIsMobile,
 }));
 
 const MockNavBar = () => {
@@ -22,7 +22,6 @@ const MockNavBar = () => {
 
 describe("NavBar mobile tests", () => {
   const componentPrefix = "nav-";
-  const mockUseIsMobile = useIsMobile as jest.Mock;
 
   describe("useIsMobile is true", () => {
     it("SHOULD render mobile view WHEN isMobile is true", async () => {
