@@ -2,7 +2,7 @@ import React from "react";
 import "../../Styling/components/navbar.scss";
 import { Link } from "react-router-dom";
 import { Routes } from "../Types";
-import { Dropdown } from "../Dropdown/Dropdown";
+import { NavbarDropdown } from "../Dropdown/NavbarDropdown";
 import { useIsMobile } from "../../Hooks/useIsMobile";
 
 const NavBar: React.FC = () => {
@@ -18,7 +18,7 @@ const NavBar: React.FC = () => {
     <div>
       {isMobileView ? (
         <div className="navDropdown" data-testid="nav-dropdown">
-          <Dropdown dropdownOptions={routes} />
+          <NavbarDropdown dropdownOptions={routes} />
         </div>
       ) : (
         routes.map((route, index) => (
