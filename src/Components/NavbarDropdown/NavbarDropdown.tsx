@@ -43,7 +43,6 @@ const NavbarDropdown: React.FC<DropdownProps> = ({ dropdownOptions }) => {
     >
       <NavbarDropdownButton
         onClick={handleDropdown}
-        className={open ? "dropdownButtonOpen" : "dropdownButtonClose"}
         datatestid="dropdown-button"
       />
       {open ? (
