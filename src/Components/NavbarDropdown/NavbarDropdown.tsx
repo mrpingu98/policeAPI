@@ -1,9 +1,9 @@
 import React, { useEffect, useRef } from "react";
 import "../../Styling/components/dropdown.scss";
-import "../../Styling/components/button.scss";
+import "../../Styling/components/navbarDropdownButton.scss";
 import { Routes } from "../Types";
 import { Link } from "react-router-dom";
-import { Button } from "../Button";
+import { NavbarDropdownButton } from "../NavbarDropdownButton";
 
 interface DropdownProps {
   dropdownOptions: Routes[];
@@ -41,17 +41,10 @@ const NavbarDropdown: React.FC<DropdownProps> = ({ dropdownOptions }) => {
       className="dropdownContainer"
       data-testid="dropdown-container"
     >
-      <Button
-        icon={
-          <>
-            <div className="dropdownIcon" />
-            <div className="dropdownIcon" />
-            <div className="dropdownIcon" />
-          </>
-        }
+      <NavbarDropdownButton
         onClick={handleDropdown}
         className={open ? "dropdownButtonOpen" : "dropdownButtonClose"}
-        datatestId="dropdown-button"
+        datatestid="dropdown-button"
       />
       {open ? (
         <ul className="ulContainer" data-testid="dropdown-ul-container">

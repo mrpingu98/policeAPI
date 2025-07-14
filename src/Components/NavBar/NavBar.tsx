@@ -2,7 +2,7 @@ import React from "react";
 import "../../Styling/components/navbar.scss";
 import { Link } from "react-router-dom";
 import { Routes } from "../Types";
-import { NavbarDropdown } from "../Dropdown/NavbarDropdown";
+import { NavbarDropdown } from "../NavbarDropdown/NavbarDropdown";
 import { useIsMobile } from "../../Hooks/useIsMobile";
 
 const NavBar: React.FC = () => {
