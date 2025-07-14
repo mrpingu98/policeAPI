@@ -2,51 +2,23 @@ import React from "react";
 import "../Styling/components/button.scss";
 
 interface ButtonProps {
-  text?: string;
-  icon?: React.ReactNode;
-  datatestId?: string;
+  text: string;
+  variant: "primary" | "secondary";
   onClick: () => void;
-  className: string;
 }
 
 const Button: React.FC<ButtonProps> = ({
   text,
+  variant = "primary",
   onClick,
-  className,
-  icon,
-  datatestId,
 }) => {
+  //DEALING WITH EMPTY STRINGS
+  const safeText = text?.trim() || "Click";
+
   return (
-    <>
-      {text && (
-        <button
-          data-testId={datatestId}
-          className={className}
-          onClick={onClick}
-        >
-          {text}
-        </button>
-      )}
-      {icon && (
-        <button
-          data-testId={datatestId}
-          className={className}
-          onClick={onClick}
-        >
-          {icon}
-        </button>
-      )}
-      {icon && text && (
-        <button
-          data-testId={datatestId}
-          className={className}
-          onClick={onClick}
-        >
-          {text}
-          {icon}
-        </button>
-      )}
-    </>
+    <button className={variant} onClick={onClick}>
+      {safeText}
+    </button>
   );
 };
 
