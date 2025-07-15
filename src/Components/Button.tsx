@@ -12,7 +12,6 @@ const Button: React.FC<ButtonProps> = ({
   variant = "primary",
   onClick,
 }) => {
-  //DEALING WITH EMPTY STRINGS
   const safeText = text?.trim() || "Click";
 
   return (
