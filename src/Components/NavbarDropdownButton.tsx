@@ -13,7 +13,7 @@ const NavbarDropdownButton: React.FC<NavbarDropdownButtonProps> = ({
   return (
     <>
       <button
-        data-testId={datatestid}
+        data-testid={datatestid}
         className={"dropdownButton"}
         onClick={onClick}
       >
