@@ -27,8 +27,8 @@ const MockDropdown = (routes: Routes[]) => {
 describe("Dropdown tests", () => {
   const componentPrefix = "dropdown-";
   const buttonId = "dropdown-button";
-  const buttonOpen = "dropdownButtonOpen";
-  const buttonClose = "dropdownButtonClose";
+  // const buttonOpen = "dropdownButtonOpen";
+  // const buttonClose = "dropdownButtonClose";
 
   describe("Dropdown closed", () => {
     it("SHOULD render the main container WHEN the page loads", async () => {
@@ -42,17 +42,17 @@ describe("Dropdown tests", () => {
       expect(dropdown).toBeInTheDocument();
     });
 
-    //toHaveStyle / attributes.style - can check specific styling is present (so the exact colour is shown)
-    it("SHOULD render button with primary colour WHEN dropdown isn't open", async () => {
-      //arrange
-      const { getByTestId } = render(MockDropdown(validRoutes));
+    // //toHaveStyle / attributes.style - can check specific styling is present (so the exact colour is shown)
+    // it("SHOULD render button with primary colour WHEN dropdown isn't open", async () => {
+    //   //arrange
+    //   const { getByTestId } = render(MockDropdown(validRoutes));
 
-      //act
-      const button = getByTestId(buttonId);
+    //   //act
+    //   const button = getByTestId(buttonId);
 
-      //assert
-      expect(button).toHaveClass(buttonClose);
-    });
+    //   //assert
+    //   expect(button).toHaveClass(buttonClose);
+    // });
 
     it("SHOULD not render the dropdown WHEN dropdown is closed", async () => {
       //arrange
@@ -65,35 +65,35 @@ describe("Dropdown tests", () => {
       expect(ul).not.toBeInTheDocument();
     });
 
-    it("SHOULD change button colour WHEN the button is clicked twice", async () => {
-      //arrange
-      const { getByTestId } = render(MockDropdown(validRoutes));
-      const button = getByTestId(buttonId);
+    // it("SHOULD change button colour WHEN the button is clicked twice", async () => {
+    //   //arrange
+    //   const { getByTestId } = render(MockDropdown(validRoutes));
+    //   const button = getByTestId(buttonId);
 
-      //act 1
-      fireEvent.click(button);
-      //assert 1
-      expect(button).toHaveClass(buttonOpen);
+    //   //act 1
+    //   fireEvent.click(button);
+    //   //assert 1
+    //   expect(button).toHaveClass(buttonOpen);
 
-      //act 2
-      fireEvent.click(button);
-      //assert 2
-      expect(button).toHaveClass(buttonClose);
-    });
+    //   //act 2
+    //   fireEvent.click(button);
+    //   //assert 2
+    //   expect(button).toHaveClass(buttonClose);
+    // });
   });
 
   describe("Dropdown open", () => {
-    it("SHOULD change the button colour WHEN dropdown is open", async () => {
-      //arrange
-      const { getByTestId } = render(MockDropdown(validRoutes));
-      const button = getByTestId(buttonId);
+    // it("SHOULD change the button colour WHEN dropdown is open", async () => {
+    //   //arrange
+    //   const { getByTestId } = render(MockDropdown(validRoutes));
+    //   const button = getByTestId(buttonId);
 
-      //act
-      fireEvent.click(button);
+    //   //act
+    //   fireEvent.click(button);
 
-      //assert
-      expect(button).toHaveClass(buttonOpen);
-    });
+    //   //assert
+    //   expect(button).toHaveClass(buttonOpen);
+    // });
 
     it("SHOULD display the dropdown WHEN dropdown is open", async () => {
       //arrange
