@@ -26,7 +26,7 @@ const MockDropdown = (routes: Routes[]) => {
 
 describe("Dropdown tests", () => {
   const componentPrefix = "dropdown-";
-  const buttonId = "dropdown-button";
+  const buttonId = "navbar-dropdown-button";
 
   describe("Dropdown closed", () => {
     it("SHOULD render the main container WHEN the page loads", async () => {

@@ -2,18 +2,16 @@ import React from "react";
 import "../Styling/components/navbarDropdownButton.scss";
 
 interface NavbarDropdownButtonProps {
-  datatestid?: string;
   onClick: () => void;
 }
 
 const NavbarDropdownButton: React.FC<NavbarDropdownButtonProps> = ({
   onClick,
-  datatestid,
 }) => {
   return (
     <>
       <button
-        data-testid={datatestid}
+        data-testid="navbar-dropdown-button"
         className={"dropdownButton"}
         onClick={onClick}
       >

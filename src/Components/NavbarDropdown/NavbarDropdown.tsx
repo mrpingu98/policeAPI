@@ -40,10 +40,7 @@ const NavbarDropdown: React.FC<DropdownProps> = ({ dropdownOptions }) => {
       className="dropdownContainer"
       data-testid="dropdown-container"
     >
-      <NavbarDropdownButton
-        onClick={handleDropdown}
-        datatestid="dropdown-button"
-      />
+      <NavbarDropdownButton onClick={handleDropdown} />
       {open ? (
         <ul className="ulContainer" data-testid="dropdown-ul-container">
           {dropdownOptions.map((route, index) => (
