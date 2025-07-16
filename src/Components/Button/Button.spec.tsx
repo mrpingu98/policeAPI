@@ -6,6 +6,7 @@ interface Props {
   text: string;
   variant: "primary" | "secondary";
   onClick: () => void;
+  dataTestId?: string;
 }
 
 const handleClick = jest.fn();
@@ -14,12 +15,14 @@ const primaryValidProps: Props = {
   text: "Submit",
   variant: "primary",
   onClick: handleClick,
+  dataTestId: "primary-button",
 };
 
 const secondaryValidProps: Props = {
   text: "Submit",
   variant: "secondary",
   onClick: handleClick,
+  dataTestId: "secondary-button",
 };
 
 const invalidProps: Props = {
@@ -31,9 +34,8 @@ const invalidProps: Props = {
 const renderComponent = (props: Props) => render(<Button {...props} />);
 
 describe("Button tests", () => {
-  const datatestid = "button";
-
   describe("Valid props with primary variant tests", () => {
+    const datatestid = "primary-button";
     it("SHOULD render the Button WHEN props are valid", async () => {
       //arrange
       const { getByTestId } = renderComponent(primaryValidProps);
@@ -81,6 +83,7 @@ describe("Button tests", () => {
   });
 
   describe("Valid props with secondary variant tests", () => {
+    const datatestid = "secondary-button";
     it("SHOULD render the Button WHEN props are valid", async () => {
       //arrange
       const { getByTestId } = renderComponent(secondaryValidProps);
@@ -128,6 +131,7 @@ describe("Button tests", () => {
   });
 
   describe("Invalid props where text is an empty string tests", () => {
+    const datatestid = "button";
     it("SHOULD render the button with 'Click' WHEN text prop is an empty string", async () => {
       //arrange
       const { getByTestId } = renderComponent(invalidProps);
