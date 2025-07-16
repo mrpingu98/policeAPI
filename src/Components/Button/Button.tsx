@@ -1,5 +1,5 @@
 import React from "react";
-import "../Styling/components/button.scss";
+import "../../Styling/components/button.scss";
 
 interface ButtonProps {
   text: string;
@@ -15,7 +15,7 @@ const Button: React.FC<ButtonProps> = ({
   const safeText = text?.trim() || "Click";
 
   return (
-    <button className={variant} onClick={onClick}>
+    <button className={variant} onClick={onClick} data-testid="button">
       {safeText}
     </button>
   );
