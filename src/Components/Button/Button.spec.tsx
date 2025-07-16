@@ -136,7 +136,7 @@ describe("Button tests", () => {
       const button = getByTestId(datatestid);
 
       //assert
-      expect(button).toHaveTextContent("Click");
+      expect(button).toHaveTextContent("No text given");
     });
   });
 });
