@@ -1,31 +1,35 @@
 import React, { useEffect, useRef } from "react";
 import "../../Styling/components/dropdown.scss";
-import "../../Styling/components/button.scss";
+import "../../Styling/components/navbarDropdownButton.scss";
 import { Routes } from "../Types";
 import { Link } from "react-router-dom";
+import { NavbarDropdownButton } from "../NavbarDropdownButton";
 
 interface DropdownProps {
   dropdownOptions: Routes[];
 }
 
-const Dropdown: React.FC<DropdownProps> = ({ dropdownOptions }) => {
+const NavbarDropdown: React.FC<DropdownProps> = ({ dropdownOptions }) => {
   const [open, setOpen] = React.useState<boolean>(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const handleClickOutsideDropdown = (event: MouseEvent) => {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target as Node)
-      ) {
-        setOpen(false);
-      }
-    };
+  const handleDropdown = () => {
+    setOpen(!open);
+  };
 
+  const handleClickOutsideDropdown = (event: MouseEvent) => {
+    if (
+      dropdownRef.current &&
+      !dropdownRef.current.contains(event.target as Node)
+    ) {
+      setOpen(false);
+    }
+  };
+
+  useEffect(() => {
     if (open) {
       window.addEventListener("click", handleClickOutsideDropdown);
     }
-
     return () =>
       window.removeEventListener("click", handleClickOutsideDropdown);
   }, [open]);
@@ -36,15 +40,7 @@ const Dropdown: React.FC<DropdownProps> = ({ dropdownOptions }) => {
       className="dropdownContainer"
       data-testid="dropdown-container"
     >
-      <button
-        data-testid="dropdown-button"
-        className={open ? "dropdownButtonOpen" : "dropdownButtonClose"}
-        onClick={() => setOpen(!open)}
-      >
-        <div className="dropdownIcon" />
-        <div className="dropdownIcon" />
-        <div className="dropdownIcon" />
-      </button>
+      <NavbarDropdownButton onClick={handleDropdown} />
       {open ? (
         <ul className="ulContainer" data-testid="dropdown-ul-container">
           {dropdownOptions.map((route, index) => (
@@ -67,4 +63,4 @@ const Dropdown: React.FC<DropdownProps> = ({ dropdownOptions }) => {
     </div>
   );
 };
-export { Dropdown };
+export { NavbarDropdown };

@@ -1,25 +1,32 @@
 @use "../helpers/colours.scss";
 @use "../helpers/fonts.scss";
 
-@mixin dropdownButton($bg-colour) {
+@mixin button($bg-colour) {
   display: flex;
+  justify-content: center;
   flex-direction: column;
-  align-items: center;
-  width: 100%;
-  padding: 0.2rem;
+  width: auto;
+  padding: 0.5rem 1rem;
   font-size: fonts.$font-base;
+  color: white;
   background-color: $bg-colour;
+  border-radius: 0.2rem;
   border: 0;
+  cursor: pointer;
 }
 
-.dropdownButtonOpen {
-  @include dropdownButton(colours.$primary-background-color);
+.primary {
+  @include button(colours.$primary-background-color);
 
   &:hover {
     background-color: lighten(colours.$primary-background-color, 10%);
   }
 }
 
-.dropdownButtonClose {
-  @include dropdownButton(colours.$primary-background-color);
+.secondary {
+  @include button(colours.$secondary-background-color);
+
+  &:hover {
+    background-color: darken(colours.$secondary-background-color, 10%);
+  }
 }

@@ -15,6 +15,10 @@ const RecentNewsItem: React.FC<RecentNewsItemProps> = ({
   alternativeImageText,
   mainNewsItem = false,
 }) => {
+  //would you have a case where there's no title? etc etc so decide what to render based on these
+  //either add in some placeholder text, or don't render it at all
+  //and the placeholder text will either be something for th edev to notice that they messed up
+  //or placeholder text that would still have meaning for the component
   return (
     <div
       className={`newsItemContainer ${mainNewsItem && "mainNewsItemContainer"}`}
