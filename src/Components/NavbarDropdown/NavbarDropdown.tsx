@@ -17,20 +17,19 @@ const NavbarDropdown: React.FC<DropdownProps> = ({ dropdownOptions }) => {
     setOpen(!open);
   };
 
-  useEffect(() => {
-    const handleClickOutsideDropdown = (event: MouseEvent) => {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target as Node)
-      ) {
-        setOpen(false);
-      }
-    };
+  const handleClickOutsideDropdown = (event: MouseEvent) => {
+    if (
+      dropdownRef.current &&
+      !dropdownRef.current.contains(event.target as Node)
+    ) {
+      setOpen(false);
+    }
+  };
 
+  useEffect(() => {
     if (open) {
       window.addEventListener("click", handleClickOutsideDropdown);
     }
-
     return () =>
       window.removeEventListener("click", handleClickOutsideDropdown);
   }, [open]);
