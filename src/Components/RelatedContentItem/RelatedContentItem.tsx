@@ -12,7 +12,13 @@ const RelatedContentItem: React.FC<RelatedContentItemProps> = ({
   title,
   href,
 }) => {
-  return (
+  const safeImageSource = imageSource?.trim() || false;
+
+  const safeTitle = title?.trim() || false;
+
+  const safeHref = href?.trim() || false;
+
+  return safeImageSource && safeTitle && safeHref ? (
     <div
       className="relatedContentItemContainer"
       data-testid="related-content-item-container"
@@ -20,22 +26,24 @@ const RelatedContentItem: React.FC<RelatedContentItemProps> = ({
       <a
         className="linkContainer"
         data-testid="related-content-link"
-        href={href}
+        href={safeHref}
+        rel="noopener noreferrer"
+        target="_blank"
       >
         <img
           className="relatedContentItemImage"
-          src={imageSource}
+          src={safeImageSource}
           data-testid="related-content-image"
         />
         <div
           className="relatedContentItemTitle"
           data-testid="related-content-title"
         >
-          {title}
+          {safeTitle}
         </div>
       </a>
     </div>
-  );
+  ) : null;
 };
 
 export { RelatedContentItem };
