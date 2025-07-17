@@ -5,7 +5,7 @@ import React from "react";
 interface Props {
   text: string;
   variant: "primary" | "secondary";
-  onClick: () => void;
+  onClick: typeof jest.fn;
   dataTestId?: string;
 }
 
@@ -28,7 +28,7 @@ const secondaryValidProps: Props = {
 const invalidProps: Props = {
   text: "",
   variant: "primary",
-  onClick: () => console.log("clicked"),
+  onClick: handleClick,
 };
 
 const renderComponent = (props: Props) => render(<Button {...props} />);
@@ -132,7 +132,7 @@ describe("Button tests", () => {
 
   describe("Invalid props where text is an empty string tests", () => {
     const datatestid = "button";
-    it("SHOULD render the button with 'Click' WHEN text prop is an empty string", async () => {
+    it("SHOULD render the button with 'No text given' WHEN text prop is an empty string", async () => {
       //arrange
       const { getByTestId } = renderComponent(invalidProps);
 
