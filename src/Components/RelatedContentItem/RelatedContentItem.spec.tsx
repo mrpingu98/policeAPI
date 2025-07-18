@@ -14,26 +14,10 @@ const validProps = {
   href: "https://www.police.uk/pu/performance/",
 };
 
-const emptyTitleProps = {
-  imageSource: "/assets/internal-police-reports.jpg",
-  title: "   ",
-  href: "https://www.police.uk/pu/performance/",
-};
-
-const emptyImageSourceProps = {
-  imageSource: "   ",
-  title: "Test Title",
-  href: "https://www.police.uk/pu/performance/",
-};
-
-const emptyHrefProps = {
-  imageSource: "/assets/internal-police-reports.jpg",
-  title: "Test Title",
-  href: "   ",
-};
-
-const renderRelatedContentItem = (props: RelatedContentItemProps) =>
-  render(<RelatedContentItem {...props} />);
+const renderRelatedContentItem = (
+  requiredProps: RelatedContentItemProps,
+  props = {}
+) => render(<RelatedContentItem {...requiredProps} {...props} />);
 
 describe("Related Content Item tests", () => {
   const componentPrefix = "related-content-";
@@ -84,7 +68,9 @@ describe("Related Content Item tests", () => {
   describe("Invalid props", () => {
     it("SHOULD render null WHEN title is an empty string", async () => {
       //arrange
-      const { container } = renderRelatedContentItem(emptyTitleProps);
+      const { container } = renderRelatedContentItem(validProps, {
+        title: "   ",
+      });
       //act
 
       //assert
@@ -93,7 +79,9 @@ describe("Related Content Item tests", () => {
 
     it("SHOULD render null WHEN imageSource is an empty string", async () => {
       //arrange
-      const { container } = renderRelatedContentItem(emptyImageSourceProps);
+      const { container } = renderRelatedContentItem(validProps, {
+        imageSource: "  ",
+      });
       //act
 
       //assert
@@ -102,7 +90,9 @@ describe("Related Content Item tests", () => {
 
     it("SHOULD render null WHEN href is an empty string", async () => {
       //arrange
-      const { container } = renderRelatedContentItem(emptyHrefProps);
+      const { container } = renderRelatedContentItem(validProps, {
+        href: "  ",
+      });
       //act
 
       //assert
