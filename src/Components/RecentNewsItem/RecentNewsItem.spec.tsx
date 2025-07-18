@@ -5,19 +5,20 @@ import React from "react";
 //expect mainContainer to have flex styling but says block??
 //might need to add jest-transform-css into config
 //need to inject the CSS into the tests - won't do so automatically
+interface RequiredProps {
+  title: string;
+  imageSource: string;
+  alternativeImageText: string;
+}
 
-const defaultProps = {
+const requiredProps = {
   title: "Test Title",
   imageSource: "/assets/spontaneous-combustion.jpg",
   alternativeImageText: "Test Alternative Text",
 };
 
-const renderComponent = (props = {}) =>
-  render(<RecentNewsItem {...defaultProps} {...props} />);
-//we pass a props variable that will default to an object if nothing is passed in
-//Then spreads two items into the components props (can either write out the props individually, or spread objects into the component...)
-//we spread the default props in
-//then spread additional/overriding props in as well
+const renderComponent = (requiredProps: RequiredProps, props = {}) =>
+  render(<RecentNewsItem {...requiredProps} {...props} />);
 
 describe("Recent News Item tests", () => {
   const componentPrefix = "recent-news-";
@@ -25,7 +26,7 @@ describe("Recent News Item tests", () => {
   describe("Valid props tests", () => {
     it("SHOULD render the title WHEN title is valid", async () => {
       //arrange
-      const { getByTestId } = renderComponent();
+      const { getByTestId } = renderComponent(requiredProps);
 
       //act
       const title = getByTestId(`${componentPrefix}title`);
@@ -36,7 +37,7 @@ describe("Recent News Item tests", () => {
 
     it("SHOULD render correct image WHEN image is valid", async () => {
       //arrange
-      const { getByTestId } = renderComponent();
+      const { getByTestId } = renderComponent(requiredProps);
 
       //act
       const image = getByTestId(`${componentPrefix}image`);
@@ -49,84 +50,128 @@ describe("Recent News Item tests", () => {
         "/assets/spontaneous-combustion.jpg"
       );
     });
+
+    describe("Does not have mainNewsItem", () => {
+      it("SHOULD render container correctly WHEN does not have mainNewsItem", async () => {
+        //arrange
+        const { getByTestId } = renderComponent(requiredProps);
+
+        //act
+        const mainContainer = getByTestId(`${componentPrefix}main-container`);
+        // const styles = getComputedStyle(mainContainer);
+
+        //assert
+        expect(mainContainer).toHaveClass("newsItemContainer");
+        // expect(styles.alignItems).toBe("center");
+        // expect(mainContainer).toHaveStyle("align-items: center");
+        // expect(mainContainer).toHaveStyle("display: flex");
+        // expect(mainContainer).toHaveStyle("flex-direction: row");
+      });
+
+      it("SHOULD render image container correctly WHEN does not have mainNewsItem", async () => {
+        //arrange
+        const { getByTestId } = renderComponent(requiredProps, {
+          mainNewsItem: true,
+        });
+
+        //act
+        const imageContainer = getByTestId(`${componentPrefix}image`);
+
+        //assert
+        expect(imageContainer).toHaveClass("imageContainer");
+      });
+
+      it("SHOULD render title container correctly container WHEN does not have mainNewsItem", async () => {
+        //arrange
+        const { getByTestId } = renderComponent(requiredProps);
+
+        //act
+        const titleContainer = getByTestId(`${componentPrefix}title-container`);
+
+        //assert
+        expect(titleContainer).toHaveClass("titleContainer");
+      });
+    });
+    describe("Has mainNewsItem", () => {
+      const mainNewsItem = true;
+
+      it("SHOULD render container correctly WHEN it has mainNewsItem", async () => {
+        //arrange
+        const { getByTestId } = renderComponent(requiredProps, {
+          mainNewsItem,
+        });
+
+        //act
+        const mainContainer = getByTestId(`${componentPrefix}main-container`);
+
+        //assert
+        expect(mainContainer).toHaveClass(
+          "newsItemContainer mainNewsItemContainer"
+        );
+      });
+
+      it("SHOULD render image container correctly WHEN it has mainNewsItem", async () => {
+        //arrange
+        const { getByTestId } = renderComponent(requiredProps, {
+          mainNewsItem,
+        });
+
+        //act
+        const mainContainer = getByTestId(`${componentPrefix}image`);
+
+        //assert
+        expect(mainContainer).toHaveClass("imageContainer mainImageContainer");
+      });
+
+      it("SHOULD render title container correctly WHEN it has mainNewsItem", async () => {
+        //arrange
+        const { getByTestId } = renderComponent(requiredProps, {
+          mainNewsItem,
+        });
+
+        //act
+        const mainContainer = getByTestId(`${componentPrefix}title-container`);
+
+        //assert
+        expect(mainContainer).toHaveClass("titleContainer mainTitleContainer");
+      });
+    });
   });
 
-  describe("Does not have mainNewsItem", () => {
-    it("SHOULD render container correctly WHEN does not have mainNewsItem", async () => {
+  describe("Invalid props tests", () => {
+    it("SHOULD render 'NO TITLE GIVEN' WHEN title is an empty string but other props are valid", async () => {
       //arrange
-      const { getByTestId } = renderComponent();
+      const { getByTestId } = renderComponent(requiredProps, {
+        title: "",
+      });
 
       //act
-      const mainContainer = getByTestId(`${componentPrefix}main-container`);
-      // const styles = getComputedStyle(mainContainer);
+      const title = getByTestId(`${componentPrefix}title`);
 
       //assert
-      expect(mainContainer).toHaveClass("newsItemContainer");
-      // expect(styles.alignItems).toBe("center");
-      // expect(mainContainer).toHaveStyle("align-items: center");
-      // expect(mainContainer).toHaveStyle("display: flex");
-      // expect(mainContainer).toHaveStyle("flex-direction: row");
+      expect(title.textContent).toBe("NO TITLE GIVEN");
     });
 
-    it("SHOULD render image container correctly WHEN does not have mainNewsItem", async () => {
+    it("SHOULD render nothing WHEN imageSource is an empty string but other props are valid", async () => {
       //arrange
-      const { getByTestId } = renderComponent();
-
+      const { container } = renderComponent(requiredProps, {
+        imageSource: "",
+      });
       //act
-      const imageContainer = getByTestId(`${componentPrefix}image`);
 
       //assert
-      expect(imageContainer).toHaveClass("imageContainer");
+      expect(container.firstChild).toBeNull();
     });
 
-    it("SHOULD render title container correctly container WHEN does not have mainNewsItem", async () => {
+    it("SHOULD render nothing WHEN alternativeImageText is an empty string but other props are valid", async () => {
       //arrange
-      const { getByTestId } = renderComponent();
-
+      const { container } = renderComponent(requiredProps, {
+        alternativeImageText: "",
+      });
       //act
-      const titleContainer = getByTestId(`${componentPrefix}title-container`);
 
       //assert
-      expect(titleContainer).toHaveClass("titleContainer");
-    });
-  });
-
-  describe("Has mainNewItem", () => {
-    const mainNewsItem = true;
-
-    it("SHOULD render container correctly WHEN it has mainNewsItem", async () => {
-      //arrange
-      const { getByTestId } = renderComponent({ mainNewsItem });
-
-      //act
-      const mainContainer = getByTestId(`${componentPrefix}main-container`);
-
-      //assert
-      expect(mainContainer).toHaveClass(
-        "newsItemContainer mainNewsItemContainer"
-      );
-    });
-
-    it("SHOULD render image container correctly WHEN it has mainNewsItem", async () => {
-      //arrange
-      const { getByTestId } = renderComponent({ mainNewsItem });
-
-      //act
-      const mainContainer = getByTestId(`${componentPrefix}image`);
-
-      //assert
-      expect(mainContainer).toHaveClass("imageContainer mainImageContainer");
-    });
-
-    it("SHOULD render title container correctly WHEN it has mainNewsItem", async () => {
-      //arrange
-      const { getByTestId } = renderComponent({ mainNewsItem });
-
-      //act
-      const mainContainer = getByTestId(`${componentPrefix}title-container`);
-
-      //assert
-      expect(mainContainer).toHaveClass("titleContainer mainTitleContainer");
+      expect(container.firstChild).toBeNull();
     });
   });
 });

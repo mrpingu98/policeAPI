@@ -15,19 +15,23 @@ const RecentNewsItem: React.FC<RecentNewsItemProps> = ({
   alternativeImageText,
   mainNewsItem = false,
 }) => {
-  //would you have a case where there's no title? etc etc so decide what to render based on these
-  //either add in some placeholder text, or don't render it at all
-  //and the placeholder text will either be something for th edev to notice that they messed up
-  //or placeholder text that would still have meaning for the component
-  return (
+  const safeTitle = title.trim() || "NO TITLE GIVEN";
+
+  const safeAlternativeImageText = alternativeImageText.trim() || false;
+
+  const safeImageSource = imageSource.trim() || false;
+
+  //maybe put a console.warn here?
+
+  return safeAlternativeImageText && safeImageSource ? (
     <div
       className={`newsItemContainer ${mainNewsItem && "mainNewsItemContainer"}`}
       data-testid="recent-news-main-container"
     >
       <img
         className={`imageContainer ${mainNewsItem && "mainImageContainer"}`}
-        src={imageSource}
-        alt={alternativeImageText}
+        src={safeImageSource}
+        alt={safeAlternativeImageText}
         data-testid="recent-news-image"
       />
       <div
@@ -35,11 +39,11 @@ const RecentNewsItem: React.FC<RecentNewsItemProps> = ({
         data-testid="recent-news-title-container"
       >
         <p className="noMarginBottom" data-testid="recent-news-title">
-          {title}
+          {safeTitle}
         </p>
       </div>
     </div>
-  );
+  ) : null;
 };
 
 export { RecentNewsItem };
