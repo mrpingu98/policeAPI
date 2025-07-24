@@ -18,7 +18,7 @@ const NavBar: React.FC = () => {
     <div>
       {isMobileView ? (
         <div className="navDropdown" data-testid="nav-dropdown">
-          <NavbarDropdown dropdownOptions={routes} />
+          <NavbarDropdown routesArray={routes} />
         </div>
       ) : (
         routes.map((route, index) => (
