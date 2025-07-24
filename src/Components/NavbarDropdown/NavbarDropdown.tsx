@@ -7,14 +7,15 @@ import { NonEmptyArray } from "../Types";
 import { NavbarDropdownButton } from "../NavbarDropdownButton";
 
 interface DropdownProps {
-  dropdownOptions: NonEmptyArray<Routes>;
+  routesArray: NonEmptyArray<Routes>;
 }
 
-const NavbarDropdown: React.FC<DropdownProps> = ({ dropdownOptions }) => {
+const NavbarDropdown: React.FC<DropdownProps> = ({ routesArray }) => {
   const [open, setOpen] = React.useState<boolean>(false);
+  const [safeRoutesArray, setSafeRoutesArray] = React.useState<Routes[]>([]);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  const handleDropdown = () => {
+  const handleOpenDropdown = () => {
     setOpen(!open);
   };
 
@@ -27,6 +28,13 @@ const NavbarDropdown: React.FC<DropdownProps> = ({ dropdownOptions }) => {
     }
   };
 
+  const filterRoutesArray = () => {
+    const safeRoutes = routesArray.filter(
+      (route) => route.name.trim() && route.routeUrl.trim()
+    );
+    setSafeRoutesArray(safeRoutes);
+  };
+
   useEffect(() => {
     if (open) {
       window.addEventListener("click", handleClickOutsideDropdown);
@@ -35,16 +43,20 @@ const NavbarDropdown: React.FC<DropdownProps> = ({ dropdownOptions }) => {
       window.removeEventListener("click", handleClickOutsideDropdown);
   }, [open]);
 
+  useEffect(() => {
+    filterRoutesArray();
+  }, []);
+
   return (
     <div
       ref={dropdownRef}
       className="dropdownContainer"
       data-testid="dropdown-container"
     >
-      <NavbarDropdownButton onClick={handleDropdown} />
-      {open ? (
+      <NavbarDropdownButton onClick={handleOpenDropdown} />
+      {safeRoutesArray.length > 0 && open ? (
         <ul className="ulContainer" data-testid="dropdown-ul-container">
-          {dropdownOptions.map((route, index) => (
+          {safeRoutesArray.map((route, index) => (
             <li
               key={index}
               className="liContainer"
