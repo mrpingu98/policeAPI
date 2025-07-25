@@ -1,49 +1,11 @@
 import { fireEvent, render } from "@testing-library/react";
-import React from "react";
-import { createMemoryRouter, RouterProvider } from "react-router-dom";
-import { Routes } from "../Types";
-import { NavbarDropdown } from "./NavbarDropdown";
-import { NonEmptyArray } from "../Types";
-
-const validRoutes: NonEmptyArray<Routes> = [
-  { routeUrl: "/policeAPI", name: "Home" },
-  { routeUrl: "/policeAPI/API", name: "API" },
-  { routeUrl: "/policeAPI/Test", name: "Test" },
-];
-
-const noValidRoutes: NonEmptyArray<Routes> = [
-  { routeUrl: "", name: "" },
-  { routeUrl: "", name: "" },
-];
-
-const invalidRouteUrl: NonEmptyArray<Routes> = [
-  { routeUrl: "", name: "API" },
-  { routeUrl: "/policeAPI/Test", name: "Test" },
-];
-
-const invalidName: NonEmptyArray<Routes> = [
-  { routeUrl: "/policeAPI/API", name: "" },
-  { routeUrl: "/policeAPI/Test", name: "Test" },
-];
-
-//const invalidRoutes = ....
-//having problems with checking the specific style with toHaveAttribute etc
-
-const MockDropdown = (routes: NonEmptyArray<Routes>) => {
-  const router = createMemoryRouter([
-    {
-      path: "/",
-      element: (
-        <>
-          <div data-testid="dropdown-outside-click">test area</div>
-          <NavbarDropdown routesArray={routes} />
-        </>
-      ),
-    },
-  ]);
-
-  return <RouterProvider router={router} />;
-};
+import {
+  invalidName,
+  invalidRouteUrl,
+  MockDropdown,
+  noValidRoutes,
+  validRoutes,
+} from "./NavbarDropdownTestUtils";
 
 describe("Dropdown tests", () => {
   const componentPrefix = "dropdown-";
