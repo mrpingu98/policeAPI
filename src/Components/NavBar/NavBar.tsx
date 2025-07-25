@@ -4,12 +4,12 @@ import { Link } from "react-router-dom";
 import { Routes } from "../Types";
 import { NavbarDropdown } from "../NavbarDropdown/NavbarDropdown";
 import { useIsMobile } from "../../Hooks/useIsMobile";
+import { NonEmptyArray } from "../Types";
 
 const NavBar: React.FC = () => {
-  const routes: Routes[] = [
+  const routes: NonEmptyArray<Routes> = [
     { routeUrl: "#", name: "Home" },
     { routeUrl: "#", name: "API" },
-    { routeUrl: "#", name: "CV" },
   ];
 
   const isMobileView = useIsMobile();
@@ -18,7 +18,7 @@ const NavBar: React.FC = () => {
     <div>
       {isMobileView ? (
         <div className="navDropdown" data-testid="nav-dropdown">
-          <NavbarDropdown dropdownOptions={routes} />
+          <NavbarDropdown routesArray={routes} />
         </div>
       ) : (
         routes.map((route, index) => (
