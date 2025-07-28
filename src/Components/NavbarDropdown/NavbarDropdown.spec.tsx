@@ -54,9 +54,9 @@ describe("Dropdown tests", () => {
 
       //act
       fireEvent.click(button);
+      const ul = getByTestId(`${componentPrefix}ul-container`);
 
       //assert
-      const ul = getByTestId(`${componentPrefix}ul-container`);
       expect(ul).toBeInTheDocument();
     });
 
@@ -68,9 +68,9 @@ describe("Dropdown tests", () => {
       //act
       fireEvent.click(button);
       fireEvent.click(button);
+      const ul = queryByTestId(`${componentPrefix}ul-container`);
 
       //assert
-      const ul = queryByTestId(`${componentPrefix}ul-container`);
       expect(ul).not.toBeInTheDocument();
     });
 
@@ -85,9 +85,9 @@ describe("Dropdown tests", () => {
       //act
       fireEvent.click(button);
       fireEvent.click(elementOutsideDropdownButton);
+      const ul = queryByTestId(`${componentPrefix}ul-container`);
 
       //assert
-      const ul = queryByTestId(`${componentPrefix}ul-container`);
       expect(ul).not.toBeInTheDocument();
     });
 
@@ -98,9 +98,9 @@ describe("Dropdown tests", () => {
 
       //act
       fireEvent.click(button);
+      const link = getAllByTestId("dropdown-li-container");
 
       //assert
-      const link = getAllByTestId("dropdown-li-container");
       expect(link).toHaveLength(3);
     });
 
@@ -111,15 +111,13 @@ describe("Dropdown tests", () => {
 
       //act
       fireEvent.click(button);
+      const linkOne = getByTestId(`${componentPrefix}link-0`);
+      const linkTwo = getByTestId(`${componentPrefix}link-1`);
+      const linkThree = getByTestId(`${componentPrefix}link-2`);
 
       //assert
-      const linkOne = getByTestId(`${componentPrefix}link-0`);
       expect(linkOne).toHaveTextContent("Home");
-
-      const linkTwo = getByTestId(`${componentPrefix}link-1`);
       expect(linkTwo).toHaveTextContent("API");
-
-      const linkThree = getByTestId(`${componentPrefix}link-2`);
       expect(linkThree).toHaveTextContent("Test");
     });
 
@@ -130,32 +128,26 @@ describe("Dropdown tests", () => {
 
       //act
       fireEvent.click(button);
+      const linkOne = getByTestId(`${componentPrefix}link-0`);
+      const linkTwo = getByTestId(`${componentPrefix}link-1`);
+      const linkThree = getByTestId(`${componentPrefix}link-2`);
 
       //assert
-      const linkOne = getByTestId(`${componentPrefix}link-0`);
       expect(linkOne).toHaveAttribute("href", "/policeAPI");
-
-      const linkTwo = getByTestId(`${componentPrefix}link-1`);
       expect(linkTwo).toHaveAttribute("href", "/policeAPI/API");
-
-      const linkThree = getByTestId(`${componentPrefix}link-2`);
       expect(linkThree).toHaveAttribute("href", "/policeAPI/Test");
     });
   });
 
   describe("Dropdown with invalid props", () => {
-    it("SHOULD not render the dropdown WHEN clicked and the routesArray has no valid items", async () => {
+    it("SHOULD not render the dropdown WHEN the routesArray has no valid items", async () => {
       //arrange
-      const { queryByTestId, getByTestId } = render(
-        MockDropdown(noValidRoutes)
-      );
-      const button = getByTestId(buttonId);
+      const { queryByTestId } = render(MockDropdown(noValidRoutes));
 
       //act
-      fireEvent.click(button);
+      const ul = queryByTestId(`${componentPrefix}ul-container`);
 
       //assert
-      const ul = queryByTestId(`${componentPrefix}ul-container`);
       expect(ul).not.toBeInTheDocument();
     });
 
@@ -168,11 +160,10 @@ describe("Dropdown tests", () => {
 
       //act
       fireEvent.click(button);
-
-      //assert
       const link = getAllByTestId("dropdown-li-container");
       const linkOne = getByTestId(`${componentPrefix}link-0`);
 
+      //assert
       expect(link).toHaveLength(1);
       expect(linkOne).toHaveAttribute("href", "/policeAPI/Test");
       expect(linkOne).toHaveTextContent("Test");
@@ -185,11 +176,10 @@ describe("Dropdown tests", () => {
 
       //act
       fireEvent.click(button);
-
-      //assert
       const link = getAllByTestId("dropdown-li-container");
       const linkOne = getByTestId(`${componentPrefix}link-0`);
 
+      //assert
       expect(link).toHaveLength(1);
       expect(linkOne).toHaveAttribute("href", "/policeAPI/Test");
       expect(linkOne).toHaveTextContent("Test");
