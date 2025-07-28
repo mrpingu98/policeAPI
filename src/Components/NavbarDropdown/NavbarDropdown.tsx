@@ -3,11 +3,10 @@ import "../../Styling/components/dropdown.scss";
 import "../../Styling/components/navbarDropdownButton.scss";
 import { Routes } from "../Types";
 import { Link } from "react-router-dom";
-import { NonEmptyArray } from "../Types";
 import { NavbarDropdownButton } from "../NavbarDropdownButton";
 
 interface DropdownProps {
-  routesArray: NonEmptyArray<Routes>;
+  routesArray: Routes[];
 }
 
 const NavbarDropdown: React.FC<DropdownProps> = ({ routesArray }) => {

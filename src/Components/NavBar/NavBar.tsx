@@ -4,20 +4,15 @@ import { Link } from "react-router-dom";
 import { Routes } from "../Types";
 import { NavbarDropdown } from "../NavbarDropdown/NavbarDropdown";
 import { useIsMobile } from "../../Hooks/useIsMobile";
-import { NonEmptyArray } from "../Types";
+import { navRoutes } from "../../constants/navRoutes";
 
 const NavBar: React.FC = () => {
   const [safeRoutesArray, setSafeRoutesArray] = React.useState<Routes[]>([]);
 
-  const routes: NonEmptyArray<Routes> = [
-    { routeUrl: "#", name: "Home" },
-    { routeUrl: "#", name: "API" },
-  ];
-
   const isMobileView = useIsMobile();
 
   const filterRoutesArray = () => {
-    const safeRoutes = routes.filter(
+    const safeRoutes = navRoutes.filter(
       (route) => route.name.trim() && route.routeUrl.trim()
     );
     setSafeRoutesArray(safeRoutes);
@@ -33,7 +28,7 @@ const NavBar: React.FC = () => {
         safeRoutesArray.length > 0 &&
         (isMobileView ? (
           <div className="navDropdown" data-testid="nav-dropdown">
-            <NavbarDropdown routesArray={routes} />
+            <NavbarDropdown routesArray={safeRoutesArray} />
             <div />
           </div>
         ) : (
@@ -42,7 +37,7 @@ const NavBar: React.FC = () => {
               to={route.routeUrl}
               key={index}
               className="navLink"
-              data-testid="nav-links"
+              data-testid={`nav-links-${index}`}
             >
               {route.name}
             </Link>
