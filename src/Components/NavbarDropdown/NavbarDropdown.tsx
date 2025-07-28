@@ -53,8 +53,10 @@ const NavbarDropdown: React.FC<DropdownProps> = ({ routesArray }) => {
       className="dropdownContainer"
       data-testid="dropdown-container"
     >
-      <NavbarDropdownButton onClick={handleOpenDropdown} />
-      {safeRoutesArray.length > 0 && open ? (
+      {safeRoutesArray.length > 0 && (
+        <NavbarDropdownButton onClick={handleOpenDropdown} />
+      )}
+      {open ? (
         <ul className="ulContainer" data-testid="dropdown-ul-container">
           {safeRoutesArray.map((route, index) => (
             <li
