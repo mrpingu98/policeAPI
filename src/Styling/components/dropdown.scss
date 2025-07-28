@@ -1,28 +1,6 @@
 @use "../helpers/fonts.scss";
 @use "../helpers/colours.scss";
 
-// @mixin dropdownButton($bg-colour) {
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-//   width: 100%;
-//   padding: 0.2rem;
-//   font-size: fonts.$font-base;
-//   background-color: $bg-colour;
-//   border: 0;
-// }
-
-// .buttonOpen {
-//   @include dropdownButton(colours.$primary-background-color);
-//   &:hover {
-//     background-color: lighten(colours.$primary-background-color, 10%);
-//   }
-// }
-
-// .buttonClose {
-//   @include dropdownButton(colours.$primary-background-color);
-// }
-
 .dropdownIcon {
   display: block;
   width: 100%;

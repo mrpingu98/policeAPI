@@ -45,17 +45,22 @@ p {
 //   width: 100vw;
 // }
 
+.navbarRow {
+  background-color: colours.$primary-background-color;
+  margin-bottom: 1rem;
+  margin-bottom: 0;
+}
+
 .titleRow,
 .navbarRow,
 .contentRow,
 .footerRow {
   display: grid;
-  grid-template-columns: 1fr 8fr 1fr;
+  grid-template-columns: 0fr 1fr 0fr;
 }
 
-.navbarRow {
-  background-color: colours.$primary-background-color;
-  margin-bottom: 1rem;
+.secondColumn {
+  padding: 1rem;
 }
 
 .footerRow {
@@ -63,13 +68,27 @@ p {
   background-color: colours.$primary-background-color;
 }
 
-.secondColumn {
-  padding: 0.5rem;
-}
-
 .title {
   margin-bottom: 1rem;
   display: block;
+}
+
+@media screen and (min-width: 1100px) {
+  .titleRow,
+  .navbarRow,
+  .contentRow,
+  .footerRow {
+    display: grid;
+    grid-template-columns: 1fr 8fr 1fr;
+  }
+
+  .secondColumn {
+    padding: 0.5rem;
+  }
+
+  .navbarRow {
+    margin-bottom: 1rem;
+  }
 }
 
 //Positionings
@@ -87,22 +106,4 @@ p {
 
 .noMarginLeft {
   margin-left: 0rem;
-}
-
-@media screen and (max-width: 450px) {
-  .titleRow,
-  .navbarRow,
-  .contentRow,
-  .footerRow {
-    display: grid;
-    grid-template-columns: 0fr 1fr 0fr;
-  }
-
-  .navbarRow {
-    margin-bottom: 0;
-  }
-
-  .secondColumn {
-    padding: 1rem;
-  }
 }

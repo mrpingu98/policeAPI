@@ -3,11 +3,10 @@ import "../../Styling/components/dropdown.scss";
 import "../../Styling/components/navbarDropdownButton.scss";
 import { Routes } from "../Types";
 import { Link } from "react-router-dom";
-import { NonEmptyArray } from "../Types";
 import { NavbarDropdownButton } from "../NavbarDropdownButton";
 
 interface DropdownProps {
-  routesArray: NonEmptyArray<Routes>;
+  routesArray: Routes[];
 }
 
 const NavbarDropdown: React.FC<DropdownProps> = ({ routesArray }) => {
@@ -53,8 +52,10 @@ const NavbarDropdown: React.FC<DropdownProps> = ({ routesArray }) => {
       className="dropdownContainer"
       data-testid="dropdown-container"
     >
-      <NavbarDropdownButton onClick={handleOpenDropdown} />
-      {safeRoutesArray.length > 0 && open ? (
+      {safeRoutesArray.length > 0 && (
+        <NavbarDropdownButton onClick={handleOpenDropdown} />
+      )}
+      {open ? (
         <ul className="ulContainer" data-testid="dropdown-ul-container">
           {safeRoutesArray.map((route, index) => (
             <li
