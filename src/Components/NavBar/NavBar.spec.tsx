@@ -11,6 +11,15 @@ jest.mock("../../Hooks/useIsMobile", () => ({
 
 const mockUseIsMobile = useIsMobile as jest.Mock;
 
+jest.mock("../../constants/navRoutes", () => ({
+  __esModule: true,
+  navRoutes: [
+    { routeUrl: "#", name: "Home" },
+    { routeUrl: "#", name: "API" },
+    { routeUrl: "#", name: "TEST" },
+  ],
+}));
+
 const MockNavBar = () => {
   const router = createMemoryRouter([
     {
@@ -22,10 +31,10 @@ const MockNavBar = () => {
   return <RouterProvider router={router} />;
 };
 
-describe("NavBar mobile tests", () => {
+describe("NavBar tests", () => {
   const componentPrefix = "nav-";
 
-  describe("useIsMobile is true with valid props", () => {
+  describe("useIsMobile is true with valid routes", () => {
     it("SHOULD render mobile view WHEN isMobile is true", async () => {
       //arrange
       mockUseIsMobile.mockReturnValue(true);
@@ -38,6 +47,7 @@ describe("NavBar mobile tests", () => {
       expect(dropdown).toBeInTheDocument();
     });
   });
+
   describe("useIsMobile is false with valid props", () => {
     it("SHOULD render desktop view WHEN isMobile is false", async () => {
       //arrange
@@ -50,7 +60,18 @@ describe("NavBar mobile tests", () => {
       );
 
       //assert
-      expect(links.length).toBeGreaterThan(0);
+      expect(links.length).toEqual(3);
     });
+
+    //links have correct name
+    //links have correct route
   });
+
+  //useIsMobile is true with invalid routes
+  //SHOULD render mobile view WHEN at least one route is valid
+  //SHOULD not render mobile dropdown WHEN all routes are invalid
+
+  //useIsMobile is false with invalid routes
+  //SHOULD render desktop view with correct links WHEN at least one route is valid
+  //SHOULD render desktop view with no links WHEN all routes are invalid
 });
