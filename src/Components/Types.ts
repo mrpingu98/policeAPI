@@ -4,3 +4,8 @@ export interface Routes {
 }
 
 export type NonEmptyArray<T> = [T, ...T[]];
+
+export interface LatLng {
+  lat: number;
+  lng: number;
+}
