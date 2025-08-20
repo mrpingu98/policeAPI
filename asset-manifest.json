@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/policeAPI/static/css/main.61915f1d.css",
-    "main.js": "/policeAPI/static/js/main.1b305562.js",
+    "main.js": "/policeAPI/static/js/main.971052a1.js",
     "static/js/453.4039521d.chunk.js": "/policeAPI/static/js/453.4039521d.chunk.js",
     "static/media/police-lights.jpg": "/policeAPI/static/media/police-lights.fbc7a1b99f1341477eb0.jpg",
     "index.html": "/policeAPI/index.html",
     "main.61915f1d.css.map": "/policeAPI/static/css/main.61915f1d.css.map",
-    "main.1b305562.js.map": "/policeAPI/static/js/main.1b305562.js.map",
+    "main.971052a1.js.map": "/policeAPI/static/js/main.971052a1.js.map",
     "453.4039521d.chunk.js.map": "/policeAPI/static/js/453.4039521d.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.61915f1d.css",
-    "static/js/main.1b305562.js"
+    "static/js/main.971052a1.js"
   ]
 }
