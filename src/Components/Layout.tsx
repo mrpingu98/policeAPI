@@ -13,7 +13,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       <div className="mainContainer">
         <div className="titleRow">
           <div />
-          <h1 className="secondColumn">POLICE API</h1>
+          <h1 className="secondColumn noMarginBottom">POLICE API</h1>
           <div />
         </div>
         <div className="navbarRow">
