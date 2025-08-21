@@ -1,7 +1,8 @@
 import React from "react";
+import "../../Styling/components/textbox.scss"
 
 const Textbox: React.FC = () => {
-  return <div>this will be a textbox</div>;
+  return <input type="text" name="date" className="textbox"/>;
 };
 
 export default Textbox;
