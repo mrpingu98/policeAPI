@@ -2,14 +2,15 @@ import React from "react";
 import "../../Styling/components/textbox.scss";
 
 interface TextboxProps {
-  name?: string;
+  type: string;
   setText: React.Dispatch<React.SetStateAction<string>>;
+  name?: string;
 }
 
-const Textbox: React.FC<TextboxProps> = ({ name, setText }) => {
+const Textbox: React.FC<TextboxProps> = ({ name, setText, type }) => {
   return (
     <input
-      type="text"
+      type={type}
       className="textbox"
       name={name}
       onChange={(e) => setText(e.target.value)}

@@ -26,7 +26,7 @@ const Api: React.FC = () => {
       <div>
         lat: {latitudeLongitude.lat} long: {latitudeLongitude.lng}
       </div>
-      <Textbox setText={setDate} />
+      <Textbox setText={setDate} type="month" />
       <Button
         text="Submit"
         variant="primary"
