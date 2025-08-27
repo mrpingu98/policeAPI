@@ -18,9 +18,39 @@ const renderComponent = (props = {}) =>
   render(<DatePickerMonth {...validProps} {...props} />);
 
 describe("DatePickerMonth tests", () => {
-  describe("Valid props", () => {});
+  describe("Valid props", () => {
+    it("SHOULD render an input element with type 'month' WHEN page loads", async () => {
+      //arrange
+      //act
+      //assert
+    });
 
-  describe("Invalid props", () => {});
+    it("SHOULD allow user to click into input element WHEN page loads", async () => {
+      //arrange
+      //act
+      //assert
+    });
+
+    it("SHOULD contain name attribute WHEN name prop is passed through", async () => {
+      //arrange
+      //act
+      //assert
+    });
+
+    it("SHOULD update setState WHEN name setState is passed through", async () => {
+      //arrange
+      //act
+      //assert
+    });
+  });
+
+  describe("Invalid props", () => {
+    it("SHOULD not render component WHEN name is an empty string", async () => {
+      //arrange
+      //act
+      //assert
+    });
+  });
 });
 
 //Should render an input element
