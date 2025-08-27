@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Map from "../../Components/Map/Map";
 import "../../Styling/components/map.scss";
 import { LatLng } from "../../Components/Types";
-import DatePickerMonth from "../../Components/DatePickerMonth/DatePickerMonth";
+import { DatePickerMonth } from "../../Components/DatePickerMonth/DatePickerMonth";
 import { Button } from "../../Components/Button/Button";
 
 const Api: React.FC = () => {

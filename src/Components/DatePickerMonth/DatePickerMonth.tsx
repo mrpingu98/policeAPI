@@ -20,4 +20,4 @@ const DatePickerMonth: React.FC<DatePickerMonthProps> = ({ name, setDate }) => {
   ) : null;
 };
 
-export default DatePickerMonth;
+export { DatePickerMonth };
