@@ -22,7 +22,7 @@ const Api: React.FC = () => {
         at that location at that time.
       </p>
       <Map setLatitudeLongitude={setLatitudeLongitude} />
-      <div className="location">
+      <div className="sectionContainers" data-testId="location">
         <p>
           <b>Location:</b>{" "}
           {latitudeLongitude ? (
@@ -32,7 +32,12 @@ const Api: React.FC = () => {
           )}
         </p>
       </div>
-      <DatePickerMonth setDate={setDate} />
+      <div className="sectionContainers">
+        <p>
+          <b>Date:</b>
+        </p>
+        <DatePickerMonth setDate={setDate} />
+      </div>
       <Button
         text="Submit"
         variant="primary"
