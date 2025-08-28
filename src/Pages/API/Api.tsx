@@ -4,27 +4,33 @@ import "../../Styling/components/map.scss";
 import { LatLng } from "../../Components/Types";
 import { DatePickerMonth } from "../../Components/DatePickerMonth/DatePickerMonth";
 import { Button } from "../../Components/Button/Button";
+import "../../Styling/pages/api.scss";
 
 const Api: React.FC = () => {
-  const [latitudeLongitude, setLatitudeLongitude] = useState<LatLng>({
-    lat: 0,
-    lng: 0,
-  });
+  const [latitudeLongitude, setLatitudeLongitude] = useState<
+    LatLng | undefined
+  >();
 
   const [date, setDate] = useState<string>("");
-  console.log(date);
 
   return (
     <div>
-      <h1>Crimes by location</h1>
-      <div>
+      <h2>Crimes by location</h2>
+      <p>
         Use the map below to find out about crimes by location across the UK.
         Pick a point on the map and input a date to find out the recorded crimes
         at that location at that time.
-      </div>
+      </p>
       <Map setLatitudeLongitude={setLatitudeLongitude} />
-      <div>
-        lat: {latitudeLongitude.lat} long: {latitudeLongitude.lng}
+      <div className="location">
+        <p>
+          <b>Location:</b>{" "}
+          {latitudeLongitude ? (
+            `Latitude: ${latitudeLongitude.lat}, Longitude: ${latitudeLongitude.lng}`
+          ) : (
+            <em>Select a point on the map</em>
+          )}
+        </p>
       </div>
       <DatePickerMonth setDate={setDate} />
       <Button
