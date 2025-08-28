@@ -15,7 +15,7 @@ const DatePickerMonth: React.FC<DatePickerMonthProps> = ({ name, setDate }) => {
       className="datePickerMonthContainer"
       name={name}
       onChange={(e) => setDate(e.target.value)}
-      data-testid="datePickerMonth"
+      data-testid="date-picker-month"
     />
   ) : null;
 };
