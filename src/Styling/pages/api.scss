@@ -1,3 +1,9 @@
 .sectionContainers {
   margin-bottom: 2rem;
 }
+
+.button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}

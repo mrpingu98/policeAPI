@@ -38,11 +38,13 @@ const Api: React.FC = () => {
         </p>
         <DatePickerMonth setDate={setDate} />
       </div>
-      <Button
-        text="Submit"
-        variant="primary"
-        onClick={() => console.log("submitted")}
-      />
+      <div className="button">
+        <Button
+          text="Submit"
+          variant="primary"
+          onClick={() => console.log("submitted")}
+        />
+      </div>
     </div>
   );
 };
