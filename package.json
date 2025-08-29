@@ -5,6 +5,7 @@
   "private": true,
   "dependencies": {
     "@tanstack/react-query": "^5.85.5",
+    "@tanstack/react-query-devtools": "^5.85.5",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/user-event": "^13.5.0",
     "@types/node": "^16.18.126",
