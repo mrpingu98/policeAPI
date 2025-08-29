@@ -1,0 +1,23 @@
+@use "../helpers/colours.scss";
+
+.loader {
+  width: 48px;
+  height: 48px;
+  border: 5px solid colours.$primary-background-color;
+  border-bottom-color: colours.$secondary-background-color;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+//what is keyframes and how does this tyling properl;y work
