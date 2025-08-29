@@ -11,8 +11,6 @@ const Api: React.FC = () => {
     LatLng | undefined
   >();
 
-  console.log(latitudeLongitude);
-
   const [date, setDate] = useState<string>("");
 
   //make dictionary to pass through using string interpolation
@@ -21,6 +19,8 @@ const Api: React.FC = () => {
 
   //date and submit in a form
   //then validation os latlng state for submit button
+  //for now have use usestate to disable button
+  //mayb eas a stretch case, can make type=submit for button, then onsubmit check that date input has something, otherwise throw an alert
 
   //customise error for map - haslatlNg disable button function - or if they click button, then red border aorund map saying please select a point
 
@@ -36,6 +36,19 @@ const Api: React.FC = () => {
       console.log(data);
     } catch (error) {
       console.log(error);
+    }
+  };
+
+  const handleMaxDate = () => {
+    const today = new Date();
+    const currentMonth = today.getMonth() + 1;
+    const currentYear = today.getFullYear();
+    const prevYear = (currentYear - 1).toString();
+
+    if (today.getMonth() == 1) {
+      return `${prevYear}-12`;
+    } else {
+      return `${currentYear}-${currentMonth.toString().padStart(2, "0")}`;
     }
   };
 
@@ -68,14 +81,19 @@ const Api: React.FC = () => {
             <p>
               <b>Date:</b>
             </p>
-            <DatePickerMonth setDate={setDate} />
+            <DatePickerMonth
+              setDate={setDate}
+              name="date-picker"
+              min="2023-01"
+              max={handleMaxDate()}
+            />
           </div>
           <div className="button">
             <Button
               text="Submit"
               variant="primary"
               onClick={handleSubmit}
-              disabled={latitudeLongitude ? false : true}
+              disabled={latitudeLongitude && date ? false : true}
             />
           </div>
         </div>
