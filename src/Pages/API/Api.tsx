@@ -64,7 +64,7 @@ const Api: React.FC = () => {
               )}
             </p>
           </div>
-          <div className="sectionContainers" data-testId="datePicker">
+          <div className="datePickerContainer" data-testId="datePicker">
             <p>
               <b>Date:</b>
             </p>
@@ -85,6 +85,12 @@ const Api: React.FC = () => {
           </div>
         </div>
       </div>
+      {data ? (
+        <div>
+          <h3>Crimes recorded at selected location</h3>
+          {data[0].category}
+        </div>
+      ) : null}
     </div>
   );
 };
