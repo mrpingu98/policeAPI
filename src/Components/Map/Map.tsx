@@ -5,7 +5,9 @@ import "leaflet/dist/leaflet.css";
 import { LatLng } from "../Types";
 
 interface MapProps {
-  setLatitudeLongitude: React.Dispatch<React.SetStateAction<LatLng>>;
+  setLatitudeLongitude: React.Dispatch<
+    React.SetStateAction<LatLng | undefined>
+  >;
 }
 
 const Map: React.FC<MapProps> = ({ setLatitudeLongitude }) => {
@@ -28,7 +30,7 @@ const Map: React.FC<MapProps> = ({ setLatitudeLongitude }) => {
     };
   }, []);
 
-  return <div id="map" className="mapContainer"></div>;
+  return <div id="map" className="mapContainer" data-testid="map"></div>;
 };
 
 export default Map;

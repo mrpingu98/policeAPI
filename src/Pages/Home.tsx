@@ -16,7 +16,7 @@ const Home: React.FC = () => {
           Head to the API page to find out about crime in your local area
         </p>
       </div>
-      <h2 className="title" data-testid="home-recent-news-title">
+      <h2 data-testid="home-recent-news-title">
         Recent News
       </h2>
       <div className="recentNewsContainer">
@@ -50,7 +50,7 @@ const Home: React.FC = () => {
           />
         </div>
       </div>
-      <h2 className="title" data-testid="home-related-content-title">
+      <h2 data-testid="home-related-content-title">
         Related Content
       </h2>
       <div

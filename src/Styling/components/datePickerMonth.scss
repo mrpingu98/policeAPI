@@ -1,0 +1,23 @@
+@use "../helpers/colours.scss";
+@use "../helpers/fonts.scss";
+
+.datePickerMonthContainer {
+  width: 40%;
+  border-radius: 0.2rem;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  border: 2px solid colours.$primary-background-color;
+  outline: none;
+  font-size: fonts.$font-s;
+
+  &:focus {
+    border: 2px solid colours.$secondary-background-color;
+  }
+}
+
+@media screen and (min-width: 1100px) {
+  .datePickerMonthContainer {
+    width: 20%;
+    font-size: fonts.$font-m;
+  }
+}
