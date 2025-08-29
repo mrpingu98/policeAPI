@@ -1,12 +1,17 @@
 import React from "react";
 import { Layout } from "./Components/Layout";
 import { Outlet } from "react-router-dom";
+import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
+
+const queryClient = new QueryClient();
 
 function App() {
   return (
-    <Layout>
-      <Outlet />
-    </Layout>
+    <QueryClientProvider client={queryClient}>
+      <Layout>
+        <Outlet />
+      </Layout>
+    </QueryClientProvider>
   );
 }
 
