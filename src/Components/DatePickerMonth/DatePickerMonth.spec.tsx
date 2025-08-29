@@ -7,6 +7,7 @@ interface DatePickerMonthProps {
   setDate: React.Dispatch<React.SetStateAction<string>>;
   name?: string;
 }
+//add min prop
 
 const validProps: DatePickerMonthProps = {
   setDate: mockSetDate,
