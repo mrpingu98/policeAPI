@@ -7,6 +7,7 @@ import { Button } from "../../Components/Button/Button";
 import "../../Styling/pages/api.scss";
 import { getCurrentMonthAndYear } from "../../utils/date";
 import { getRequest } from "../../api/helpers";
+import { useQuery } from "@tanstack/react-query";
 //maybe as a stretch case, can make type=submit for button, then onsubmit check that date input has something, otherwise throw an alert
 const Api: React.FC = () => {
   const [latitudeLongitude, setLatitudeLongitude] = useState<
@@ -15,12 +16,28 @@ const Api: React.FC = () => {
 
   const [date, setDate] = useState<string>("");
 
-  const handleSubmit = () =>
-    getRequest([
-      { key: "date", value: "2025-05" },
-      { key: "lat", value: "52.629729" },
-      { key: "lng", value: "-1.131592" },
-    ]);
+  const {
+    isPending,
+    error,
+    data,
+    isFetching,
+    refetch: getCrimesByLocation,
+  } = useQuery({
+    queryKey: ["getCrimesByLocation"],
+    queryFn: () =>
+      getRequest([
+        { key: "date", value: date },
+        {
+          key: "lat",
+          value: latitudeLongitude ? latitudeLongitude.lat.toString() : "0",
+        },
+        {
+          key: "lng",
+          value: latitudeLongitude ? latitudeLongitude.lng.toString() : "0",
+        },
+      ]),
+    enabled: false,
+  });
 
   return (
     <div>
@@ -62,7 +79,7 @@ const Api: React.FC = () => {
             <Button
               text="Submit"
               variant="primary"
-              onClick={handleSubmit}
+              onClick={getCrimesByLocation}
               disabled={latitudeLongitude && date ? false : true}
             />
           </div>
