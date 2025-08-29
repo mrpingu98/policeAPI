@@ -9,6 +9,8 @@ interface Props {
   dataTestId?: string;
 }
 
+//add disable prop
+
 const handleClick = jest.fn();
 
 const primaryValidProps: Props = {

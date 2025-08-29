@@ -5,13 +5,22 @@ import { LatLng } from "../../Components/Types";
 import { DatePickerMonth } from "../../Components/DatePickerMonth/DatePickerMonth";
 import { Button } from "../../Components/Button/Button";
 import "../../Styling/pages/api.scss";
-
+import { getCurrentMonthAndYear } from "../../utils/date";
+import { getRequest } from "../../api/helpers";
+//maybe as a stretch case, can make type=submit for button, then onsubmit check that date input has something, otherwise throw an alert
 const Api: React.FC = () => {
   const [latitudeLongitude, setLatitudeLongitude] = useState<
     LatLng | undefined
   >();
 
   const [date, setDate] = useState<string>("");
+
+  const handleSubmit = () =>
+    getRequest([
+      { key: "date", value: "2025-05" },
+      { key: "lat", value: "52.629729" },
+      { key: "lng", value: "-1.131592" },
+    ]);
 
   return (
     <div>
@@ -42,13 +51,19 @@ const Api: React.FC = () => {
             <p>
               <b>Date:</b>
             </p>
-            <DatePickerMonth setDate={setDate} />
+            <DatePickerMonth
+              setDate={setDate}
+              name="date-picker"
+              min="2023-01"
+              max={getCurrentMonthAndYear()}
+            />
           </div>
           <div className="button">
             <Button
               text="Submit"
               variant="primary"
-              onClick={() => console.log("submitted")}
+              onClick={handleSubmit}
+              disabled={latitudeLongitude && date ? false : true}
             />
           </div>
         </div>
