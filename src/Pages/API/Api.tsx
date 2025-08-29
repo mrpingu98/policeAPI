@@ -5,7 +5,9 @@ import { LatLng } from "../../Components/Types";
 import { DatePickerMonth } from "../../Components/DatePickerMonth/DatePickerMonth";
 import { Button } from "../../Components/Button/Button";
 import "../../Styling/pages/api.scss";
-
+import { getCurrentMonthAndYear } from "../../utils/date";
+import { getRequest } from "../../api/helpers";
+//maybe as a stretch case, can make type=submit for button, then onsubmit check that date input has something, otherwise throw an alert
 const Api: React.FC = () => {
   const [latitudeLongitude, setLatitudeLongitude] = useState<
     LatLng | undefined
@@ -13,44 +15,12 @@ const Api: React.FC = () => {
 
   const [date, setDate] = useState<string>("");
 
-  //make dictionary to pass through using string interpolation
-  //key-value piars function that you can concatenate onto the end of it for
-  //helper method - give me date lat and long - then interpolate onto the url
-
-  //date and submit in a form
-  //then validation os latlng state for submit button
-  //for now have use usestate to disable button
-  //mayb eas a stretch case, can make type=submit for button, then onsubmit check that date input has something, otherwise throw an alert
-
-  //customise error for map - haslatlNg disable button function - or if they click button, then red border aorund map saying please select a point
-
-  //regex for form inputs for the date
-
-  const handleSubmit = async () => {
-    try {
-      const response = await fetch(
-        "https://data.police.uk/api/crimes-street/all-crime?date=2024-01&lat=52.629729&lng=-1.131592"
-      );
-
-      const data = await response.json();
-      console.log(data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const handleMaxDate = () => {
-    const today = new Date();
-    const currentMonth = today.getMonth() + 1;
-    const currentYear = today.getFullYear();
-    const prevYear = (currentYear - 1).toString();
-
-    if (today.getMonth() == 1) {
-      return `${prevYear}-12`;
-    } else {
-      return `${currentYear}-${currentMonth.toString().padStart(2, "0")}`;
-    }
-  };
+  const handleSubmit = () =>
+    getRequest([
+      { key: "date", value: "2025-05" },
+      { key: "lat", value: "52.629729" },
+      { key: "lng", value: "-1.131592" },
+    ]);
 
   return (
     <div>
@@ -85,7 +55,7 @@ const Api: React.FC = () => {
               setDate={setDate}
               name="date-picker"
               min="2023-01"
-              max={handleMaxDate()}
+              max={getCurrentMonthAndYear()}
             />
           </div>
           <div className="button">
