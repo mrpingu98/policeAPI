@@ -6,7 +6,7 @@ interface ButtonProps {
   variant: "primary" | "secondary";
   onClick: () => void;
   dataTestId?: string;
-  //pass datatestid - button too generic
+  disabled?: boolean;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -14,11 +14,17 @@ const Button: React.FC<ButtonProps> = ({
   variant = "primary",
   onClick,
   dataTestId = "button",
+  disabled,
 }) => {
   const safeText = text?.trim() || "No text given";
 
   return (
-    <button className={variant} onClick={onClick} data-testid={`${dataTestId}`}>
+    <button
+      className={variant}
+      onClick={onClick}
+      data-testid={`${dataTestId}`}
+      disabled={disabled}
+    >
       {safeText}
     </button>
   );

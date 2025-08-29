@@ -11,7 +11,33 @@ const Api: React.FC = () => {
     LatLng | undefined
   >();
 
+  console.log(latitudeLongitude);
+
   const [date, setDate] = useState<string>("");
+
+  //make dictionary to pass through using string interpolation
+  //key-value piars function that you can concatenate onto the end of it for
+  //helper method - give me date lat and long - then interpolate onto the url
+
+  //date and submit in a form
+  //then validation os latlng state for submit button
+
+  //customise error for map - haslatlNg disable button function - or if they click button, then red border aorund map saying please select a point
+
+  //regex for form inputs for the date
+
+  const handleSubmit = async () => {
+    try {
+      const response = await fetch(
+        "https://data.police.uk/api/crimes-street/all-crime?date=2024-01&lat=52.629729&lng=-1.131592"
+      );
+
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div>
@@ -48,7 +74,8 @@ const Api: React.FC = () => {
             <Button
               text="Submit"
               variant="primary"
-              onClick={() => console.log("submitted")}
+              onClick={handleSubmit}
+              disabled={latitudeLongitude ? false : true}
             />
           </div>
         </div>
