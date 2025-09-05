@@ -8,6 +8,7 @@ import "../../Styling/pages/api.scss";
 import { getCurrentMonthAndYear } from "../../utils/date";
 import { getRequest } from "../../api/helpers";
 import { useQuery } from "@tanstack/react-query";
+import { LoadingCircle } from "../../Components/LoadingCircle/LoadingCircle";
 //maybe as a stretch case, can make type=submit for button, then onsubmit check that date input has something, otherwise throw an alert
 const Api: React.FC = () => {
   const [latitudeLongitude, setLatitudeLongitude] = useState<
@@ -17,10 +18,10 @@ const Api: React.FC = () => {
   const [date, setDate] = useState<string>("");
 
   const {
-    isPending,
     error,
     data,
     isFetching,
+    isError,
     refetch: getCrimesByLocation,
   } = useQuery({
     queryKey: ["getCrimesByLocation"],
@@ -85,14 +86,33 @@ const Api: React.FC = () => {
           </div>
         </div>
       </div>
+      {isFetching && <LoadingCircle />}
+      {isError && <div>Error occurred: {(error as Error).message}</div>}
       {data ? (
-        <div>
-          <h3>Crimes recorded at selected location</h3>
-          {data[0].category}
-        </div>
+        data.length == 0 ? (
+          <p>No data exists for this selection</p>
+        ) : (
+          <div>
+            <h3>Crimes recorded at selected location</h3>
+            {data[0].category}
+          </div>
+        )
       ) : null}
     </div>
   );
 };
 
 export default Api;
+
+//Best practice error handling
+//so errors naturallybubble upwards...do I have to have a try/catch block
+//without tanstack, you use setState to get error - with tanstack it autaomtically has a variable to reference
+//throwing a new error...this is for custom error messages? Again, how to format/put these in - where to put them in?
+//would oyu throw new errors based on the error code, e.g. if 404 there is a problem with server
+//if 'token expired' then 'you need to refresh your login' or something?
+
+//count total amount of items returned in list
+
+//go through list, take the category, and add to a new list (.map)
+//go through this list, and remove any duplicates
+//go through this list, and for eahc item, look through the response data, and count how many times it occurs
