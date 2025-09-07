@@ -87,21 +87,13 @@ const Api: React.FC = () => {
           </div>
         </div>
       </div>
-      {isFetching && <LoadingCircle />}
-      {isError && !isFetching && (
-        <div>Error occurred: {(error as Error).message}</div>
-      )}
-      {data && !isError && !isFetching ? (
-        // data.length === 0 ? (
-        //   <p>No data exists for this selection</p>
-        // ) : (
-        //   <div>
-        //     <h3>Crimes recorded at selected location</h3>
-        //     {data.length}
-        //   </div>
-        // )
-        <CrimeData title="Crimes at specific location" crimeData={data} />
-      ) : null}
+      <CrimeData
+        title="Crimes by specific location"
+        crimeData={data}
+        isError={isError}
+        isFetching={isFetching}
+        error={error}
+      />
     </div>
   );
 };
