@@ -26,3 +26,30 @@ export class HttpError extends Error {
     this.name = "HttpError";
   }
 }
+
+export interface CrimeDataResponse {
+  category: string;
+  persistent_id: string;
+  location_subtype: string;
+  id: number;
+  location: {
+    latitude: string;
+    street: {
+      id: number;
+      name: string;
+    };
+    longitude: string;
+  };
+  context: string;
+  month: string;
+  location_type: string;
+  outcome_status: {
+    category: string;
+    date: string;
+  };
+}
+
+export interface CrimeCategories {
+  url: string;
+  category: string;
+}
