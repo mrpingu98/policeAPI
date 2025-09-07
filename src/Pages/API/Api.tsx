@@ -40,6 +40,34 @@ const Api: React.FC = () => {
     enabled: false,
   });
 
+  const {
+    error: errorCrimesByRadius,
+    data: dataCrimesByRadius,
+    isFetching: isFetchingCrimesByRadius,
+    isError: isErrorCrimesByRadius,
+    refetch: refetchCrimesByRadius,
+  } = useQuery({
+    queryKey: ["getCrimesByRadius"],
+    queryFn: () =>
+      getRequest("crimes-street/all-crime", [
+        { key: "date", value: date },
+        {
+          key: "lat",
+          value: latitudeLongitude ? latitudeLongitude.lat.toString() : "0",
+        },
+        {
+          key: "lng",
+          value: latitudeLongitude ? latitudeLongitude.lng.toString() : "0",
+        },
+      ]),
+    enabled: false,
+  });
+
+  const handleClick = () => {
+    refetchCrimesByLocation();
+    refetchCrimesByRadius();
+  };
+
   return (
     <div>
       <h2>Crimes by location</h2>
@@ -80,7 +108,7 @@ const Api: React.FC = () => {
             <Button
               text="Submit"
               variant="primary"
-              onClick={refetchCrimesByLocation}
+              onClick={handleClick}
               disabled={latitudeLongitude && date ? false : true}
             />
           </div>
@@ -92,6 +120,13 @@ const Api: React.FC = () => {
         isError={isErrorCrimesByLocation}
         isFetching={isFetchingCrimesByLocation}
         error={errorCrimesByLocation}
+      />
+      <CrimeData
+        title="Crimes within a 1 mile radius of selected location"
+        crimeData={dataCrimesByRadius}
+        isError={isErrorCrimesByRadius}
+        isFetching={isFetchingCrimesByRadius}
+        error={errorCrimesByRadius}
       />
     </div>
   );
