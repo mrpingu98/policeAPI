@@ -41,12 +41,3 @@ const CrimeData: React.FC<CrimeDataProps> = ({
 };
 
 export { CrimeData };
-
-// {crimeData.length === 0 ? (
-//     <p>No data exists for this selection</p>
-//   ) : (
-//     <div>
-//       <h3>Total number of crimes</h3>
-//       {crimeData.length}
-//     </div>
-//   )}
