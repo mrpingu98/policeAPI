@@ -9,6 +9,7 @@ import { getCurrentMonthAndYear } from "../../utils/date";
 import { getRequest } from "../../api/helpers";
 import { useQuery } from "@tanstack/react-query";
 import { LoadingCircle } from "../../Components/LoadingCircle/LoadingCircle";
+import { CrimeData } from "../../Components/CrimeData/CrimeData";
 //maybe as a stretch case, can make type=submit for button, then onsubmit check that date input has something, otherwise throw an alert
 const Api: React.FC = () => {
   const [latitudeLongitude, setLatitudeLongitude] = useState<
@@ -91,14 +92,15 @@ const Api: React.FC = () => {
         <div>Error occurred: {(error as Error).message}</div>
       )}
       {data && !isError && !isFetching ? (
-        data.length === 0 ? (
-          <p>No data exists for this selection</p>
-        ) : (
-          <div>
-            <h3>Crimes recorded at selected location</h3>
-            {data[0].category}
-          </div>
-        )
+        // data.length === 0 ? (
+        //   <p>No data exists for this selection</p>
+        // ) : (
+        //   <div>
+        //     <h3>Crimes recorded at selected location</h3>
+        //     {data.length}
+        //   </div>
+        // )
+        <CrimeData title="Crimes at specific location" crimeData={data} />
       ) : null}
     </div>
   );
