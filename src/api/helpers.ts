@@ -27,7 +27,7 @@ export async function getRequest(
     const response = await fetch(
       queryParameters
         ? queryParamsHelperFunction(`${baseUrl}${urlAffix}`, queryParameters)
-        : baseUrl
+        : `${baseUrl}${urlAffix}`
     );
     //-- HTTP error
     if (!response.ok) {
