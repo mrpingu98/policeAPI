@@ -19,10 +19,15 @@ export function queryParamsHelperFunction(
   return requestUrl;
 }
 
-export async function getRequest(queryParameters: KeyValue[]) {
+export async function getRequest(
+  urlAffix: string,
+  queryParameters?: KeyValue[]
+) {
   try {
     const response = await fetch(
-      queryParamsHelperFunction(baseUrl, queryParameters)
+      queryParameters
+        ? queryParamsHelperFunction(`${baseUrl}${urlAffix}`, queryParameters)
+        : baseUrl
     );
     //-- HTTP error
     if (!response.ok) {

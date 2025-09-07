@@ -1,2 +1,2 @@
-export const baseUrl = "https://data.police.uk/api/crimes-at-location";
+export const baseUrl = "https://data.police.uk/api/";
 // "https://data.police.uk/api/crimes-street/all-crime";

@@ -8,7 +8,6 @@ import "../../Styling/pages/api.scss";
 import { getCurrentMonthAndYear } from "../../utils/date";
 import { getRequest } from "../../api/helpers";
 import { useQuery } from "@tanstack/react-query";
-import { LoadingCircle } from "../../Components/LoadingCircle/LoadingCircle";
 import { CrimeData } from "../../Components/CrimeData/CrimeData";
 //maybe as a stretch case, can make type=submit for button, then onsubmit check that date input has something, otherwise throw an alert
 const Api: React.FC = () => {
@@ -19,15 +18,15 @@ const Api: React.FC = () => {
   const [date, setDate] = useState<string>("");
 
   const {
-    error,
-    data,
-    isFetching,
-    isError,
-    refetch: getCrimesByLocation,
+    error: errorCrimesByLocation,
+    data: dataCrimesByLocation,
+    isFetching: isFetchingCrimesByLocation,
+    isError: isErrorCrimesByLocation,
+    refetch: refetchCrimesByLocation,
   } = useQuery({
     queryKey: ["getCrimesByLocation"],
     queryFn: () =>
-      getRequest([
+      getRequest("crimes-at-location", [
         { key: "date", value: date },
         {
           key: "lat",
@@ -81,7 +80,7 @@ const Api: React.FC = () => {
             <Button
               text="Submit"
               variant="primary"
-              onClick={getCrimesByLocation}
+              onClick={refetchCrimesByLocation}
               disabled={latitudeLongitude && date ? false : true}
             />
           </div>
@@ -89,10 +88,10 @@ const Api: React.FC = () => {
       </div>
       <CrimeData
         title="Crimes by specific location"
-        crimeData={data}
-        isError={isError}
-        isFetching={isFetching}
-        error={error}
+        crimeData={dataCrimesByLocation}
+        isError={isErrorCrimesByLocation}
+        isFetching={isFetchingCrimesByLocation}
+        error={errorCrimesByLocation}
       />
     </div>
   );
