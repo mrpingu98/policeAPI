@@ -1,41 +1,58 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../../Styling/components/crimeData.scss";
-import { LoadingCircle } from "../LoadingCircle/LoadingCircle";
+import { CrimeCategories, CrimeCategoryTotals, CrimeDataResponse } from "../Types";
+import { getNumberOfCrimesByCategory } from "./helpers";
 
 interface CrimeDataProps {
   title: string;
-  crimeData: object[];
+  crimeData: CrimeDataResponse[];
   isError: boolean;
   isFetching: boolean;
   error: Error | null;
+  categories: CrimeCategories[];
 }
 
-const CrimeData: React.FC<CrimeDataProps> = ({
-  title,
-  crimeData,
-  isError,
-  isFetching,
-  error,
-}) => {
+const CrimeData: React.FC<CrimeDataProps> = ({ title, crimeData, categories }) => {
+  const [crimeCategoryTotals, setCrimeCategoryTotals] = useState<CrimeCategoryTotals[]>([]);
+
+  const getCrimesByCategory = () => {
+    const numberOfCrimesByCategory = getNumberOfCrimesByCategory(categories, crimeData);
+    setCrimeCategoryTotals(numberOfCrimesByCategory);
+  };
+
+  useEffect(() => {
+    if (crimeData && categories) {
+      getCrimesByCategory();
+    }
+  }, [crimeData, categories]);
+
   return (
     <div className="crimeDataContainer">
-      {isFetching && <LoadingCircle />}
-      {isError && !isFetching && (
-        <div>Error occurred: {(error as Error).message}</div>
+      <h1>{title}</h1>
+      {crimeData.length === 0 ? (
+        <p>No data exists for this selection</p>
+      ) : (
+        <div>
+          <table className="table">
+            <tbody>
+              <tr>
+                <th>Category</th>
+                <th>No. </th>
+              </tr>
+              {crimeCategoryTotals.map((x) => (
+                <tr key={x.category}>
+                  <td>{`${x.category}`}</td>
+                  <td>{`${x.amount}`}</td>
+                </tr>
+              ))}
+              <tr>
+                <td>Total</td>
+                <td>{`${crimeData.length}`}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       )}
-      {crimeData && !isError && !isFetching ? (
-        <>
-          <h1>{title}</h1>
-          {crimeData.length === 0 ? (
-            <p>No data exists for this selection</p>
-          ) : (
-            <div>
-              <h3>Total number of crimes</h3>
-              {crimeData.length}
-            </div>
-          )}
-        </>
-      ) : null}
     </div>
   );
 };
