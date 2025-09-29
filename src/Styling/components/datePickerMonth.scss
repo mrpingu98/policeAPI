@@ -2,7 +2,7 @@
 @use "../helpers/fonts.scss";
 
 .datePickerMonthContainer {
-  width: 40%;
+  width: auto;
   border-radius: 0.2rem;
   margin-bottom: 1rem;
   padding: 0.5rem;
@@ -17,7 +17,6 @@
 
 @media screen and (min-width: 1100px) {
   .datePickerMonthContainer {
-    width: 20%;
     font-size: fonts.$font-m;
   }
 }
