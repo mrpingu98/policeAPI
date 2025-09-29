@@ -30,16 +30,16 @@ export async function getRequest(
         : `${baseUrl}${urlAffix}`
     );
     //-- HTTP error
-    if (!response.ok) {
-      let errorMessage = "Unknown error details";
-      try {
-        const data = await response.json();
-        if (data?.error) errorMessage = data.error;
-      } catch {
-        //ignore error
-      }
-      throw new HttpError(response.status, errorMessage);
-    }
+    // if (!response.ok) {
+    //   let errorMessage = "Unknown error details";
+    //   try {
+    //     const data = await response.json();
+    //     if (data?.error) errorMessage = data.error;
+    //   } catch {
+    //     //ignore error
+    //   }
+    //   throw new HttpError(response.status, errorMessage);
+    // }
     //-- Success
     const data = await response.json();
     return data;
@@ -54,6 +54,12 @@ export async function getRequest(
     throw new Error("Network error occurred");
   }
 }
+
+//fetch first - get response
+//then await json - then await response.json and see what happens and catch errors
+//called in same funtion, two try/catch blocks
+
+//do you need netwrok/http error? standard error message is usually fine though
 
 //doesnt seem to get err as an Error type - use reponse.status ==== code - then return specific message
 //error only pciked up if url was wrong say
