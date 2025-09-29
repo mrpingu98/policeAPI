@@ -49,7 +49,12 @@ export interface CrimeDataResponse {
   };
 }
 
-export interface CrimeCategories {
+export type CrimeCategories = {
   url: string;
+  name: string;
+};
+
+export type CrimeCategoryTotals = {
   category: string;
-}
+  amount: number;
+};
