@@ -16,9 +16,7 @@ const Home: React.FC = () => {
           Head to the API page to find out about crime in your local area
         </p>
       </div>
-      <h2 data-testid="home-recent-news-title">
-        Recent News
-      </h2>
+      <h2 data-testid="home-recent-news-title">Recent News</h2>
       <div className="recentNewsContainer">
         <div className="mainNewsItem" data-testid="home-main-news-item">
           <RecentNewsItem
@@ -50,9 +48,7 @@ const Home: React.FC = () => {
           />
         </div>
       </div>
-      <h2 data-testid="home-related-content-title">
-        Related Content
-      </h2>
+      <h2 data-testid="home-related-content-title">Related Content</h2>
       <div
         className="relatedContentContainer"
         data-testid="home-related-content-container"
