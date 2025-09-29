@@ -9,13 +9,24 @@ import { getCurrentMonthAndYear } from "../../utils/date";
 import { getRequest } from "../../api/helpers";
 import { useQuery } from "@tanstack/react-query";
 import { CrimeData } from "../../Components/CrimeData/CrimeData";
+import { LoadingCircle } from "../../Components/LoadingCircle/LoadingCircle";
 //maybe as a stretch case, can make type=submit for button, then onsubmit check that date input has something, otherwise throw an alert
 const Api: React.FC = () => {
-  const [latitudeLongitude, setLatitudeLongitude] = useState<
-    LatLng | undefined
-  >();
+  const [latitudeLongitude, setLatitudeLongitude] = useState<LatLng | undefined>();
 
   const [date, setDate] = useState<string>("");
+  const crimeQueryParams = [
+    { key: "date", value: date },
+    {
+      key: "lat",
+      value: latitudeLongitude ? latitudeLongitude.lat.toString() : "0",
+    },
+    {
+      key: "lng",
+      value: latitudeLongitude ? latitudeLongitude.lng.toString() : "0",
+    },
+  ];
+  const categoryQueryParams = [{ key: "date", value: date }];
 
   const {
     error: errorCrimesByLocation,
@@ -25,18 +36,7 @@ const Api: React.FC = () => {
     refetch: refetchCrimesByLocation,
   } = useQuery({
     queryKey: ["getCrimesByLocation"],
-    queryFn: () =>
-      getRequest("crimes-at-location", [
-        { key: "date", value: date },
-        {
-          key: "lat",
-          value: latitudeLongitude ? latitudeLongitude.lat.toString() : "0",
-        },
-        {
-          key: "lng",
-          value: latitudeLongitude ? latitudeLongitude.lng.toString() : "0",
-        },
-      ]),
+    queryFn: () => getRequest("crimes-at-location", crimeQueryParams),
     enabled: false,
   });
 
@@ -48,86 +48,94 @@ const Api: React.FC = () => {
     refetch: refetchCrimesByRadius,
   } = useQuery({
     queryKey: ["getCrimesByRadius"],
-    queryFn: () =>
-      getRequest("crimes-street/all-crime", [
-        { key: "date", value: date },
-        {
-          key: "lat",
-          value: latitudeLongitude ? latitudeLongitude.lat.toString() : "0",
-        },
-        {
-          key: "lng",
-          value: latitudeLongitude ? latitudeLongitude.lng.toString() : "0",
-        },
-      ]),
+    queryFn: () => getRequest("crimes-street/all-crime", crimeQueryParams),
     enabled: false,
   });
 
-  const handleClick = () => {
+  const {
+    data: dataCrimeCategories,
+    isFetching: isFetchingCrimeCategories,
+    isError: isErrorCrimeCategories,
+    error: errorCrimesByCategories,
+    refetch: refetchCategories,
+  } = useQuery({
+    queryKey: ["getCrimeCategories"],
+    queryFn: () => getRequest("crime-categories", categoryQueryParams),
+    enabled: false,
+  });
+
+  const handleClick = async () => {
+    refetchCategories();
     refetchCrimesByLocation();
     refetchCrimesByRadius();
   };
 
   return (
-    <div>
-      <h2>Crimes by location</h2>
-      <p className="description">
-        Use the map below to find out about crimes by location across the UK.
-        Pick a point on the map and input a date to find out the recorded crimes
-        at that location at that time.
-      </p>
-      <div className="desktopContainer">
-        <div className="mapContainer" data-testId="location">
-          <Map setLatitudeLongitude={setLatitudeLongitude} />
+    <div className="desktopContainer">
+      <div>
+        <h1>Crimes by location</h1>
+        <p className="description">
+          Use the map below to find out about crimes by location across the UK. Pick a point on the map and input a date
+          to find out the recorded crimes at that location at that time.
+        </p>
+        <Map setLatitudeLongitude={setLatitudeLongitude} />
+      </div>
+      <div className="selectionContainer">
+        <div data-testid="location">
+          <h2>Location</h2>
+          <p>
+            {latitudeLongitude ? (
+              `Latitude: ${latitudeLongitude.lat.toFixed(5)}, Longitude: ${latitudeLongitude.lng.toFixed(5)}`
+            ) : (
+              <em>Select a point on the map</em>
+            )}
+          </p>
         </div>
-        <div className="formContainer">
-          <div className="sectionContainers" data-testId="location">
-            <p>
-              <b>Location:</b>{" "}
-              {latitudeLongitude ? (
-                `Latitude: ${latitudeLongitude.lat.toFixed(
-                  5
-                )}, Longitude: ${latitudeLongitude.lng.toFixed(5)}`
-              ) : (
-                <em>Select a point on the map</em>
-              )}
-            </p>
-          </div>
-          <div className="datePickerContainer" data-testId="datePicker">
-            <p>
-              <b>Date:</b>
-            </p>
-            <DatePickerMonth
-              setDate={setDate}
-              name="date-picker"
-              min="2023-01"
-              max={getCurrentMonthAndYear()}
-            />
-          </div>
-          <div className="button">
-            <Button
-              text="Submit"
-              variant="primary"
-              onClick={handleClick}
-              disabled={latitudeLongitude && date ? false : true}
-            />
-          </div>
+        <div className="datePickerContainer" data-testid="datePicker">
+          <h2>Date</h2>
+          <DatePickerMonth setDate={setDate} name="date-picker" min="2023-01" max={getCurrentMonthAndYear()} />
+        </div>
+        <div className="button">
+          <Button
+            text="Submit"
+            variant="primary"
+            onClick={handleClick}
+            disabled={latitudeLongitude && date ? false : true}
+          />
         </div>
       </div>
-      <CrimeData
-        title="Crimes by specific location"
-        crimeData={dataCrimesByLocation}
-        isError={isErrorCrimesByLocation}
-        isFetching={isFetchingCrimesByLocation}
-        error={errorCrimesByLocation}
-      />
-      <CrimeData
-        title="Crimes within a 1 mile radius of selected location"
-        crimeData={dataCrimesByRadius}
-        isError={isErrorCrimesByRadius}
-        isFetching={isFetchingCrimesByRadius}
-        error={errorCrimesByRadius}
-      />
+      {/* instead of passing errors/fetching into the component, could I just do conditional logic here - if isfetching show loading circle, if isErrorCategories/Data show error message, else 
+  pass data to component and render component? */}
+      <div>
+        {(isFetchingCrimeCategories || isFetchingCrimesByLocation) && <LoadingCircle />}
+        {isErrorCrimesByLocation && <div>Error occurred: {errorCrimesByLocation.message}</div>}
+        {isErrorCrimeCategories && <div>Error occurred: {errorCrimesByCategories.message}</div>}
+        {dataCrimeCategories && dataCrimesByLocation && !isFetchingCrimeCategories && !isFetchingCrimeCategories ? (
+          <CrimeData
+            title="Crimes by specific location"
+            crimeData={dataCrimesByLocation}
+            isError={isErrorCrimesByLocation}
+            isFetching={isFetchingCrimesByLocation}
+            error={errorCrimesByLocation}
+            categories={dataCrimeCategories}
+          />
+        ) : null}
+      </div>
+      <div>
+        {(isFetchingCrimeCategories || isFetchingCrimesByRadius) && <LoadingCircle />}
+        {isErrorCrimesByRadius && <div>Error occurred: {errorCrimesByRadius.message}</div>}
+        {isErrorCrimeCategories && <div>Error occurred: {errorCrimesByCategories.message}</div>}
+        {dataCrimeCategories && dataCrimesByRadius && !isFetchingCrimeCategories && !isFetchingCrimesByRadius ? (
+          <CrimeData
+            title="Crimes within a 1 mile radius of selected location"
+            crimeData={dataCrimesByRadius}
+            isError={isErrorCrimesByRadius}
+            isFetching={isFetchingCrimesByRadius}
+            error={errorCrimesByRadius}
+            categories={dataCrimeCategories}
+          />
+        ) : null}
+      </div>
     </div>
   );
 };
