@@ -2,12 +2,10 @@ import React, { useEffect } from "react";
 import "../../Styling/components/map.scss";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
-import { LatLng } from "../Types";
+import { LatLng } from "../../Types";
 
 interface MapProps {
-  setLatitudeLongitude: React.Dispatch<
-    React.SetStateAction<LatLng | undefined>
-  >;
+  setLatitudeLongitude: React.Dispatch<React.SetStateAction<LatLng | undefined>>;
 }
 
 const Map: React.FC<MapProps> = ({ setLatitudeLongitude }) => {
@@ -15,8 +13,7 @@ const Map: React.FC<MapProps> = ({ setLatitudeLongitude }) => {
     const map = L.map("map").setView([52.815, -1.126], 6);
     L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
       maxZoom: 19,
-      attribution:
-        '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+      attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
     }).addTo(map);
 
     function onMapClick(e: L.LeafletMouseEvent) {

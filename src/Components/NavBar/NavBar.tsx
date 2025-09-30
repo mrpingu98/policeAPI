@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import "../../Styling/components/navbar.scss";
 import { Link } from "react-router-dom";
-import { Routes } from "../Types";
+import { Routes } from "../../Types";
 import { NavbarDropdown } from "../NavbarDropdown/NavbarDropdown";
 import { useIsMobile } from "../../Hooks/useIsMobile";
 import { navRoutes } from "../../constants/navRoutes";
@@ -12,9 +12,7 @@ const NavBar: React.FC = () => {
   const isMobileView = useIsMobile();
 
   const filterRoutesArray = () => {
-    const safeRoutes = navRoutes.filter(
-      (route) => route.name.trim() && route.routeUrl.trim()
-    );
+    const safeRoutes = navRoutes.filter((route) => route.name.trim() && route.routeUrl.trim());
     setSafeRoutesArray(safeRoutes);
   };
 
@@ -33,21 +31,13 @@ const NavBar: React.FC = () => {
           </div>
         ) : (
           safeRoutesArray.map((route, index) => (
-            <Link
-              to={route.routeUrl}
-              key={index}
-              className="navLink"
-              data-testid={`nav-links-${index}`}
-            >
+            <Link to={route.routeUrl} key={index} className="navLink" data-testid={`nav-links-${index}`}>
               {route.name}
             </Link>
           ))
         ))}
       {safeRoutesArray && safeRoutesArray.length == 0 && (
-        <div
-          className="navbarMinimumHeight"
-          data-testid="navbar-invalid-routes"
-        />
+        <div className="navbarMinimumHeight" data-testid="navbar-invalid-routes" />
       )}
     </div>
   );

@@ -1,5 +1,5 @@
 import { createMemoryRouter, RouterProvider } from "react-router-dom";
-import { NonEmptyArray, Routes } from "../Types";
+import { NonEmptyArray, Routes } from "../../Types";
 import React from "react";
 import { NavbarDropdown } from "./NavbarDropdown";
 

@@ -1,13 +1,11 @@
 import React from "react";
 import { fireEvent, render } from "@testing-library/react";
 import Map from "./Map";
-import { LatLng } from "../Types";
+import { LatLng } from "../../Types";
 
 const mockSetLatLng = jest.fn();
 interface MapProps {
-  setLatitudeLongitude: React.Dispatch<
-    React.SetStateAction<LatLng | undefined>
-  >;
+  setLatitudeLongitude: React.Dispatch<React.SetStateAction<LatLng | undefined>>;
 }
 
 const validProps: MapProps = {

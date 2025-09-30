@@ -1,4 +1,4 @@
-import { CrimeCategories, CrimeCategoryTotals, CrimeDataResponse } from "../Types";
+import { CrimeCategories, CrimeCategoryTotals, CrimeDataResponse } from "../../Types";
 
 export function getNumberOfCrimesByCategory(categories: CrimeCategories[], crimeData: CrimeDataResponse[]) {
   const numberOfCrimesByCategory: CrimeCategoryTotals[] = [];

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import "../../Styling/components/dropdown.scss";
 import "../../Styling/components/navbarDropdownButton.scss";
-import { Routes } from "../Types";
+import { Routes } from "../../Types";
 import { Link } from "react-router-dom";
 import { NavbarDropdownButton } from "../NavbarDropdownButton";
 
@@ -19,18 +19,13 @@ const NavbarDropdown: React.FC<DropdownProps> = ({ routesArray }) => {
   };
 
   const handleClickOutsideDropdown = (event: MouseEvent) => {
-    if (
-      dropdownRef.current &&
-      !dropdownRef.current.contains(event.target as Node)
-    ) {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
       setOpen(false);
     }
   };
 
   const filterRoutesArray = () => {
-    const safeRoutes = routesArray.filter(
-      (route) => route.name.trim() && route.routeUrl.trim()
-    );
+    const safeRoutes = routesArray.filter((route) => route.name.trim() && route.routeUrl.trim());
     setSafeRoutesArray(safeRoutes);
   };
 
@@ -38,8 +33,7 @@ const NavbarDropdown: React.FC<DropdownProps> = ({ routesArray }) => {
     if (open) {
       window.addEventListener("click", handleClickOutsideDropdown);
     }
-    return () =>
-      window.removeEventListener("click", handleClickOutsideDropdown);
+    return () => window.removeEventListener("click", handleClickOutsideDropdown);
   }, [open]);
 
   useEffect(() => {
@@ -47,27 +41,13 @@ const NavbarDropdown: React.FC<DropdownProps> = ({ routesArray }) => {
   }, []);
 
   return (
-    <div
-      ref={dropdownRef}
-      className="dropdownContainer"
-      data-testid="dropdown-container"
-    >
-      {safeRoutesArray.length > 0 && (
-        <NavbarDropdownButton onClick={handleOpenDropdown} />
-      )}
+    <div ref={dropdownRef} className="dropdownContainer" data-testid="dropdown-container">
+      {safeRoutesArray.length > 0 && <NavbarDropdownButton onClick={handleOpenDropdown} />}
       {open ? (
         <ul className="ulContainer" data-testid="dropdown-ul-container">
           {safeRoutesArray.map((route, index) => (
-            <li
-              key={index}
-              className="liContainer"
-              data-testid="dropdown-li-container"
-            >
-              <Link
-                to={route.routeUrl}
-                className="dropdownLink"
-                data-testid={`dropdown-link-${index}`}
-              >
+            <li key={index} className="liContainer" data-testid="dropdown-li-container">
+              <Link to={route.routeUrl} className="dropdownLink" data-testid={`dropdown-link-${index}`}>
                 {route.name}
               </Link>
             </li>

@@ -1,4 +1,4 @@
-import { Routes } from "../Components/Types";
+import { Routes } from "../Types";
 
 export const navRoutes: Routes[] = [
   { routeUrl: "/policeApi", name: "Home" },

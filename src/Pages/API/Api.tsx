@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Map from "../../Components/Map/Map";
 import "../../Styling/components/map.scss";
-import { LatLng } from "../../Components/Types";
+import { LatLng } from "../../Types";
 import { DatePickerMonth } from "../../Components/DatePickerMonth/DatePickerMonth";
 import { Button } from "../../Components/Button/Button";
 import "../../Styling/pages/api.scss";

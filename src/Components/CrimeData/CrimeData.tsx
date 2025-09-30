@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../../Styling/components/crimeData.scss";
-import { CrimeCategories, CrimeCategoryTotals, CrimeDataResponse } from "../Types";
+import { CrimeCategories, CrimeCategoryTotals, CrimeDataResponse } from "../../Types";
 import { getNumberOfCrimesByCategory } from "./helpers";
 
 interface CrimeDataProps {
