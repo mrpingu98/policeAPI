@@ -1,5 +1,5 @@
-@use "../helpers/colours.scss";
-@use "../helpers/fonts.scss";
+@use "../helpers/_colours.scss";
+@use "../helpers/_fonts.scss";
 .errorContainer {
   border-radius: 0.2rem;
   background-color: colours.$error-background-color;
