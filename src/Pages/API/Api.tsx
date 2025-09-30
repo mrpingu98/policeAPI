@@ -6,7 +6,7 @@ import { DatePickerMonth } from "../../Components/DatePickerMonth/DatePickerMont
 import { Button } from "../../Components/Button/Button";
 import "../../Styling/pages/api.scss";
 import { getCurrentMonthAndYear } from "../../utils/dates/date";
-import { getRequest } from "../../api/helpers";
+import { getRequest } from "../../api/apiHelpers";
 import { useQuery } from "@tanstack/react-query";
 import { CrimeData } from "../../Components/CrimeData/CrimeData";
 import { LoadingCircle } from "../../Components/LoadingCircle/LoadingCircle";
