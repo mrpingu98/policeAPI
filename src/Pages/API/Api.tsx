@@ -5,7 +5,7 @@ import { LatLng } from "../../Types";
 import { DatePickerMonth } from "../../Components/DatePickerMonth/DatePickerMonth";
 import { Button } from "../../Components/Button/Button";
 import "../../Styling/pages/api.scss";
-import { getCurrentMonthAndYear } from "../../utils/date";
+import { getCurrentMonthAndYear } from "../../utils/dates/date";
 import { getRequest } from "../../api/helpers";
 import { useQuery } from "@tanstack/react-query";
 import { CrimeData } from "../../Components/CrimeData/CrimeData";
