@@ -10,7 +10,13 @@ import { getRequest } from "../../api/helpers";
 import { useQuery } from "@tanstack/react-query";
 import { CrimeData } from "../../Components/CrimeData/CrimeData";
 import { LoadingCircle } from "../../Components/LoadingCircle/LoadingCircle";
-//maybe as a stretch case, can make type=submit for button, then onsubmit check that date input has something, otherwise throw an alert
+import { Error } from "../../Components/Error/Error";
+
+//QUESTIONS
+//Helper functions - abstracted out ?
+//Simpler error handling - project wiould just have an error boundary to catch it and show error page?
+//Conditoonal logic for rendering loader/error/crimeData - assume I can make it simpler?
+
 const Api: React.FC = () => {
   const [latitudeLongitude, setLatitudeLongitude] = useState<LatLng | undefined>();
 
@@ -104,34 +110,44 @@ const Api: React.FC = () => {
           />
         </div>
       </div>
-      {/* instead of passing errors/fetching into the component, could I just do conditional logic here - if isfetching show loading circle, if isErrorCategories/Data show error message, else 
-  pass data to component and render component? */}
       <div>
         {(isFetchingCrimeCategories || isFetchingCrimesByLocation) && <LoadingCircle />}
-        {isErrorCrimesByLocation && <div>Error occurred: {errorCrimesByLocation.message}</div>}
-        {isErrorCrimeCategories && <div>Error occurred: {errorCrimesByCategories.message}</div>}
-        {dataCrimeCategories && dataCrimesByLocation && !isFetchingCrimeCategories && !isFetchingCrimeCategories ? (
+        {(isErrorCrimesByLocation || isErrorCrimeCategories) &&
+          !isFetchingCrimeCategories &&
+          !isFetchingCrimesByLocation && (
+            <Error errorMessage="There was a problem fetching the crimes at this specific location. Please try again later." />
+          )}
+        {dataCrimeCategories &&
+        dataCrimesByLocation &&
+        !isFetchingCrimeCategories &&
+        !isFetchingCrimesByLocation &&
+        !isErrorCrimeCategories &&
+        !isErrorCrimesByLocation ? (
           <CrimeData
             title="Crimes by specific location"
             crimeData={dataCrimesByLocation}
-            isError={isErrorCrimesByLocation}
             isFetching={isFetchingCrimesByLocation}
-            error={errorCrimesByLocation}
             categories={dataCrimeCategories}
           />
         ) : null}
       </div>
       <div>
         {(isFetchingCrimeCategories || isFetchingCrimesByRadius) && <LoadingCircle />}
-        {isErrorCrimesByRadius && <div>Error occurred: {errorCrimesByRadius.message}</div>}
-        {isErrorCrimeCategories && <div>Error occurred: {errorCrimesByCategories.message}</div>}
-        {dataCrimeCategories && dataCrimesByRadius && !isFetchingCrimeCategories && !isFetchingCrimesByRadius ? (
+        {(isErrorCrimesByRadius || isErrorCrimeCategories) &&
+          !isFetchingCrimeCategories &&
+          !isFetchingCrimesByRadius && (
+            <Error errorMessage="There was a problem fetching the crimes within a 1 mile radius of this location. Please try again later." />
+          )}
+        {dataCrimeCategories &&
+        dataCrimesByRadius &&
+        !isFetchingCrimeCategories &&
+        !isFetchingCrimesByRadius &&
+        !isErrorCrimeCategories &&
+        !isErrorCrimesByRadius ? (
           <CrimeData
             title="Crimes within a 1 mile radius of selected location"
             crimeData={dataCrimesByRadius}
-            isError={isErrorCrimesByRadius}
             isFetching={isFetchingCrimesByRadius}
-            error={errorCrimesByRadius}
             categories={dataCrimeCategories}
           />
         ) : null}

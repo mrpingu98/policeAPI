@@ -6,9 +6,7 @@ import { getNumberOfCrimesByCategory } from "./helpers";
 interface CrimeDataProps {
   title: string;
   crimeData: CrimeDataResponse[];
-  isError: boolean;
   isFetching: boolean;
-  error: Error | null;
   categories: CrimeCategories[];
 }
 
