@@ -1,10 +1,10 @@
 import { render } from "@testing-library/react";
 import { NavBar } from "./NavBar";
-import { useIsMobile } from "../../Hooks/useIsMobile";
+import { useIsMobile } from "../../Hooks/useIsMobile/useIsMobile";
 import React from "react";
 import { createMemoryRouter, RouterProvider } from "react-router-dom";
 
-jest.mock("../../Hooks/useIsMobile", () => ({
+jest.mock("../../Hooks/useIsMobile/useIsMobile", () => ({
   __esModule: true,
   useIsMobile: jest.fn(),
 }));
@@ -55,9 +55,7 @@ describe("NavBar tests", () => {
       const { getAllByTestId } = render(MockNavBar());
 
       //act
-      const links = getAllByTestId((testId) =>
-        testId.includes(`${componentPrefix}links`)
-      );
+      const links = getAllByTestId((testId) => testId.includes(`${componentPrefix}links`));
 
       //assert
       expect(links.length).toEqual(3);

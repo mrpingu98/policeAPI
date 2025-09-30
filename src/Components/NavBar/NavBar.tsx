@@ -3,7 +3,7 @@ import "../../Styling/components/navbar.scss";
 import { Link } from "react-router-dom";
 import { Routes } from "../../Types";
 import { NavbarDropdown } from "../NavbarDropdown/NavbarDropdown";
-import { useIsMobile } from "../../Hooks/useIsMobile";
+import { useIsMobile } from "../../Hooks/useIsMobile/useIsMobile";
 import { navRoutes } from "../../constants/navRoutes";
 
 const NavBar: React.FC = () => {
