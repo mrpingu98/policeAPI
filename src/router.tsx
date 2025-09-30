@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "./App";
-import { Home } from "./Pages/Home";
+import { Home } from "./Pages/Home/Home";
 import React from "react";
 import Api from "./Pages/API/Api";
 
