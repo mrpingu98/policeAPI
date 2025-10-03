@@ -14,7 +14,7 @@ const Button: React.FC<ButtonProps> = ({ text, variant = "primary", onClick, dat
   const safeText = isStringNotEmpty(text);
 
   return (
-    <button className={variant} onClick={onClick} data-testid={`${dataTestId}`} disabled={disabled}>
+    <button className={variant} onClick={onClick} data-testid={dataTestId} disabled={disabled}>
       {safeText}
     </button>
   );
