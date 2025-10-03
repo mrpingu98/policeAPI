@@ -44,6 +44,7 @@ export interface RecentNewsItemProps {
 export interface RelatedContentItemProps {
   imageSource: string;
   title: string;
+  alternativeImageText: string;
   href: string;
 }
 

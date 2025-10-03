@@ -7,6 +7,7 @@ const validProps = {
   imageSource: "/assets/internal-police-reports.jpg",
   title: "Test Title",
   href: "https://www.police.uk/pu/performance/",
+  alternativeImageText: "Alt text",
 };
 
 const renderRelatedContentItem = (requiredProps: RelatedContentItemProps, props = {}) =>

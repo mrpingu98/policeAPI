@@ -3,14 +3,13 @@ import "../../Styling/components/relatedContentItem.scss";
 import { isStringNotEmpty } from "../../utils/strings/string";
 import { RelatedContentItemProps } from "../../Interfaces";
 
-const RelatedContentItem: React.FC<RelatedContentItemProps> = ({ imageSource, title, href }) => {
+const RelatedContentItem: React.FC<RelatedContentItemProps> = ({ imageSource, title, href, alternativeImageText }) => {
   const safeImageSource = isStringNotEmpty(imageSource);
-
+  const safeAltText = isStringNotEmpty(alternativeImageText);
   const safeTitle = isStringNotEmpty(title);
-
   const safeHref = isStringNotEmpty(href);
 
-  return safeImageSource && safeTitle && safeHref ? (
+  return safeImageSource && safeTitle && safeHref && safeAltText ? (
     <div className="relatedContentItemContainer" data-testid="related-content-item-container">
       <a
         className="linkContainer"
@@ -19,7 +18,12 @@ const RelatedContentItem: React.FC<RelatedContentItemProps> = ({ imageSource, ti
         rel="noopener noreferrer"
         target="_blank"
       >
-        <img className="relatedContentItemImage" src={safeImageSource} data-testid="related-content-image" />
+        <img
+          className="relatedContentItemImage"
+          alt={safeAltText}
+          src={safeImageSource}
+          data-testid="related-content-image"
+        />
         <div className="relatedContentItemTitle" data-testid="related-content-title">
           {safeTitle}
         </div>

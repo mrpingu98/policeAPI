@@ -42,11 +42,13 @@ const Home: React.FC = () => {
         <RelatedContentItem
           imageSource={process.env.PUBLIC_URL + "/assets/internal-police-reports.jpg"}
           title="Internal police reports"
+          alternativeImageText="reports background"
           href="https://www.police.uk/pu/performance/"
         />
         <RelatedContentItem
           imageSource={process.env.PUBLIC_URL + "/assets/local-community.jpg"}
           title="Local community initiatives"
+          alternativeImageText="people together"
           href="https://www.met.police.uk/advice/advice-and-information/wsi/watch-schemes-initiatives/"
         />
       </div>

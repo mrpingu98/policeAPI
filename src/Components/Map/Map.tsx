@@ -21,7 +21,7 @@ const Map: React.FC<MapProps> = ({ setLatitudeLongitude }) => {
     return () => {
       map.remove();
     };
-  }, []);
+  }, [setLatitudeLongitude]);
 
   return <div id="map" className="mapContainer" data-testid="map"></div>;
 };
