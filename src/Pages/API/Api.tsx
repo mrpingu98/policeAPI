@@ -16,6 +16,9 @@ import { Error } from "../../Components/Error/Error";
 //Helper functions - abstracted out ?
 //Simpler error handling - project wiould just have an error boundary to catch it and show error page?
 //Conditoonal logic for rendering loader/error/crimeData - assume I can make it simpler?
+//create helper function for useQuery?
+//NavBar unit testing - how to mock different values for amocked import?
+//navbar dropdown unit testing - use of NavBarDropdownTestUtils?
 
 const Api: React.FC = () => {
   const [latitudeLongitude, setLatitudeLongitude] = useState<LatLng | undefined>();

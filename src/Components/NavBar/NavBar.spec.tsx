@@ -25,6 +25,9 @@ jest.mock("../../constants/navRoutes", () => ({
 
 // const mockNavRoutes = navRoutes as jest.Mock
 
+//should i test invalid props by checking the length of links i expect
+//what if you wanted to test nothing being rendered if all objects had empty strings ?
+
 // const validRoutes =
 // [
 //     { routeUrl: "/", name: "Home" },
