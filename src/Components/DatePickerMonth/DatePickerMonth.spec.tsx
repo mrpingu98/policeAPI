@@ -6,16 +6,18 @@ const mockSetDate = jest.fn();
 interface DatePickerMonthProps {
   setDate: React.Dispatch<React.SetStateAction<string>>;
   name?: string;
+  min?: string;
+  max?: string;
 }
-//add min prop
 
 const validProps: DatePickerMonthProps = {
   setDate: mockSetDate,
   name: "date-picker",
+  min: "2023-01",
+  max: "2026-01",
 };
 
-const renderComponent = (props = {}) =>
-  render(<DatePickerMonth {...validProps} {...props} />);
+const renderComponent = (props = {}) => render(<DatePickerMonth {...validProps} {...props} />);
 
 describe("DatePickerMonth tests", () => {
   const componentPrefix = "date-picker-month";
@@ -54,12 +56,56 @@ describe("DatePickerMonth tests", () => {
       //assert
       expect(datePicker).toHaveAttribute("name", "date-picker");
     });
+
+    it("SHOULD have a min attribute WHEN a valid min prop is passed through", async () => {
+      //arrange
+      const { getByTestId } = renderComponent();
+
+      //act
+      const datePicker = getByTestId(componentPrefix);
+
+      //assert
+      expect(datePicker).toHaveAttribute("min", "2023-01");
+    });
+
+    it("SHOULD have a max attribute WHEN a valid max prop is passed through", async () => {
+      //arrange
+      const { getByTestId } = renderComponent();
+
+      //act
+      const datePicker = getByTestId(componentPrefix);
+
+      //assert
+      expect(datePicker).toHaveAttribute("max", "2026-01");
+    });
   });
 
   describe("Invalid props", () => {
     it("SHOULD not render component WHEN name is an empty string", async () => {
       //arrange
       const { queryByTestId } = renderComponent({ name: "" });
+
+      //act
+      const datePicker = queryByTestId(componentPrefix);
+
+      //assert
+      expect(datePicker).toBeNull();
+    });
+
+    it("SHOULD not render component WHEN min is an empty string", async () => {
+      //arrange
+      const { queryByTestId } = renderComponent({ min: "" });
+
+      //act
+      const datePicker = queryByTestId(componentPrefix);
+
+      //assert
+      expect(datePicker).toBeNull();
+    });
+
+    it("SHOULD not render component WHEN max is an empty string", async () => {
+      //arrange
+      const { queryByTestId } = renderComponent({ max: "" });
 
       //act
       const datePicker = queryByTestId(componentPrefix);
