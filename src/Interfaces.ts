@@ -51,3 +51,8 @@ export interface RelatedContentItemProps {
 export interface NavbarDropdownButtonProps {
   onClick: () => void;
 }
+
+export interface KeyValue {
+  key: string;
+  value: string;
+}

@@ -19,11 +19,12 @@ import { Error } from "../../Components/Error/Error";
 //create helper function for useQuery?
 //NavBar unit testing - how to mock different values for amocked import?
 //navbar dropdown unit testing - use of NavBarDropdownTestUtils?
+//crime query paramas helper function (Api page)
 
 const Api: React.FC = () => {
   const [latitudeLongitude, setLatitudeLongitude] = useState<LatLng | undefined>();
-
   const [date, setDate] = useState<string>("");
+
   const crimeQueryParams = [
     { key: "date", value: date },
     {

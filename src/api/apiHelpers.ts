@@ -1,10 +1,6 @@
 import { baseUrl } from "../constants/api";
 // import { NetworkError, HttpError } from "../Components/Types";
-
-interface KeyValue {
-  key: string;
-  value: string;
-}
+import { KeyValue } from "../Interfaces";
 
 export function queryParamsHelperFunction(baseUrl: string, queryParameters: KeyValue[]) {
   const joinKeyValuePairs = queryParameters.map((object) => `${object.key}=${object.value}`);
