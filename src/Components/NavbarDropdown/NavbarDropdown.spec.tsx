@@ -1,11 +1,5 @@
 import { fireEvent, render } from "@testing-library/react";
-import {
-  invalidName,
-  invalidRouteUrl,
-  MockDropdown,
-  noValidRoutes,
-  validRoutes,
-} from "./NavbarDropdownTestUtils";
+import { invalidName, invalidRouteUrl, MockDropdown, noValidRoutes, validRoutes } from "./NavbarDropdownTestUtils";
 
 describe("Dropdown tests", () => {
   const componentPrefix = "dropdown-";
@@ -78,9 +72,7 @@ describe("Dropdown tests", () => {
       //arrange
       const { queryByTestId, getByTestId } = render(MockDropdown(validRoutes));
       const button = getByTestId(buttonId);
-      const elementOutsideDropdownButton = getByTestId(
-        `${componentPrefix}outside-click`
-      );
+      const elementOutsideDropdownButton = getByTestId(`${componentPrefix}outside-click`);
 
       //act
       fireEvent.click(button);
@@ -153,9 +145,7 @@ describe("Dropdown tests", () => {
 
     it("SHOULD not render a dropdown item WHEN it's routeUrl is empty", async () => {
       //arrange
-      const { getByTestId, getAllByTestId } = render(
-        MockDropdown(invalidRouteUrl)
-      );
+      const { getByTestId, getAllByTestId } = render(MockDropdown(invalidRouteUrl));
       const button = getByTestId(buttonId);
 
       //act
@@ -183,6 +173,17 @@ describe("Dropdown tests", () => {
       expect(link).toHaveLength(1);
       expect(linkOne).toHaveAttribute("href", "/policeAPI/Test");
       expect(linkOne).toHaveTextContent("Test");
+    });
+
+    it("SHOULD not render component  WHEN an empty array is passed", async () => {
+      //arrange
+      const { queryByTestId } = render(MockDropdown([]));
+
+      //act
+      const dropdown = queryByTestId(`${buttonId}`);
+
+      //assert
+      expect(dropdown).toBeNull();
     });
   });
 });
