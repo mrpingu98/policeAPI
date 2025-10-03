@@ -45,10 +45,7 @@ describe("Recent News Item tests", () => {
       //assert
       expect(image).toBeInTheDocument();
       expect(image).toHaveAttribute("alt", "Test Alternative Text");
-      expect(image).toHaveAttribute(
-        "src",
-        "/assets/spontaneous-combustion.jpg"
-      );
+      expect(image).toHaveAttribute("src", "/assets/spontaneous-combustion.jpg");
     });
 
     describe("Does not have mainNewsItem", () => {
@@ -105,9 +102,7 @@ describe("Recent News Item tests", () => {
         const mainContainer = getByTestId(`${componentPrefix}main-container`);
 
         //assert
-        expect(mainContainer).toHaveClass(
-          "newsItemContainer mainNewsItemContainer"
-        );
+        expect(mainContainer).toHaveClass("newsItemContainer mainNewsItemContainer");
       });
 
       it("SHOULD render image container correctly WHEN it has mainNewsItem", async () => {
@@ -139,36 +134,31 @@ describe("Recent News Item tests", () => {
   });
 
   describe("Invalid props tests", () => {
-    it("SHOULD render 'NO TITLE GIVEN' WHEN title is an empty string but other props are valid", async () => {
-      //arrange
-      const { getByTestId } = renderComponent(requiredProps, {
+    it("SHOULD render nothing WHEN title is an empty string but other props are valid", async () => {
+      //arrange + act
+      const { container } = renderComponent(requiredProps, {
         title: "",
       });
 
-      //act
-      const title = getByTestId(`${componentPrefix}title`);
-
       //assert
-      expect(title.textContent).toBe("NO TITLE GIVEN");
+      expect(container.firstChild).toBeNull();
     });
 
     it("SHOULD render nothing WHEN imageSource is an empty string but other props are valid", async () => {
-      //arrange
+      //arrange + act
       const { container } = renderComponent(requiredProps, {
         imageSource: "",
       });
-      //act
 
       //assert
       expect(container.firstChild).toBeNull();
     });
 
     it("SHOULD render nothing WHEN alternativeImageText is an empty string but other props are valid", async () => {
-      //arrange
+      //arrange + act
       const { container } = renderComponent(requiredProps, {
         alternativeImageText: "",
       });
-      //act
 
       //assert
       expect(container.firstChild).toBeNull();

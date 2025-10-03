@@ -1,6 +1,7 @@
 import React from "react";
 import "../../Styling/components/recentNewsItem.scss";
 import "../../Styling/layout/layout.scss";
+import { isStringNotEmpty } from "../../utils/strings/string";
 
 interface RecentNewsItemProps {
   title: string;
@@ -15,15 +16,15 @@ const RecentNewsItem: React.FC<RecentNewsItemProps> = ({
   alternativeImageText,
   mainNewsItem = false,
 }) => {
-  const safeTitle = title.trim() || "NO TITLE GIVEN";
+  const safeTitle = isStringNotEmpty(title);
 
-  const safeAlternativeImageText = alternativeImageText.trim() || false;
+  const safeAlternativeImageText = isStringNotEmpty(alternativeImageText);
 
-  const safeImageSource = imageSource.trim() || false;
+  const safeImageSource = isStringNotEmpty(imageSource);
 
   //maybe put a console.warn here?
 
-  return safeAlternativeImageText && safeImageSource ? (
+  return safeAlternativeImageText && safeImageSource && safeTitle ? (
     <div
       className={`newsItemContainer ${mainNewsItem && "mainNewsItemContainer"}`}
       data-testid="recent-news-main-container"
