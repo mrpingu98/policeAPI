@@ -1,10 +1,7 @@
 import { render } from "@testing-library/react";
 import React from "react";
 import { Error } from "./Error";
-
-interface ErrorProps {
-  errorMessage: string;
-}
+import { ErrorProps } from "../../Interfaces";
 
 const validProps: ErrorProps = {
   errorMessage: "A Network error occurred. Please try again later.",

@@ -1,14 +1,7 @@
 import React from "react";
 import "../../Styling/components/button.scss";
 import { isStringNotEmpty } from "../../utils/strings/string";
-
-interface ButtonProps {
-  text: string;
-  variant: "primary" | "secondary";
-  onClick: () => void;
-  dataTestId?: string;
-  disabled?: boolean;
-}
+import { ButtonProps } from "../../Interfaces";
 
 const Button: React.FC<ButtonProps> = ({ text, variant = "primary", onClick, dataTestId = "button", disabled }) => {
   const safeText = isStringNotEmpty(text);

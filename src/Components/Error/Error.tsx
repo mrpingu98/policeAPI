@@ -1,10 +1,7 @@
 import React from "react";
 import "../../Styling/components/error.scss";
 import { isStringNotEmpty } from "../../utils/strings/string";
-
-interface ErrorProps {
-  errorMessage: string;
-}
+import { ErrorProps } from "../../Interfaces";
 
 const Error: React.FC<ErrorProps> = ({ errorMessage }) => {
   const safeErrorMessage = isStringNotEmpty(errorMessage);

@@ -1,12 +1,7 @@
 import React from "react";
 import "../../Styling/components/relatedContentItem.scss";
 import { isStringNotEmpty } from "../../utils/strings/string";
-
-interface RelatedContentItemProps {
-  imageSource: string;
-  title: string;
-  href: string;
-}
+import { RelatedContentItemProps } from "../../Interfaces";
 
 const RelatedContentItem: React.FC<RelatedContentItemProps> = ({ imageSource, title, href }) => {
   const safeImageSource = isStringNotEmpty(imageSource);

@@ -1,14 +1,10 @@
 import React, { useEffect, useRef } from "react";
 import "../../Styling/components/dropdown.scss";
 import "../../Styling/components/navbarDropdownButton.scss";
-import { Routes } from "../../Types";
 import { Link } from "react-router-dom";
 import { NavbarDropdownButton } from "../NavbarDropdownButton";
 import { checkRoutesArrayItemsAreSafe } from "../../utils/arrays/arrays";
-
-interface DropdownProps {
-  routesArray: Routes[];
-}
+import { DropdownProps } from "../../Interfaces";
 
 const NavbarDropdown: React.FC<DropdownProps> = ({ routesArray }) => {
   const [open, setOpen] = React.useState<boolean>(false);

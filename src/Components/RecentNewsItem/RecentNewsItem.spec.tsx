@@ -1,15 +1,7 @@
 import { render } from "@testing-library/react";
 import { RecentNewsItem } from "./RecentNewsItem";
+import { RecentNewsItemProps } from "../../Interfaces";
 import React from "react";
-
-//expect mainContainer to have flex styling but says block??
-//might need to add jest-transform-css into config
-//need to inject the CSS into the tests - won't do so automatically
-interface RequiredProps {
-  title: string;
-  imageSource: string;
-  alternativeImageText: string;
-}
 
 const requiredProps = {
   title: "Test Title",
@@ -17,7 +9,7 @@ const requiredProps = {
   alternativeImageText: "Test Alternative Text",
 };
 
-const renderComponent = (requiredProps: RequiredProps, props = {}) =>
+const renderComponent = (requiredProps: RecentNewsItemProps, props = {}) =>
   render(<RecentNewsItem {...requiredProps} {...props} />);
 
 describe("Recent News Item tests", () => {
@@ -55,14 +47,9 @@ describe("Recent News Item tests", () => {
 
         //act
         const mainContainer = getByTestId(`${componentPrefix}main-container`);
-        // const styles = getComputedStyle(mainContainer);
 
         //assert
         expect(mainContainer).toHaveClass("newsItemContainer");
-        // expect(styles.alignItems).toBe("center");
-        // expect(mainContainer).toHaveStyle("align-items: center");
-        // expect(mainContainer).toHaveStyle("display: flex");
-        // expect(mainContainer).toHaveStyle("flex-direction: row");
       });
 
       it("SHOULD render image container correctly WHEN does not have mainNewsItem", async () => {

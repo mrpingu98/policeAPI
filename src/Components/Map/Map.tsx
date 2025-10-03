@@ -2,11 +2,7 @@ import React, { useEffect } from "react";
 import "../../Styling/components/map.scss";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
-import { LatLng } from "../../Types";
-
-interface MapProps {
-  setLatitudeLongitude: React.Dispatch<React.SetStateAction<LatLng | undefined>>;
-}
+import { MapProps } from "../../Interfaces";
 
 const Map: React.FC<MapProps> = ({ setLatitudeLongitude }) => {
   useEffect(() => {

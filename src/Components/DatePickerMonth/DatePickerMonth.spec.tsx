@@ -1,14 +1,9 @@
 import React from "react";
 import { fireEvent, render } from "@testing-library/react";
 import { DatePickerMonth } from "./DatePickerMonth";
+import { DatePickerMonthProps } from "../../Interfaces";
 
 const mockSetDate = jest.fn();
-interface DatePickerMonthProps {
-  setDate: React.Dispatch<React.SetStateAction<string>>;
-  name?: string;
-  min?: string;
-  max?: string;
-}
 
 const validProps: DatePickerMonthProps = {
   setDate: mockSetDate,

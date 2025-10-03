@@ -1,14 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "../../Styling/components/crimeData.scss";
-import { CrimeCategories, CrimeCategoryTotals, CrimeDataResponse } from "../../Types";
+import { CrimeCategoryTotals } from "../../Types";
 import { getNumberOfCrimesByCategory } from "./helpers";
-
-interface CrimeDataProps {
-  title: string;
-  crimeData: CrimeDataResponse[];
-  isFetching: boolean;
-  categories: CrimeCategories[];
-}
+import { CrimeDataProps } from "../../Interfaces";
 
 const CrimeData: React.FC<CrimeDataProps> = ({ title, crimeData, categories }) => {
   const [crimeCategoryTotals, setCrimeCategoryTotals] = useState<CrimeCategoryTotals[]>([]);

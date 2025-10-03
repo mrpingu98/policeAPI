@@ -3,7 +3,6 @@ import { NavBar } from "./NavBar";
 import { useIsMobile } from "../../Hooks/useIsMobile/useIsMobile";
 import React from "react";
 import { createMemoryRouter, RouterProvider } from "react-router-dom";
-// import { navRoutes } from "../../constants/navRoutes";
 
 jest.mock("../../Hooks/useIsMobile/useIsMobile", () => ({
   __esModule: true,

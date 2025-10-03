@@ -1,13 +1,7 @@
 import React from "react";
 import "../../Styling/components/datePickerMonth.scss";
 import { isStringNotEmpty } from "../../utils/strings/string";
-
-interface DatePickerMonthProps {
-  setDate: React.Dispatch<React.SetStateAction<string>>;
-  name?: string;
-  min?: string;
-  max?: string;
-}
+import { DatePickerMonthProps } from "../../Interfaces";
 
 const DatePickerMonth: React.FC<DatePickerMonthProps> = ({ name, setDate, min, max }) => {
   const safeName = name === undefined ? true : isStringNotEmpty(name) || false;

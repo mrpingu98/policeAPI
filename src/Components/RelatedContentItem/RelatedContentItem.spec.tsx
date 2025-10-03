@@ -1,12 +1,7 @@
 import { render } from "@testing-library/react";
 import { RelatedContentItem } from "./RelatedContentItem";
 import React from "react";
-
-interface RelatedContentItemProps {
-  imageSource: string;
-  title: string;
-  href: string;
-}
+import { RelatedContentItemProps } from "../../Interfaces";
 
 const validProps = {
   imageSource: "/assets/internal-police-reports.jpg",

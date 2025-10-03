@@ -1,18 +1,11 @@
 import { fireEvent, render } from "@testing-library/react";
 import { Button } from "./Button";
+import { ButtonProps } from "../../Interfaces";
 import React from "react";
-
-interface Props {
-  text: string;
-  variant: "primary" | "secondary";
-  onClick: typeof jest.fn;
-  dataTestId?: string;
-  disabled?: boolean;
-}
 
 const handleClick = jest.fn();
 
-const validProps: Props = {
+const validProps: ButtonProps = {
   text: "Submit",
   variant: "primary",
   onClick: handleClick,
