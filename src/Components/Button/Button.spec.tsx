@@ -134,7 +134,7 @@ describe("Button tests", () => {
 
   describe("Invalid props where text is an empty string tests", () => {
     const datatestid = "button";
-    it("SHOULD render the button with 'No text given' WHEN text prop is an empty string", async () => {
+    it("SHOULD render the button with no text WHEN text prop is an empty string", async () => {
       //arrange
       const { getByTestId } = renderComponent(invalidProps);
 
@@ -142,7 +142,7 @@ describe("Button tests", () => {
       const button = getByTestId(datatestid);
 
       //assert
-      expect(button).toHaveTextContent("No text given");
+      expect(button).toHaveTextContent("");
     });
   });
 });

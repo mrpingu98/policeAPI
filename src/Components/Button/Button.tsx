@@ -1,5 +1,6 @@
 import React from "react";
 import "../../Styling/components/button.scss";
+import { isStringNotEmpty } from "../../utils/strings/string";
 
 interface ButtonProps {
   text: string;
@@ -9,22 +10,11 @@ interface ButtonProps {
   disabled?: boolean;
 }
 
-const Button: React.FC<ButtonProps> = ({
-  text,
-  variant = "primary",
-  onClick,
-  dataTestId = "button",
-  disabled,
-}) => {
-  const safeText = text?.trim() || "No text given";
+const Button: React.FC<ButtonProps> = ({ text, variant = "primary", onClick, dataTestId = "button", disabled }) => {
+  const safeText = isStringNotEmpty(text);
 
   return (
-    <button
-      className={variant}
-      onClick={onClick}
-      data-testid={`${dataTestId}`}
-      disabled={disabled}
-    >
+    <button className={variant} onClick={onClick} data-testid={`${dataTestId}`} disabled={disabled}>
       {safeText}
     </button>
   );
