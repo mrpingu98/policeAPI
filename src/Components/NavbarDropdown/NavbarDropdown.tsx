@@ -4,6 +4,7 @@ import "../../Styling/components/navbarDropdownButton.scss";
 import { Routes } from "../../Types";
 import { Link } from "react-router-dom";
 import { NavbarDropdownButton } from "../NavbarDropdownButton";
+import { checkRoutesArrayItemsAreSafe } from "../../utils/arrays/arrays";
 
 interface DropdownProps {
   routesArray: Routes[];
@@ -11,8 +12,8 @@ interface DropdownProps {
 
 const NavbarDropdown: React.FC<DropdownProps> = ({ routesArray }) => {
   const [open, setOpen] = React.useState<boolean>(false);
-  const [safeRoutesArray, setSafeRoutesArray] = React.useState<Routes[]>([]);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const safeRoutesArray = checkRoutesArrayItemsAreSafe(routesArray);
 
   const handleOpenDropdown = () => {
     setOpen(!open);
@@ -24,21 +25,12 @@ const NavbarDropdown: React.FC<DropdownProps> = ({ routesArray }) => {
     }
   };
 
-  const filterRoutesArray = () => {
-    const safeRoutes = routesArray.filter((route) => route.name.trim() && route.routeUrl.trim());
-    setSafeRoutesArray(safeRoutes);
-  };
-
   useEffect(() => {
     if (open) {
       window.addEventListener("click", handleClickOutsideDropdown);
     }
     return () => window.removeEventListener("click", handleClickOutsideDropdown);
   }, [open]);
-
-  useEffect(() => {
-    filterRoutesArray();
-  }, []);
 
   return (
     <div ref={dropdownRef} className="dropdownContainer" data-testid="dropdown-container">

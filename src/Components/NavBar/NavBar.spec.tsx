@@ -3,6 +3,7 @@ import { NavBar } from "./NavBar";
 import { useIsMobile } from "../../Hooks/useIsMobile/useIsMobile";
 import React from "react";
 import { createMemoryRouter, RouterProvider } from "react-router-dom";
+// import { navRoutes } from "../../constants/navRoutes";
 
 jest.mock("../../Hooks/useIsMobile/useIsMobile", () => ({
   __esModule: true,
@@ -14,11 +15,24 @@ const mockUseIsMobile = useIsMobile as jest.Mock;
 jest.mock("../../constants/navRoutes", () => ({
   __esModule: true,
   navRoutes: [
-    { routeUrl: "#", name: "Home" },
-    { routeUrl: "#", name: "API" },
-    { routeUrl: "#", name: "TEST" },
+    { routeUrl: "/", name: "Home" },
+    { routeUrl: "/API", name: "API" },
+    { routeUrl: "/TEST", name: "TEST" },
+    { routeUrl: "  ", name: "A" },
+    { routeUrl: "B", name: "" },
   ],
 }));
+
+// const mockNavRoutes = navRoutes as jest.Mock
+
+// const validRoutes =
+// [
+//     { routeUrl: "/", name: "Home" },
+//     { routeUrl: "/API", name: "API" },
+//     { routeUrl: "/TEST", name: "TEST" },
+//     { routeUrl: "  ", name: "A" },
+//     { routeUrl: "B", name: "" },
+//   ],
 
 const MockNavBar = () => {
   const router = createMemoryRouter([
@@ -34,7 +48,7 @@ const MockNavBar = () => {
 describe("NavBar tests", () => {
   const componentPrefix = "nav-";
 
-  describe("useIsMobile is true with valid routes", () => {
+  describe("useIsMobile is true", () => {
     it("SHOULD render mobile view WHEN isMobile is true", async () => {
       //arrange
       mockUseIsMobile.mockReturnValue(true);
@@ -48,7 +62,7 @@ describe("NavBar tests", () => {
     });
   });
 
-  describe("useIsMobile is false with valid props", () => {
+  describe("useIsMobile is false", () => {
     it("SHOULD render desktop view WHEN isMobile is false", async () => {
       //arrange
       mockUseIsMobile.mockReturnValue(false);
@@ -60,16 +74,23 @@ describe("NavBar tests", () => {
       //assert
       expect(links.length).toEqual(3);
     });
+    it("SHOULD render desktop view with correct links WHEN isMobile is false", async () => {
+      //arrange
+      mockUseIsMobile.mockReturnValue(false);
+      const { getByTestId } = render(MockNavBar());
 
-    //links have correct name
-    //links have correct route
+      //act
+      const linkOne = getByTestId(`${componentPrefix}links-0`);
+      const linkTwo = getByTestId(`${componentPrefix}links-1`);
+      const linkThree = getByTestId(`${componentPrefix}links-2`);
+
+      //assert
+      expect(linkOne).toHaveTextContent("Home");
+      expect(linkOne).toHaveAttribute("href", "/");
+      expect(linkTwo).toHaveTextContent("API");
+      expect(linkTwo).toHaveAttribute("href", "/API");
+      expect(linkThree).toHaveTextContent("TEST");
+      expect(linkThree).toHaveAttribute("href", "/TEST");
+    });
   });
-
-  //useIsMobile is true with invalid routes
-  //SHOULD render mobile view WHEN at least one route is valid
-  //SHOULD not render mobile dropdown WHEN all routes are invalid
-
-  //useIsMobile is false with invalid routes
-  //SHOULD render desktop view with correct links WHEN at least one route is valid
-  //SHOULD render desktop view with no links WHEN all routes are invalid
 });

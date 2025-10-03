@@ -1,25 +1,14 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "../../Styling/components/navbar.scss";
 import { Link } from "react-router-dom";
-import { Routes } from "../../Types";
 import { NavbarDropdown } from "../NavbarDropdown/NavbarDropdown";
 import { useIsMobile } from "../../Hooks/useIsMobile/useIsMobile";
 import { navRoutes } from "../../constants/navRoutes";
-import { isStringNotEmpty } from "../../utils/strings/string";
+import { checkRoutesArrayItemsAreSafe } from "../../utils/arrays/arrays";
 
 const NavBar: React.FC = () => {
-  const [safeRoutesArray, setSafeRoutesArray] = React.useState<Routes[]>([]);
-
   const isMobileView = useIsMobile();
-
-  const filterRoutesArray = () => {
-    const safeRoutes = navRoutes.filter((route) => isStringNotEmpty(route.name) && isStringNotEmpty(route.routeUrl));
-    setSafeRoutesArray(safeRoutes);
-  };
-
-  useEffect(() => {
-    filterRoutesArray();
-  }, []);
+  const safeRoutesArray = checkRoutesArrayItemsAreSafe(navRoutes);
 
   return (
     <div>
