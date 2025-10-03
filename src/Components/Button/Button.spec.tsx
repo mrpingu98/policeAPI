@@ -7,40 +7,27 @@ interface Props {
   variant: "primary" | "secondary";
   onClick: typeof jest.fn;
   dataTestId?: string;
+  disabled?: boolean;
 }
-
-//add disable prop
 
 const handleClick = jest.fn();
 
-const primaryValidProps: Props = {
+const validProps: Props = {
   text: "Submit",
   variant: "primary",
   onClick: handleClick,
   dataTestId: "primary-button",
+  disabled: false,
 };
 
-const secondaryValidProps: Props = {
-  text: "Submit",
-  variant: "secondary",
-  onClick: handleClick,
-  dataTestId: "secondary-button",
-};
-
-const invalidProps: Props = {
-  text: "",
-  variant: "primary",
-  onClick: handleClick,
-};
-
-const renderComponent = (props: Props) => render(<Button {...props} />);
+const renderComponent = (props = {}) => render(<Button {...validProps} {...props} />);
 
 describe("Button tests", () => {
-  describe("Valid props with primary variant tests", () => {
+  describe("Valid props tests", () => {
     const datatestid = "primary-button";
     it("SHOULD render the Button WHEN props are valid", async () => {
       //arrange
-      const { getByTestId } = renderComponent(primaryValidProps);
+      const { getByTestId } = renderComponent();
 
       //act
       const button = getByTestId(datatestid);
@@ -51,7 +38,7 @@ describe("Button tests", () => {
 
     it("SHOULD render a primary button WHEN variant prop is set to primary", async () => {
       //arrange
-      const { getByTestId } = renderComponent(primaryValidProps);
+      const { getByTestId } = renderComponent();
 
       //act
       const button = getByTestId(datatestid);
@@ -60,57 +47,20 @@ describe("Button tests", () => {
       expect(button).toHaveClass("primary");
     });
 
-    it("SHOULD render the button with corrrect text WHEN text prop is valid", async () => {
-      //arrange
-      const { getByTestId } = renderComponent(primaryValidProps);
-
-      //act
-      const button = getByTestId(datatestid);
-
-      //assert
-      expect(button).toHaveTextContent("Submit");
-    });
-
-    it("SHOULD fulfill onClick functionality WHEN onClick prop is valid", async () => {
-      //arrange
-      const { getByTestId } = renderComponent(primaryValidProps);
-      const button = getByTestId(datatestid);
-
-      //act
-      fireEvent.click(button);
-
-      //assert
-      expect(handleClick).toHaveBeenCalled();
-    });
-  });
-
-  describe("Valid props with secondary variant tests", () => {
-    const datatestid = "secondary-button";
-    it("SHOULD render the Button WHEN props are valid", async () => {
-      //arrange
-      const { getByTestId } = renderComponent(secondaryValidProps);
-
-      //act
-      const button = getByTestId(datatestid);
-
-      //assert
-      expect(button).toBeInTheDocument();
-    });
-
     it("SHOULD render a secondary button WHEN variant prop is set to secondary", async () => {
       //arrange
-      const { getByTestId } = renderComponent(secondaryValidProps);
+      const { getByTestId } = renderComponent({ variant: "secondary", dataTestId: "secondary-button" });
 
       //act
-      const button = getByTestId(datatestid);
+      const button = getByTestId("secondary-button");
 
       //assert
       expect(button).toHaveClass("secondary");
     });
 
-    it("SHOULD render the button with correct text WHEN text prop is valid", async () => {
+    it("SHOULD render the button with corrrect text WHEN text prop is valid", async () => {
       //arrange
-      const { getByTestId } = renderComponent(secondaryValidProps);
+      const { getByTestId } = renderComponent();
 
       //act
       const button = getByTestId(datatestid);
@@ -121,7 +71,7 @@ describe("Button tests", () => {
 
     it("SHOULD fulfill onClick functionality WHEN onClick prop is valid", async () => {
       //arrange
-      const { getByTestId } = renderComponent(secondaryValidProps);
+      const { getByTestId } = renderComponent();
       const button = getByTestId(datatestid);
 
       //act
@@ -130,13 +80,25 @@ describe("Button tests", () => {
       //assert
       expect(handleClick).toHaveBeenCalled();
     });
+
+    it("SHOULD not be clickable WHEN disabled prop is true", async () => {
+      //arrange
+      const { getByTestId } = renderComponent({ disabled: true });
+      const button = getByTestId(datatestid);
+
+      //act
+      fireEvent.click(button);
+
+      //assert
+      expect(handleClick).toHaveBeenCalledTimes(0);
+    });
   });
 
   describe("Invalid props where text is an empty string tests", () => {
-    const datatestid = "button";
+    const datatestid = "primary-button";
     it("SHOULD render the button with no text WHEN text prop is an empty string", async () => {
       //arrange
-      const { getByTestId } = renderComponent(invalidProps);
+      const { getByTestId } = renderComponent({ text: "" });
 
       //act
       const button = getByTestId(datatestid);
