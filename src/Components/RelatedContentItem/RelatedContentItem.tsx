@@ -1,5 +1,6 @@
 import React from "react";
 import "../../Styling/components/relatedContentItem.scss";
+import { isStringNotEmpty } from "../../utils/strings/string";
 
 interface RelatedContentItemProps {
   imageSource: string;
@@ -7,22 +8,15 @@ interface RelatedContentItemProps {
   href: string;
 }
 
-const RelatedContentItem: React.FC<RelatedContentItemProps> = ({
-  imageSource,
-  title,
-  href,
-}) => {
-  const safeImageSource = imageSource?.trim() || false;
+const RelatedContentItem: React.FC<RelatedContentItemProps> = ({ imageSource, title, href }) => {
+  const safeImageSource = isStringNotEmpty(imageSource);
 
-  const safeTitle = title?.trim() || false;
+  const safeTitle = isStringNotEmpty(title);
 
-  const safeHref = href?.trim() || false;
+  const safeHref = isStringNotEmpty(href);
 
   return safeImageSource && safeTitle && safeHref ? (
-    <div
-      className="relatedContentItemContainer"
-      data-testid="related-content-item-container"
-    >
+    <div className="relatedContentItemContainer" data-testid="related-content-item-container">
       <a
         className="linkContainer"
         data-testid="related-content-link"
@@ -30,15 +24,8 @@ const RelatedContentItem: React.FC<RelatedContentItemProps> = ({
         rel="noopener noreferrer"
         target="_blank"
       >
-        <img
-          className="relatedContentItemImage"
-          src={safeImageSource}
-          data-testid="related-content-image"
-        />
-        <div
-          className="relatedContentItemTitle"
-          data-testid="related-content-title"
-        >
+        <img className="relatedContentItemImage" src={safeImageSource} data-testid="related-content-image" />
+        <div className="relatedContentItemTitle" data-testid="related-content-title">
           {safeTitle}
         </div>
       </a>

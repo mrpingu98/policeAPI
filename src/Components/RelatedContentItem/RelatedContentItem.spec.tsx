@@ -14,10 +14,8 @@ const validProps = {
   href: "https://www.police.uk/pu/performance/",
 };
 
-const renderRelatedContentItem = (
-  requiredProps: RelatedContentItemProps,
-  props = {}
-) => render(<RelatedContentItem {...requiredProps} {...props} />);
+const renderRelatedContentItem = (requiredProps: RelatedContentItemProps, props = {}) =>
+  render(<RelatedContentItem {...requiredProps} {...props} />);
 
 describe("Related Content Item tests", () => {
   const componentPrefix = "related-content-";
@@ -43,10 +41,7 @@ describe("Related Content Item tests", () => {
 
       //assert
       expect(image).toBeInTheDocument();
-      expect(image).toHaveAttribute(
-        "src",
-        "/assets/internal-police-reports.jpg"
-      );
+      expect(image).toHaveAttribute("src", "/assets/internal-police-reports.jpg");
     });
 
     it("SHOULD render correct link WHEN href is valid", async () => {
@@ -58,42 +53,36 @@ describe("Related Content Item tests", () => {
 
       //assert
       expect(link).toBeInTheDocument();
-      expect(link).toHaveAttribute(
-        "href",
-        "https://www.police.uk/pu/performance/"
-      );
+      expect(link).toHaveAttribute("href", "https://www.police.uk/pu/performance/");
     });
   });
 
   describe("Invalid props", () => {
     it("SHOULD render null WHEN title is an empty string", async () => {
-      //arrange
+      //arrange + act
       const { container } = renderRelatedContentItem(validProps, {
         title: "   ",
       });
-      //act
 
       //assert
       expect(container.firstChild).toBeNull();
     });
 
     it("SHOULD render null WHEN imageSource is an empty string", async () => {
-      //arrange
+      //arrange + act
       const { container } = renderRelatedContentItem(validProps, {
         imageSource: "  ",
       });
-      //act
 
       //assert
       expect(container.firstChild).toBeNull();
     });
 
     it("SHOULD render null WHEN href is an empty string", async () => {
-      //arrange
+      //arrange + act
       const { container } = renderRelatedContentItem(validProps, {
         href: "  ",
       });
-      //act
 
       //assert
       expect(container.firstChild).toBeNull();
