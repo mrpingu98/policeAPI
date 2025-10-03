@@ -5,6 +5,7 @@ import { Routes } from "../../Types";
 import { NavbarDropdown } from "../NavbarDropdown/NavbarDropdown";
 import { useIsMobile } from "../../Hooks/useIsMobile/useIsMobile";
 import { navRoutes } from "../../constants/navRoutes";
+import { isStringNotEmpty } from "../../utils/strings/string";
 
 const NavBar: React.FC = () => {
   const [safeRoutesArray, setSafeRoutesArray] = React.useState<Routes[]>([]);
@@ -12,7 +13,7 @@ const NavBar: React.FC = () => {
   const isMobileView = useIsMobile();
 
   const filterRoutesArray = () => {
-    const safeRoutes = navRoutes.filter((route) => route.name.trim() && route.routeUrl.trim());
+    const safeRoutes = navRoutes.filter((route) => isStringNotEmpty(route.name) && isStringNotEmpty(route.routeUrl));
     setSafeRoutesArray(safeRoutes);
   };
 
