@@ -14,12 +14,22 @@ import { Error } from "../../Components/Error/Error";
 
 //QUESTIONS
 //Helper functions - abstracted out ?
+
 //Simpler error handling - project wiould just have an error boundary to catch it and show error page?
-//Conditoonal logic for rendering loader/error/crimeData - assume I can make it simpler?
+
+//Conditonal logic for rendering loader/error/crimeData - assume I can make it simpler? - yes refactor - what duplication exists,
+//how would you explain it to someone else (whend oes this component exist, explain to someone who doesnt know the app) - does it
+//make sense as a field or method?)
+//when data has been fetched and no errors
+//function for errors, data, and fetching
+//then grouping further into what type of loading error and data - bucketing them
+
 //create helper function for useQuery?
-//NavBar unit testing - how to mock different values for amocked import?
+
+//crime query paramas helper function? (Api page)
+
+//NavBar unit testing - how to mock different values for a mocked import?
 //navbar dropdown unit testing - use of NavBarDropdownTestUtils?
-//crime query paramas helper function (Api page)
 
 const Api: React.FC = () => {
   const [latitudeLongitude, setLatitudeLongitude] = useState<LatLng | undefined>();
