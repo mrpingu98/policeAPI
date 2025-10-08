@@ -22,6 +22,10 @@ jest.mock("../../constants/navRoutes", () => ({
   ],
 }));
 
+//put it inside a describe, then mock it again in another describe
+//or just seperate files ("invalid")
+//jest.spyon(navRoute) = {validRoutes}
+
 // const mockNavRoutes = navRoutes as jest.Mock
 
 //should i test invalid props by checking the length of links i expect
