@@ -11,16 +11,16 @@ export function queryParamsHelperFunction(baseUrl: string, queryParameters: KeyV
 }
 
 export async function getRequest(urlAffix: string, queryParameters?: KeyValue[]) {
-  try {
-    const response = await fetch(
-      queryParameters ? queryParamsHelperFunction(`${baseUrl}${urlAffix}`, queryParameters) : `${baseUrl}${urlAffix}`
-    );
-    const data = await response.json();
-    return data;
-  } catch (err) {
-    throw err as Error;
+  const response = await fetch(
+    queryParameters ? queryParamsHelperFunction(`${baseUrl}${urlAffix}`, queryParameters) : `${baseUrl}${urlAffix}`
+  );
+  if (!response.ok) {
+    throw new Error(`HTTP error! Status ${response.status}`);
   }
+  return response.json();
 }
+//if tanstack handles errors then might not need try/catch - if tanstack handles it I don't need it
+//add a console.log() for the error
 
 //fetch first - get response
 //then await json - then await response.json and see what happens and catch errors
