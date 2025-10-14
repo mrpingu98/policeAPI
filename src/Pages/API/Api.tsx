@@ -1,35 +1,24 @@
 import React, { useState } from "react";
 import Map from "../../Components/Map/Map";
 import "../../Styling/components/map.scss";
-import { LatLng } from "../../Types";
+import { CrimeCategories, CrimeDataResponse, LatLng } from "../../Types";
 import { DatePickerMonth } from "../../Components/DatePickerMonth/DatePickerMonth";
 import { Button } from "../../Components/Button/Button";
 import "../../Styling/pages/api.scss";
 import { getCurrentMonthAndYear } from "../../utils/dates/date";
-import { getRequest } from "../../api/apiHelpers";
-import { useQuery } from "@tanstack/react-query";
+import { queryResult, useGetQuery } from "../../api/apiHelpers";
 import { CrimeData } from "../../Components/CrimeData/CrimeData";
 import { LoadingCircle } from "../../Components/LoadingCircle/LoadingCircle";
 import { Error } from "../../Components/Error/Error";
+import { crimeCategoriesUrl, crimesByLocationUrl, crimesByRadiusUrl } from "../../constants/api";
 
 //QUESTIONS
-//Helper functions - abstracted out ?
-
-//Simpler error handling - project wiould just have an error boundary to catch it and show error page?
-
-//Conditonal logic for rendering loader/error/crimeData - assume I can make it simpler? - yes refactor - what duplication exists,
-//how would you explain it to someone else (whend oes this component exist, explain to someone who doesnt know the app) - does it
-//make sense as a field or method?)
-//when data has been fetched and no errors
-//function for errors, data, and fetching
-//then grouping further into what type of loading error and data - bucketing them
-
-//create helper function for useQuery?
-
-//crime query paramas helper function? (Api page)
+//api unit testing - spyon()
 
 //NavBar unit testing - how to mock different values for a mocked import?
 //navbar dropdown unit testing - use of NavBarDropdownTestUtils?
+
+//crime query paramas helper function? (Api page)
 
 const Api: React.FC = () => {
   const [latitudeLongitude, setLatitudeLongitude] = useState<LatLng | undefined>();
@@ -49,45 +38,33 @@ const Api: React.FC = () => {
   const categoryQueryParams = [{ key: "date", value: date }];
 
   const {
-    error: errorCrimesByLocation,
-    data: dataCrimesByLocation,
-    isFetching: isFetchingCrimesByLocation,
-    isError: isErrorCrimesByLocation,
-    refetch: refetchCrimesByLocation,
-  } = useQuery({
-    queryKey: ["getCrimesByLocation"],
-    queryFn: () => getRequest("crimes-at-location", crimeQueryParams),
-    enabled: false,
-  });
+    loading: loadingCrimesRadius,
+    dataFetched: dataFetchedCrimesRadius,
+    data: dataCrimesRadius,
+    isError: isErrorCrimesRadius,
+    refetch: refetchCrimesRadius,
+  } = queryResult<CrimeDataResponse[]>(useGetQuery("getCrimesByRadius", crimesByRadiusUrl, crimeQueryParams));
 
   const {
-    error: errorCrimesByRadius,
-    data: dataCrimesByRadius,
-    isFetching: isFetchingCrimesByRadius,
-    isError: isErrorCrimesByRadius,
-    refetch: refetchCrimesByRadius,
-  } = useQuery({
-    queryKey: ["getCrimesByRadius"],
-    queryFn: () => getRequest("crimes-street/all-crime", crimeQueryParams),
-    enabled: false,
-  });
+    loading: loadingCrimesLocation,
+    dataFetched: dataFetchedCrimesLocation,
+    data: dataCrimesLocation,
+    isError: isErrorCrimesLocation,
+    refetch: refetchCrimesLocation,
+  } = queryResult<CrimeDataResponse[]>(useGetQuery("getCrimesByLocation", crimesByLocationUrl, crimeQueryParams));
 
   const {
+    loading: loadingCrimeCategories,
+    dataFetched: dataFetchedCrimeCategories,
     data: dataCrimeCategories,
-    isFetching: isFetchingCrimeCategories,
     isError: isErrorCrimeCategories,
-    error: errorCrimesByCategories,
-    refetch: refetchCategories,
-  } = useQuery({
-    queryKey: ["getCrimeCategories"],
-    queryFn: () => getRequest("crime-categories", categoryQueryParams),
-    enabled: false,
-  });
+    refetch: refetchCrimeCategories,
+  } = queryResult<CrimeCategories[]>(useGetQuery("getCrimesByCategories", crimeCategoriesUrl, categoryQueryParams));
 
-  const handleClick = async () => {
-    refetchCategories();
-    refetchCrimesByLocation();
-    refetchCrimesByRadius();
+  const handleSubmit = async () => {
+    refetchCrimeCategories();
+    refetchCrimesLocation();
+    refetchCrimesRadius();
   };
 
   return (
@@ -119,49 +96,35 @@ const Api: React.FC = () => {
           <Button
             text="Submit"
             variant="primary"
-            onClick={handleClick}
+            onClick={handleSubmit}
             disabled={latitudeLongitude && date ? false : true}
           />
         </div>
       </div>
       <div>
-        {(isFetchingCrimeCategories || isFetchingCrimesByLocation) && <LoadingCircle />}
-        {(isErrorCrimesByLocation || isErrorCrimeCategories) &&
-          !isFetchingCrimeCategories &&
-          !isFetchingCrimesByLocation && (
-            <Error errorMessage="There was a problem fetching the crimes at this specific location. Please try again later." />
-          )}
-        {dataCrimeCategories &&
-        dataCrimesByLocation &&
-        !isFetchingCrimeCategories &&
-        !isFetchingCrimesByLocation &&
-        !isErrorCrimeCategories &&
-        !isErrorCrimesByLocation ? (
+        {(loadingCrimesLocation || loadingCrimeCategories) && <LoadingCircle />}
+        {(isErrorCrimesLocation || isErrorCrimeCategories) && (
+          <Error errorMessage="There was a problem fetching the crimes at this specific location. Please try again later." />
+        )}
+        {dataFetchedCrimesLocation && dataCrimesLocation && dataFetchedCrimeCategories && dataCrimeCategories ? (
           <CrimeData
             title="Crimes by specific location"
-            crimeData={dataCrimesByLocation}
-            isFetching={isFetchingCrimesByLocation}
+            crimeData={dataCrimesLocation}
+            isFetching={loadingCrimesLocation}
             categories={dataCrimeCategories}
           />
         ) : null}
       </div>
       <div>
-        {(isFetchingCrimeCategories || isFetchingCrimesByRadius) && <LoadingCircle />}
-        {(isErrorCrimesByRadius || isErrorCrimeCategories) &&
-          !isFetchingCrimeCategories &&
-          !isFetchingCrimesByRadius && (
-            <Error errorMessage="There was a problem fetching the crimes within a 1 mile radius of this location. Please try again later." />
-          )}
-        {dataCrimeCategories &&
-        dataCrimesByRadius &&
-        !isFetchingCrimeCategories &&
-        !isFetchingCrimesByRadius &&
-        !isErrorCrimeCategories &&
-        !isErrorCrimesByRadius ? (
+        {(loadingCrimesRadius || loadingCrimeCategories) && <LoadingCircle />}
+        {(isErrorCrimesRadius || isErrorCrimeCategories) && (
+          <Error errorMessage="There was a problem fetching the crimes within a 1 mile radius of this location. Please try again later." />
+        )}
+        {dataFetchedCrimesRadius && dataCrimesRadius && dataFetchedCrimeCategories && dataCrimeCategories ? (
           <CrimeData
             title="Crimes within a 1 mile radius of selected location"
-            crimeData={dataCrimesByRadius}
-            isFetching={isFetchingCrimesByRadius}
+            crimeData={dataCrimesRadius}
+            isFetching={loadingCrimesRadius}
             categories={dataCrimeCategories}
           />
         ) : null}
@@ -171,16 +134,3 @@ const Api: React.FC = () => {
 };
 
 export default Api;
-
-//Best practice error handling
-//so errors naturallybubble upwards...do I have to have a try/catch block
-//without tanstack, you use setState to get error - with tanstack it autaomtically has a variable to reference
-//throwing a new error...this is for custom error messages? Again, how to format/put these in - where to put them in?
-//would oyu throw new errors based on the error code, e.g. if 404 there is a problem with server
-//if 'token expired' then 'you need to refresh your login' or something?
-
-//count total amount of items returned in list
-
-//go through list, take the category, and add to a new list (.map)
-//go through this list, and remove any duplicates
-//go through this list, and for eahc item, look through the response data, and count how many times it occurs
