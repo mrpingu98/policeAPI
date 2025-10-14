@@ -1,5 +1,5 @@
+import { useQuery, UseQueryResult } from "@tanstack/react-query";
 import { baseUrl } from "../constants/api";
-// import { NetworkError, HttpError } from "../Components/Types";
 import { KeyValue } from "../Interfaces";
 
 export function queryParamsHelperFunction(baseUrl: string, queryParameters: KeyValue[]) {
@@ -19,50 +19,24 @@ export async function getRequest(urlAffix: string, queryParameters?: KeyValue[])
   }
   return response.json();
 }
-//if tanstack handles errors then might not need try/catch - if tanstack handles it I don't need it
-//add a console.log() for the error
 
-//fetch first - get response
-//then await json - then await response.json and see what happens and catch errors
-//called in same funtion, two try/catch blocks
+export function queryResult<T>(query: UseQueryResult<T, Error>) {
+  const { data, isFetching, isError, error, refetch } = query;
 
-//do you need netwrok/http error? standard error message is usually fine though
+  return {
+    loading: isFetching && !isError,
+    error,
+    dataFetched: data && !isError && !isFetching,
+    data: data ? data : null,
+    isError: isError && !isFetching,
+    refetch,
+  };
+}
 
-//doesnt seem to get err as an Error type - use reponse.status ==== code - then return specific message
-//error only pciked up if url was wrong say
-
-//catch within this part here
-
-//professional project would have an error boundary - throw errors, boundary catches them and shows an error screen
-//catch - type of exception - to handle specific errors catch
-
-// export async function getRequest(urlAffix: string, queryParameters?: KeyValue[]) {
-//   try {
-//     const response = await fetch(
-//       queryParameters ? queryParamsHelperFunction(`${baseUrl}${urlAffix}`, queryParameters) : `${baseUrl}${urlAffix}`
-//     );
-//     -- HTTP error
-//     if (!response.ok) {
-//       let errorMessage = "Unknown error details";
-//       try {
-//         const data = await response.json();
-//         if (data?.error) errorMessage = data.error;
-//       } catch {
-//         //ignore error
-//       }
-//       throw new HttpError(response.status, errorMessage);
-//     }
-//     //-- Success
-//     const data = await response.json();
-//     return data;
-//   } catch (err: unknown) {
-//     if (err instanceof HttpError) {
-//       throw err;
-//     }
-//     //-- Network error
-//     if (err instanceof Error) {
-//       throw new NetworkError(`Network error ${err.message}`);
-//     }
-//     throw new Error("Network error occurred");
-//   }
-// }
+export function useGetQuery(queryKey: string, apiEndpoint: string, queryParameters?: KeyValue[]) {
+  return useQuery({
+    queryKey: [queryKey],
+    queryFn: () => getRequest(apiEndpoint, queryParameters),
+    enabled: false,
+  });
+}
