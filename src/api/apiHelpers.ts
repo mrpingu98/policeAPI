@@ -24,7 +24,7 @@ export function queryResult<T>(query: UseQueryResult<T, Error>) {
   const { data, isFetching, isError, error, refetch } = query;
 
   return {
-    loading: isFetching && !isError,
+    loading: isFetching,
     error,
     dataFetched: data && !isError && !isFetching,
     data: data ? data : null,
