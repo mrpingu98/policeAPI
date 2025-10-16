@@ -75,6 +75,10 @@ const Api: React.FC = () => {
           Use the map below to find out about crimes by location across the UK. Pick a point on the map and input a date
           to find out the recorded crimes at that location at that time.
         </p>
+        <p className="description">
+          Since only the British Transport Police provide data for Scotland, crime levels may appear much lower than
+          they really are in this area.
+        </p>
         <Map setLatitudeLongitude={setLatitudeLongitude} />
       </div>
       <div className="selectionContainer">
