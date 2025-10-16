@@ -110,7 +110,6 @@ const Api: React.FC = () => {
           <CrimeData
             title="Crimes by specific location"
             crimeData={dataCrimesLocation}
-            isFetching={loadingCrimesLocation}
             categories={dataCrimeCategories}
           />
         ) : null}
@@ -124,7 +123,6 @@ const Api: React.FC = () => {
           <CrimeData
             title="Crimes within a 1 mile radius of selected location"
             crimeData={dataCrimesRadius}
-            isFetching={loadingCrimesRadius}
             categories={dataCrimeCategories}
           />
         ) : null}

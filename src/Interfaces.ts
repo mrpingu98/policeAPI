@@ -11,7 +11,6 @@ export interface ButtonProps {
 export interface CrimeDataProps {
   title: string;
   crimeData: CrimeDataResponse[];
-  isFetching: boolean;
   categories: CrimeCategories[];
 }
 
