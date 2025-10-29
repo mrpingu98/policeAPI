@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <title>React App</title>
+    <!-- START: GitHub Pages SPA Redirect Script -->
+    <script type="text/javascript">
+      // This script is designed to handle client-side routing for Single Page Applications (SPAs)
+      // deployed on GitHub Pages. It redirects 404 errors to the app's root, allowing
+      // the client-side router to handle the intended path.
+      // Based on: https://github.com/rafgraph/spa-github-pages
+
+      (function () {
+        // Step 1: Check if there's a redirect target stored in session storage.
+        // This happens after an initial 404 redirect to the app's root.
+        var redirect = sessionStorage.getItem("redirect");
+        if (redirect) {
+          sessionStorage.removeItem("redirect"); // Clear the stored redirect
+          window.location.replace(redirect); // Navigate to the original intended URL
+        }
+      })();
+
+      (function () {
+        var path = window.location.pathname;
+
+        // *** IMPORTANT: appBasePath is '/policeAPI/' based on your repo name and homepage ***
+        var appBasePath = "/policeAPI/";
+
+        // Step 2: If the current path is not the app's base path and is not a direct file request,
+        // store the current URL and redirect to the app's base path.
+        // The !path.includes('.') condition helps prevent redirecting for actual static assets
+        // like images, CSS, or JS files that might also return a 404 if not found.
+        if (
+          !path.startsWith(appBasePath) ||
+          (path !== appBasePath && !path.includes("."))
+        ) {
+          sessionStorage.setItem("redirect", window.location.href); // Store the full URL
+          // Redirect to the app's base path (e.g., /policeAPI/)
+          window.location.replace(window.location.origin + appBasePath);
+        }
+      })();
+    </script>
+    <!-- END: GitHub Pages SPA Redirect Script -->
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <!--
+      The build step will place the bundled scripts into the <body> tag.
+      This 404.html should be a copy of your index.html, so it should also
+      have the script tags for your bundled React app here.
+    -->
+  </body>
+</html>
