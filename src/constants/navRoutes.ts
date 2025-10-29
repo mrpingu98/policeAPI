@@ -1,6 +1,7 @@
-import { Routes } from "../Components/Types";
+import { Routes } from "../Types";
+import { PAGES } from "./pageUrls";
 
 export const navRoutes: Routes[] = [
-  { routeUrl: "/policeApi", name: "Home" },
-  { routeUrl: "/policeApi/api", name: "API" },
+  { routeUrl: PAGES.HOMEPAGE_URL, name: "Home" },
+  { routeUrl: PAGES.API_PAGE_URL, name: "API" },
 ];

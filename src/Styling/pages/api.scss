@@ -1,8 +1,4 @@
-.sectionContainers {
-  margin-bottom: 2rem;
-}
-
-.mapContainer {
+.selectionContainer {
   margin-bottom: 2rem;
 }
 
@@ -16,18 +12,12 @@
   align-items: start;
 }
 
-.formContainer {
-  margin-bottom: 3rem;
-}
-
 @media screen and (min-width: 1100px) {
   .desktopContainer {
     display: grid;
-    grid-template-columns: (1fr 1fr);
-  }
-
-  .description {
-    margin-bottom: 4rem;
+    grid-template-columns: repeat(2, 1fr);
+    margin-bottom: 2rem;
+    gap: 60px 120px;
   }
 
   .button {

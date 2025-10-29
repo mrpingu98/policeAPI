@@ -1,118 +1,139 @@
 import React, { useState } from "react";
 import Map from "../../Components/Map/Map";
 import "../../Styling/components/map.scss";
-import { LatLng } from "../../Components/Types";
+import { CrimeCategories, CrimeDataResponse, LatLng } from "../../Types";
 import { DatePickerMonth } from "../../Components/DatePickerMonth/DatePickerMonth";
 import { Button } from "../../Components/Button/Button";
 import "../../Styling/pages/api.scss";
-import { getCurrentMonthAndYear } from "../../utils/date";
-import { getRequest } from "../../api/helpers";
-import { useQuery } from "@tanstack/react-query";
+import { getCurrentMonthAndYear } from "../../utils/dates/date";
+import { queryResult, useGetQuery } from "../../api/apiHelpers";
+import { CrimeData } from "../../Components/CrimeData/CrimeData";
 import { LoadingCircle } from "../../Components/LoadingCircle/LoadingCircle";
-//maybe as a stretch case, can make type=submit for button, then onsubmit check that date input has something, otherwise throw an alert
-const Api: React.FC = () => {
-  const [latitudeLongitude, setLatitudeLongitude] = useState<
-    LatLng | undefined
-  >();
+import { Error } from "../../Components/Error/Error";
+import { crimeCategoriesUrl, crimesByLocationUrl, crimesByRadiusUrl } from "../../constants/api";
 
+//QUESTIONS
+//api unit testing - spyon()
+
+//NavBar unit testing - how to mock different values for a mocked import?
+//navbar dropdown unit testing - use of NavBarDropdownTestUtils?
+
+//crime query paramas helper function? (Api page)
+
+const Api: React.FC = () => {
+  const [latitudeLongitude, setLatitudeLongitude] = useState<LatLng | undefined>();
   const [date, setDate] = useState<string>("");
 
+  const crimeQueryParams = [
+    { key: "date", value: date },
+    {
+      key: "lat",
+      value: latitudeLongitude ? latitudeLongitude.lat.toString() : "0",
+    },
+    {
+      key: "lng",
+      value: latitudeLongitude ? latitudeLongitude.lng.toString() : "0",
+    },
+  ];
+  const categoryQueryParams = [{ key: "date", value: date }];
+
   const {
-    error,
-    data,
-    isFetching,
-    isError,
-    refetch: getCrimesByLocation,
-  } = useQuery({
-    queryKey: ["getCrimesByLocation"],
-    queryFn: () =>
-      getRequest([
-        { key: "date", value: date },
-        {
-          key: "lat",
-          value: latitudeLongitude ? latitudeLongitude.lat.toString() : "0",
-        },
-        {
-          key: "lng",
-          value: latitudeLongitude ? latitudeLongitude.lng.toString() : "0",
-        },
-      ]),
-    enabled: false,
-  });
+    loading: loadingCrimesRadius,
+    dataFetched: dataFetchedCrimesRadius,
+    data: dataCrimesRadius,
+    isError: isErrorCrimesRadius,
+    refetch: refetchCrimesRadius,
+  } = queryResult<CrimeDataResponse[]>(useGetQuery("getCrimesByRadius", crimesByRadiusUrl, crimeQueryParams));
+
+  const {
+    loading: loadingCrimesLocation,
+    dataFetched: dataFetchedCrimesLocation,
+    data: dataCrimesLocation,
+    isError: isErrorCrimesLocation,
+    refetch: refetchCrimesLocation,
+  } = queryResult<CrimeDataResponse[]>(useGetQuery("getCrimesByLocation", crimesByLocationUrl, crimeQueryParams));
+
+  const {
+    loading: loadingCrimeCategories,
+    dataFetched: dataFetchedCrimeCategories,
+    data: dataCrimeCategories,
+    isError: isErrorCrimeCategories,
+    refetch: refetchCrimeCategories,
+  } = queryResult<CrimeCategories[]>(useGetQuery("getCrimesByCategories", crimeCategoriesUrl, categoryQueryParams));
+
+  const handleSubmit = async () => {
+    refetchCrimeCategories();
+    refetchCrimesLocation();
+    refetchCrimesRadius();
+  };
 
   return (
-    <div>
-      <h2>Crimes by location</h2>
-      <p className="description">
-        Use the map below to find out about crimes by location across the UK.
-        Pick a point on the map and input a date to find out the recorded crimes
-        at that location at that time.
-      </p>
-      <div className="desktopContainer">
-        <div className="mapContainer" data-testId="location">
-          <Map setLatitudeLongitude={setLatitudeLongitude} />
+    <div className="desktopContainer">
+      <div>
+        <h1>Crimes by location</h1>
+        <p className="description">
+          Use the map below to find out about crimes by location across the UK. Pick a point on the map and input a date
+          to find out the recorded crimes at that location at that time.
+        </p>
+        <p className="description">
+          Since only the British Transport Police provide data for Scotland, crime levels may appear much lower than
+          they really are in this area.
+        </p>
+        <Map setLatitudeLongitude={setLatitudeLongitude} />
+      </div>
+      <div className="selectionContainer">
+        <div data-testid="location">
+          <h2>Location</h2>
+          <p data-testid="lat-lng-display">
+            {latitudeLongitude ? (
+              `Latitude: ${latitudeLongitude.lat.toFixed(5)}, Longitude: ${latitudeLongitude.lng.toFixed(5)}`
+            ) : (
+              <em>Select a point on the map</em>
+            )}
+          </p>
         </div>
-        <div className="formContainer">
-          <div className="sectionContainers" data-testId="location">
-            <p>
-              <b>Location:</b>{" "}
-              {latitudeLongitude ? (
-                `Latitude: ${latitudeLongitude.lat.toFixed(
-                  5
-                )}, Longitude: ${latitudeLongitude.lng.toFixed(5)}`
-              ) : (
-                <em>Select a point on the map</em>
-              )}
-            </p>
-          </div>
-          <div className="datePickerContainer" data-testId="datePicker">
-            <p>
-              <b>Date:</b>
-            </p>
-            <DatePickerMonth
-              setDate={setDate}
-              name="date-picker"
-              min="2023-01"
-              max={getCurrentMonthAndYear()}
-            />
-          </div>
-          <div className="button">
-            <Button
-              text="Submit"
-              variant="primary"
-              onClick={getCrimesByLocation}
-              disabled={latitudeLongitude && date ? false : true}
-            />
-          </div>
+        <div className="datePickerContainer" data-testid="datePicker">
+          <h2>Date</h2>
+          <DatePickerMonth setDate={setDate} name="date-picker" min="2023-01" max={getCurrentMonthAndYear()} />
+        </div>
+        <div className="button">
+          <Button
+            text="Submit"
+            variant="primary"
+            onClick={handleSubmit}
+            disabled={latitudeLongitude && date ? false : true}
+            dataTestId="submit-button"
+          />
         </div>
       </div>
-      {isFetching && <LoadingCircle />}
-      {isError && <div>Error occurred: {(error as Error).message}</div>}
-      {data ? (
-        data.length == 0 ? (
-          <p>No data exists for this selection</p>
-        ) : (
-          <div>
-            <h3>Crimes recorded at selected location</h3>
-            {data[0].category}
-          </div>
-        )
-      ) : null}
+      <div>
+        {(loadingCrimesLocation || loadingCrimeCategories) && <LoadingCircle />}
+        {(isErrorCrimesLocation || isErrorCrimeCategories) && (
+          <Error errorMessage="There was a problem fetching the crimes at this specific location. Please try again later." />
+        )}
+        {dataFetchedCrimesLocation && dataCrimesLocation && dataFetchedCrimeCategories && dataCrimeCategories ? (
+          <CrimeData
+            title="Crimes by specific location"
+            crimeData={dataCrimesLocation}
+            categories={dataCrimeCategories}
+          />
+        ) : null}
+      </div>
+      <div>
+        {(loadingCrimesRadius || loadingCrimeCategories) && <LoadingCircle />}
+        {(isErrorCrimesRadius || isErrorCrimeCategories) && (
+          <Error errorMessage="There was a problem fetching the crimes within a 1 mile radius of this location. Please try again later." />
+        )}
+        {dataFetchedCrimesRadius && dataCrimesRadius && dataFetchedCrimeCategories && dataCrimeCategories ? (
+          <CrimeData
+            title="Crimes within a 1 mile radius of selected location"
+            crimeData={dataCrimesRadius}
+            categories={dataCrimeCategories}
+          />
+        ) : null}
+      </div>
     </div>
   );
 };
 
 export default Api;
-
-//Best practice error handling
-//so errors naturallybubble upwards...do I have to have a try/catch block
-//without tanstack, you use setState to get error - with tanstack it autaomtically has a variable to reference
-//throwing a new error...this is for custom error messages? Again, how to format/put these in - where to put them in?
-//would oyu throw new errors based on the error code, e.g. if 404 there is a problem with server
-//if 'token expired' then 'you need to refresh your login' or something?
-
-//count total amount of items returned in list
-
-//go through list, take the category, and add to a new list (.map)
-//go through this list, and remove any duplicates
-//go through this list, and for eahc item, look through the response data, and count how many times it occurs

@@ -1,0 +1,12 @@
+@use "../helpers/_colours.scss";
+@use "../helpers/_fonts.scss";
+.errorContainer {
+  border-radius: 0.2rem;
+  background-color: colours.$error-background-color;
+  width: auto;
+  padding: 1rem;
+  font-weight: 600;
+  color: white;
+  line-height: 1.5rem;
+  margin-bottom: 1rem;
+}
