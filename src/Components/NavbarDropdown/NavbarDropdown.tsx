@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { NavbarDropdownButton } from "../NavbarDropdownButton";
 import { checkRoutesArrayItemsAreSafe } from "../../utils/arrays/arrays";
 import { DropdownProps } from "../../Interfaces";
-
+//make. navbar close when an option is clicked
 const NavbarDropdown: React.FC<DropdownProps> = ({ routesArray }) => {
   const [open, setOpen] = React.useState<boolean>(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -35,7 +35,12 @@ const NavbarDropdown: React.FC<DropdownProps> = ({ routesArray }) => {
         <ul className="ulContainer" data-testid="dropdown-ul-container">
           {safeRoutesArray.map((route, index) => (
             <li key={index} className="liContainer" data-testid="dropdown-li-container">
-              <Link to={route.routeUrl} className="dropdownLink" data-testid={`dropdown-link-${index}`}>
+              <Link
+                to={route.routeUrl}
+                className="dropdownLink"
+                data-testid={`dropdown-link-${index}`}
+                onClick={() => setOpen(false)}
+              >
                 {route.name}
               </Link>
             </li>
