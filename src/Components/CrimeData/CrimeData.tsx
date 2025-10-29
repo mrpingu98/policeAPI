@@ -31,10 +31,10 @@ const CrimeData: React.FC<CrimeDataProps> = ({ title, crimeData, categories }) =
                 <th>Category</th>
                 <th>No. </th>
               </tr>
-              {crimeCategoryTotals.map((x) => (
-                <tr key={x.category}>
-                  <td>{`${x.category}`}</td>
-                  <td>{`${x.amount}`}</td>
+              {crimeCategoryTotals.map((crime) => (
+                <tr key={crime.category}>
+                  <td>{`${crime.category}`}</td>
+                  <td>{`${crime.amount}`}</td>
                 </tr>
               ))}
               <tr>

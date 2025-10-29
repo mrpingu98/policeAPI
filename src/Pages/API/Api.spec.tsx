@@ -1,7 +1,6 @@
 import { fireEvent, render } from "@testing-library/react";
 import Api from "./Api";
 import React from "react";
-import Map from "../../Components/Map/Map";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 jest.mock("../../Components/Map/Map");
