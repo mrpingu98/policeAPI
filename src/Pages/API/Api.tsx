@@ -84,7 +84,7 @@ const Api: React.FC = () => {
       <div className="selectionContainer">
         <div data-testid="location">
           <h2>Location</h2>
-          <p>
+          <p data-testid="lat-lng-display">
             {latitudeLongitude ? (
               `Latitude: ${latitudeLongitude.lat.toFixed(5)}, Longitude: ${latitudeLongitude.lng.toFixed(5)}`
             ) : (
@@ -102,6 +102,7 @@ const Api: React.FC = () => {
             variant="primary"
             onClick={handleSubmit}
             disabled={latitudeLongitude && date ? false : true}
+            dataTestId="submit-button"
           />
         </div>
       </div>
