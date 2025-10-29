@@ -27,7 +27,7 @@ const NavBar: React.FC = () => {
           ))
         ))}
       {safeRoutesArray && safeRoutesArray.length == 0 && (
-        <div className="navbarMinimumHeight" data-testid="navbar-invalid-routes" />
+        <div className="navbarMinimumHeight" data-testid="nav-no-routes" />
       )}
     </div>
   );
