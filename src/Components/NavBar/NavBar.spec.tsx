@@ -32,6 +32,11 @@ const MockNavBar = () => {
   return <RouterProvider router={router} />;
 };
 
+const validRoutes = [
+  { routeUrl: "/", name: "Home" },
+  { routeUrl: "/API", name: "API" },
+  { routeUrl: "/TEST", name: "TEST" },
+];
 describe("NavBar tests", () => {
   const componentPrefix = "nav-";
 
@@ -40,11 +45,7 @@ describe("NavBar tests", () => {
       it("SHOULD render mobile view WHEN isMobile is true", async () => {
         //arrange
         mockUseIsMobile.mockReturnValue(true);
-        mockNavRoutes = [
-          { routeUrl: "/", name: "Home" },
-          { routeUrl: "/API", name: "API" },
-          { routeUrl: "/TEST", name: "TEST" },
-        ];
+        mockNavRoutes = validRoutes;
         const { getByTestId } = render(<NavBar />);
 
         //act
@@ -59,11 +60,7 @@ describe("NavBar tests", () => {
       it("SHOULD render desktop view WHEN isMobile is false", async () => {
         //arrange
         mockUseIsMobile.mockReturnValue(false);
-        mockNavRoutes = [
-          { routeUrl: "/", name: "Home" },
-          { routeUrl: "/API", name: "API" },
-          { routeUrl: "/TEST", name: "TEST" },
-        ];
+        mockNavRoutes = validRoutes;
         const { getAllByTestId } = render(MockNavBar());
         //act
         const links = getAllByTestId((testId) => testId.includes(`${componentPrefix}links`));
@@ -74,11 +71,7 @@ describe("NavBar tests", () => {
       it("SHOULD render desktop view with correct links WHEN isMobile is false", async () => {
         //arrange
         mockUseIsMobile.mockReturnValue(false);
-        mockNavRoutes = [
-          { routeUrl: "/", name: "Home" },
-          { routeUrl: "/API", name: "API" },
-          { routeUrl: "/TEST", name: "TEST" },
-        ];
+        mockNavRoutes = validRoutes;
         const { getByTestId } = render(MockNavBar());
 
         //act
